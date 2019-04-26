@@ -13,20 +13,21 @@ public class Connection {
 	private ObjectOutputStream oos;
 	private int port;
 	private String address;
-	private serverSender sender;
+//	private serverSender sender;
 	private serverReceiver receiver;
 	
 	
 	public Connection(String address, int port) {
 		this.address = address;
 		this.port = port;
+		
 	}
 	
 	public void sendGuess(Guess guess) {
 		try {
 			socket = new Socket(address, port);
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos = new ObjectOutputStream(socket.getOutputStream());
+			oos.writeObject(guess);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -39,16 +40,29 @@ public class Connection {
 	}
 	
 	
-	
-	private class serverSender extends Thread {
-		public void run() {
-			
-		}
-	}
+//	
+//	private class serverSender extends Thread {
+//
+//		public void run() {
+//			oos.writeObject(guess);
+//		}
+//	}
 	
 	private class serverReceiver extends Thread{
 		public void run() {
-			
+			try {
+				ois = new ObjectInputStream(socket.getInputStream());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			while(true) {
+				try {
+					Guess guess = (Guess) ois.readObject();
+				} catch (ClassNotFoundException | IOException e) {
+					e.printStackTrace();
+				}
+				
+			}
 		}
 	}
 }
