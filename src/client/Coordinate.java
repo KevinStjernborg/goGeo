@@ -1,4 +1,4 @@
-package test;
+package client;
 
 public class Coordinate {
 	private double x;

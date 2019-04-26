@@ -1,4 +1,4 @@
-package test;
+package client;
 
 import org.jxmapviewer.viewer.DefaultWaypoint;
 import org.jxmapviewer.viewer.GeoPosition;

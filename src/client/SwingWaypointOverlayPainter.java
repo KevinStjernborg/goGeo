@@ -1,4 +1,4 @@
-package test;
+package client;
 
 import org.jxmapviewer.JXMapViewer;
 import org.jxmapviewer.viewer.WaypointPainter;
