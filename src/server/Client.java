@@ -9,5 +9,13 @@ public class Client {
 		this.socket = socket;
 	}
 	
+	private class receiver{
+		
+	}
+	
+	private class sender{
+		
+	}
+	
 	
 }

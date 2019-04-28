@@ -2,6 +2,7 @@ package server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 
 public class Connection {
 	private int port;
@@ -21,7 +22,8 @@ public class Connection {
 			try {
 				ServerSocket sSocket = new ServerSocket();
 				while(true) {
-					
+					Socket socket = sSocket.accept();
+					Client client = new Client(socket);
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
