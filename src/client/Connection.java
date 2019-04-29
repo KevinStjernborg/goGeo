@@ -6,7 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 
-//said
+//saidens
 public class Connection {
 	private Socket socket;
 	private ObjectInputStream ois;
