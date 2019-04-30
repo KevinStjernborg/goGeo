@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 
 //saidens
@@ -25,8 +26,6 @@ public class Connection {
 	
 	public void sendGuess(Guess guess) {
 		try {
-			socket = new Socket(address, port);
-			oos = new ObjectOutputStream(socket.getOutputStream());
 			oos.writeObject(guess);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -36,7 +35,15 @@ public class Connection {
 	
 	
 	public void connect() {
-		
+		try {
+			socket = new Socket(address, port);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -50,19 +57,15 @@ public class Connection {
 	
 	private class serverReceiver extends Thread{
 		public void run() {
-			try {
-				ois = new ObjectInputStream(socket.getInputStream());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 			while(true) {
 				try {
-					Guess guess = (Guess) ois.readObject();
-				} catch (ClassNotFoundException | IOException e) {
+					
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
+
 			}
+
 		}
 	}
 }
