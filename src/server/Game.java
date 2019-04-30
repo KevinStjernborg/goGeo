@@ -8,4 +8,21 @@ public class Game {
 		this.clientOne = clientOne;
 		this.clientTwo = clientTwo;
 	}
+	
+	
+	/**
+	 * Skicka ut timer eller bara meddelande att starta i båda klienterna
+	 */
+	
+	public void start() {
+		
+	}
+	
+	
+	/**
+	 * Metod för att ta emot gissning och skicka vidare till en annan klient
+	 */
+	
+	
+
 }
