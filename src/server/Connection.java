@@ -46,6 +46,7 @@ public class Connection {
 					Thread.sleep(500);
 					if(clientList.size() >= 2) {
 						Game game = new Game(clientList.get(1), clientList.get(2));
+						game.start();
 						games.add(game);
 					}
 				} catch (InterruptedException e) {

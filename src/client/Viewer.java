@@ -39,7 +39,7 @@ public class Viewer {
 	private JXMapViewer viewer;
 	private Timer timer;
 	private GeoPosition Paris = new GeoPosition(48.8566, 2.3522);
-
+	private Guess guess;
 	
 	
 	
@@ -82,12 +82,13 @@ public class Viewer {
 
 	}
 
-	public void removeLocations() {
-
+	public void setOtherPlayersCoordinate(GeoPosition geo) {
+		addLocation(geo);
 	}
 
 	/**
 	 * Adds double click and sets the action once double click occours
+	 * Clears the map of existing markers and creates, and if one already exists, replaces the existing one
 	 */
 	public void addDoubleClick() {
 		viewer.addMouseListener(new MouseAdapter() {
@@ -100,15 +101,14 @@ public class Viewer {
 							public void run() {
 								if (eventCnt == 1) {
 								} else if (eventCnt > 1) {
+									removePaint();
 									Point p = e.getPoint();
 									Point2D pt = viewer.convertGeoPositionToPoint(Paris);
-
 									GeoPosition geo = viewer.convertPointToGeoPosition(p);
-									Guess guess = new Guess(geo.getLatitude(), geo.getLongitude());
+									guess = new Guess(geo.getLatitude(), geo.getLongitude(), geo );
 									System.out.println("Distance in kilometers: " + distFrom(geo.getLatitude(),
 											geo.getLongitude(), Paris.getLatitude(), Paris.getLongitude()));
 									addLocation(geo);
-
 								}
 								eventCnt = 0;
 							}
