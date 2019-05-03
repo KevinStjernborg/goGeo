@@ -45,7 +45,7 @@ public class Connection {
 				try {
 					Thread.sleep(500);
 					if(clientList.size() >= 2) {
-						Game game = new Game(clientList.get(1), clientList.get(2));
+						Game game = new Game(clientList.get(0), clientList.get(1));
 						game.start();
 						games.add(game);
 					}

@@ -62,7 +62,7 @@ public class Viewer {
 		viewer.setZoom(16);
 		addDoubleClick();
 		timer = new Timer();
-
+		
 
 	}
 	/**

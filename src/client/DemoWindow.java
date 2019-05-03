@@ -149,7 +149,6 @@ public class DemoWindow {
 		public static void main(String[] args) {
 
 		DemoWindow window = new DemoWindow();
-		
 
 		window.frame.setVisible(true);
 	}

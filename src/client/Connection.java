@@ -59,6 +59,7 @@ public class Connection {
 		public void run() {
 			while(true) {
 				try {
+					Guess guess = (Guess) ois.readObject();
 					
 				} catch (Exception e) {
 					e.printStackTrace();
