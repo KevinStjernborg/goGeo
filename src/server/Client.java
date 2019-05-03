@@ -1,5 +1,6 @@
 package server;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -15,10 +16,28 @@ public class Client {
 	
 	public Client(Socket socket) {
 		this.socket = socket;
+		try {
+			ois = new ObjectInputStream(socket.getInputStream());
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void setGuess(Guess guess) {
 		this.guess = guess;
+	}
+	
+	public Guess getGuess() {
+		return guess;
+	}
+	
+	public void sendOtherPlayersGuess(Guess guess) {
+		try {
+			oos.writeObject(guess);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private class Receiver extends Thread{
