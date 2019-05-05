@@ -84,7 +84,7 @@ public class Viewer {
 
 	}
 
-	public void setOtherPlayersCoordinate(GeoPosition geo) {
+	public void addOtherPlayersGuess(GeoPosition geo) {
 		addLocation(geo);
 	}
 

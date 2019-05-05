@@ -23,15 +23,16 @@ public class Connection {
 	private String address;
 //	private serverSender sender;
 	private serverReceiver receiver;
+	private Controller controller;
 	
 	
-	public Connection(String address, int port) {
+	public Connection(String address, int port, Controller controller) {
 		this.address = address;
 		this.port = port;
-		
+		this.controller = controller;
 	}
 	
-	public void sendGuess(Guess guess) {
+	public void sendMessage(Guess guess) {
 		try {
 			oos.writeObject(guess);
 		} catch (Exception e) {

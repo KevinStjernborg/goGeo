@@ -7,6 +7,7 @@ public class Guess {
 	private double y;
 	private double kilometers;
 	private double time;
+	private int score;
 	private GeoPosition geo;
 
 	/*
@@ -51,4 +52,16 @@ public class Guess {
 	public GeoPosition getGeo() {
 		return geo;
 	}
+	/*
+	 * Metod kan flyttas beroende på vad som passar bäst länge fram
+	 */
+	public void calculateScore() {
+		score = (int) (this.kilometers * time / 2);
+	}
+	
+	
+	public int getScore() {
+		return score;
+	}
+
 }

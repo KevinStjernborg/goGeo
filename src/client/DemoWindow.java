@@ -72,7 +72,6 @@ public class DemoWindow {
 
 
 	public DemoWindow() {
-		mapstuff(viewer);
 		initialize();
 	}
 
@@ -138,8 +137,8 @@ public class DemoWindow {
 
 	}
 
-	public JXMapViewer mapstuff(Viewer hejmap) {
-		return hejmap.getViewer();
+	public Viewer getViewer() {
+		return viewer;
 	}
 
 	
