@@ -12,7 +12,7 @@ import shared.Guess;
  * TODO
  * Lägg till vad som sker ett meddelande tas emot
  * skriv controller?
- * Ändra struktur från game till message
+ * Ändra struktur från game till message.
  */
 
 public class Connection {
