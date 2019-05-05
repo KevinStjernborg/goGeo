@@ -34,6 +34,8 @@ import org.jxmapviewer.viewer.TileFactoryInfo;
 import org.jxmapviewer.viewer.Waypoint;
 import org.jxmapviewer.viewer.WaypointPainter;
 
+import shared.Guess;
+
 public class Viewer {
 	private static int eventCnt;
 	private JXMapViewer viewer;

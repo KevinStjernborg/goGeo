@@ -1,5 +1,7 @@
 package server;
 
+import shared.Guess;
+
 public class Game {
 	private Client clientOne;
 	private Client clientTwo;
@@ -22,7 +24,7 @@ public class Game {
 	
 	
 	/**
-	 * Metod för att ta emot gissning och skicka vidare till en annan klient
+	 * Klass för att ta emot gissning och skicka vidare till en annan klient
 	 */
 	private class GuessListener extends Thread {
 		

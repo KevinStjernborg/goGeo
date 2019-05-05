@@ -1,4 +1,4 @@
-package client;
+package shared;
 
 import org.jxmapviewer.viewer.GeoPosition;
 
@@ -30,5 +30,25 @@ public class Guess {
 	
 	public void setTime(double time) {
 		this.time = time;
+	}
+
+	public double getX() {
+		return x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	public double getKilometers() {
+		return kilometers;
+	}
+
+	public double getTime() {
+		return time;
+	}
+
+	public GeoPosition getGeo() {
+		return geo;
 	}
 }
