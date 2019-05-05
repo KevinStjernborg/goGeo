@@ -13,9 +13,12 @@ public class Client {
 	private ObjectOutputStream oos;
 	private Guess guess;
 	private Receiver receiver;
+	private Game game;
+	private Boolean hasGuess;
 	
 	public Client(Socket socket) {
 		this.socket = socket;
+		hasGuess = false;
 		try {
 			ois = new ObjectInputStream(socket.getInputStream());
 			oos = new ObjectOutputStream(socket.getOutputStream());
@@ -30,6 +33,22 @@ public class Client {
 	
 	public Guess getGuess() {
 		return guess;
+	}
+	
+//	public void setGame(Game game) {
+//		this.game = game;
+//	}
+	
+	public void setBooleanGuessTrue() {
+		hasGuess = true;
+	}
+	
+	public void setBooleanGuessFalse() {
+		hasGuess = false;
+	}
+	
+	public boolean getBooleanGuess() {
+		return hasGuess;
 	}
 	
 	public void sendOtherPlayersGuess(Guess guess) {
@@ -47,6 +66,7 @@ public class Client {
 				try {
 					Guess guess = (Guess) ois.readObject();
 					setGuess(guess);
+					setBooleanGuessTrue();
 				}catch(Exception e) {
 					e.printStackTrace();
 				}
