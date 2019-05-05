@@ -2,6 +2,11 @@ package server;
 
 import shared.Guess;
 
+
+/*
+ * TODO
+ * Ta bort inre klass, onödigt? 
+ */
 public class Game {
 	private Client clientOne;
 	private Client clientTwo;

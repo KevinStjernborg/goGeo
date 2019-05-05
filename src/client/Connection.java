@@ -8,8 +8,13 @@ import java.net.UnknownHostException;
 
 import shared.Guess;
 
+/*
+ * TODO
+ * Lägg till vad som sker ett meddelande tas emot
+ * skriv controller?
+ * Ändra struktur från game till message
+ */
 
-//saidens
 public class Connection {
 	private Socket socket;
 	private ObjectInputStream ois;
