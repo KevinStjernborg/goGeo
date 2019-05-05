@@ -38,15 +38,16 @@ import org.jxmapviewer.viewer.TileFactoryInfo;
 
 /**
  * Ett draft pÃ¥ hur grÃ¤nssnittet kan komma att se ut i spelet. 
- * 
  * @author Said
  *
+ *
+ *Bytas ut mot annat fönster när de är klart men samma metoder// Kevin 
  */
 
 public class DemoWindow {
 	
 	Viewer viewer = new Viewer();
-
+	private Controller controller;
 
 	private JFrame frame;
 
@@ -71,8 +72,9 @@ public class DemoWindow {
 	private JButton btnRandomPicture;
 
 
-	public DemoWindow() {
+	public DemoWindow(Controller controller) {
 		initialize();
+		this.controller = controller;
 	}
 
 	/**
@@ -133,6 +135,7 @@ public class DemoWindow {
 
 		lblCoordinatesDisplay = new Label("New label");
 		CoordPanel.add(lblCoordinatesDisplay);
+		frame.setVisible(true);
 		
 
 	}
@@ -145,10 +148,10 @@ public class DemoWindow {
 
 
 		
-		public static void main(String[] args) {
-
-		DemoWindow window = new DemoWindow();
-
-		window.frame.setVisible(true);
-	}
+//		public static void main(String[] args) {
+//
+//		DemoWindow window = new DemoWindow();
+//
+//		window.frame.setVisible(true);
+//	}
 }

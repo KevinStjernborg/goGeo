@@ -45,6 +45,7 @@ public class Connection {
 	public void connect() {
 		try {
 			socket = new Socket(address, port);
+			System.out.print("Connected to server");
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
 		} catch (UnknownHostException e) {

@@ -10,9 +10,15 @@ public class Controller {
 	private DemoWindow demoWindow;
 	private Connection connection;
 	
-	public Controller(DemoWindow demoWindow,Connection connection ) {
-		this.demoWindow = demoWindow;
-		this.connection = connection;
+//	public Controller(DemoWindow demoWindow,Connection connection ) {
+//		this.demoWindow = demoWindow;
+//		this.connection = connection;
+//	}
+	
+	public Controller() {
+		 demoWindow = new DemoWindow(this);
+		 connection = new Connection("Localhost", 9000,this);
+		 connect();
 	}
 	
 	

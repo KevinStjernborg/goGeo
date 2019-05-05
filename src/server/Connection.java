@@ -27,15 +27,18 @@ public class Connection {
 
 		public void run() {
 			try {
-				ServerSocket sSocket = new ServerSocket();
+				ServerSocket sSocket = new ServerSocket(port);
+				System.out.println("Server started on port" + port);
 				while (true) {
 					Socket socket = sSocket.accept();
 					Client client = new Client(socket);
 					clientList.add(client);
+					System.out.println("Client connected // Server");
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
+			}				
+
 		}
 	}
 
