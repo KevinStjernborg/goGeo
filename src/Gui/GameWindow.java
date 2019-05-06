@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 
 public class GameWindow extends JFrame {
+	
 	private String res;
 	private Viewer viewer = new Viewer();
 
