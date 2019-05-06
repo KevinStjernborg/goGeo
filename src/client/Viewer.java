@@ -1,5 +1,6 @@
 package client;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -91,9 +92,10 @@ public class Viewer {
 	}
 	
 	public void addTwoLocations(GeoPosition p1, GeoPosition p2) {
-		Set<SwingWaypoint> waypoints = new HashSet<SwingWaypoint>(Arrays.asList(new SwingWaypoint("p1", p1), new SwingWaypoint("p2", p2)));
-		WaypointPainter<Waypoint> waypointPainter = new WaypointPainter<Waypoint>();
+		Set<MyWaypoint> waypoints = new HashSet<MyWaypoint>(Arrays.asList(new MyWaypoint("p1",Color.BLUE, p1), new MyWaypoint("p2",Color.RED, p2)));
+		WaypointPainter<MyWaypoint> waypointPainter = new WaypointPainter<MyWaypoint>();
 		waypointPainter.setWaypoints(waypoints);
+		waypointPainter.setRenderer(new FancyWaypointRenderer());
 		List<Painter<JXMapViewer>> painters = new ArrayList<Painter<JXMapViewer>>();
 		painters.add(waypointPainter);
 
