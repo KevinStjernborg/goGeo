@@ -2,55 +2,46 @@ package Gui;
 
 import java.awt.*;
 import javax.swing.*;
-
-import client.Client;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 
-public class GUIMenu1 extends JPanel {
+public class GUIMenu1 extends JPanel implements ActionListener {
 
 	private ImageIcon image;
 	private JLabel jLabel;
+	JButton btnNyttSpel;
+	JButton btnInstruktioner;
+	JButton btnAvsluta;
+	JFrame frame;
 
 	public GUIMenu1() {
 		image = new ImageIcon("images/wm.png");
 		setLayout(null);
 
-		JFrame frame = new JFrame("Meny");
+		frame = new JFrame("Meny");
 
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.getContentPane().add(this, BorderLayout.CENTER); // JPanel på JFrame
-
-		JButton btnNyttSpel = new JButton("Nytt spel");
-		btnNyttSpel.addActionListener(e -> {
-			
-			// kod som ska hända om trycker på knappen
-		});
-
+		btnNyttSpel = new JButton("Nytt spel");
 		btnNyttSpel.setBackground(new Color(0, 153, 255));
 		btnNyttSpel.setForeground(SystemColor.controlHighlight);
-		btnNyttSpel.setBounds(395, 152, 170, 59);
-		add(btnNyttSpel);
+		btnNyttSpel.setBounds(395, 150, 170, 59);
+		this.add(btnNyttSpel);
+		btnNyttSpel.addActionListener(this);
 
-		JButton btnInstruktioner = new JButton("Instruktioner");
-		btnInstruktioner.addActionListener(e -> {
-			// kod som ska hända om trycker på knappen
-		});
+		btnInstruktioner = new JButton("Instruktioner");
 		btnInstruktioner.setBackground(new Color(0, 153, 255));
 		btnInstruktioner.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		btnInstruktioner.setForeground(SystemColor.controlHighlight);
 		btnInstruktioner.setBounds(395, 250, 170, 59);
+		btnInstruktioner.addActionListener(this);
 		add(btnInstruktioner);
 
-		JButton btnAvsluta = new JButton("Avsluta");
-		btnAvsluta.addActionListener(e -> {
-			// kod som ska hända om trycker på knappen
-		});
+		btnAvsluta = new JButton("Avsluta");
 		btnAvsluta.setBackground(new Color(0, 153, 255));
 		btnAvsluta.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 		btnAvsluta.setForeground(SystemColor.controlHighlight);
 		btnAvsluta.setBounds(395, 349, 170, 59);
+		btnAvsluta.addActionListener(this);
 		add(btnAvsluta);
 
 		jLabel = new JLabel();
@@ -59,13 +50,34 @@ public class GUIMenu1 extends JPanel {
 		jLabel.setIcon(new ImageIcon("/Users/malinhallstrom/Desktop/wm.png"));
 		this.add(jLabel);
 
+		frame.getContentPane().add(this, BorderLayout.CENTER); // JPanel på JFrame
 		frame.setSize(900, 630);
 		frame.setResizable(false);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnNyttSpel) {
+			new GUIMenu2();
+			frame.setVisible(false);
+		}
+
+		if (e.getSource() == btnInstruktioner) {
+			frame.setVisible(false);
+
+		}
+		if (e.getSource() == btnAvsluta) {
+			frame.setVisible(false);
+
+		}
+
 	}
 
 	public static void main(String[] args) {
 
 		new GUIMenu1();
+
 	}
 }

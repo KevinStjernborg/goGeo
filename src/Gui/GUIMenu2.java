@@ -3,7 +3,6 @@ package Gui;
 import java.awt.*;
 import javax.swing.*;
 
-import client.Client;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,11 +16,11 @@ public class GUIMenu2 extends JPanel {
 		image = new ImageIcon("images/wm.png");
 		setLayout(null);
 
-		JFrame frame = new JFrame("Meny");
+		JFrame frame = new JFrame();
 
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.getContentPane().add(this, BorderLayout.CENTER); // JPanel på JFrame
-		
+
 		JButton btnEuropa = new JButton("Europa");
 		btnEuropa.addActionListener(e -> {
 			System.out.println("btnEuropa was pressed");
@@ -29,8 +28,6 @@ public class GUIMenu2 extends JPanel {
 		btnEuropa.setBackground(new Color(0, 153, 255));
 		btnEuropa.setForeground(SystemColor.controlHighlight);
 		btnEuropa.setBounds(395, 120, 170, 59);
-//		if(btnEuropa == 
-//				btnEuropa.setFocusPainted(false);
 		add(btnEuropa);
 
 		JButton btnAfrika = new JButton("Afrika");
@@ -42,7 +39,6 @@ public class GUIMenu2 extends JPanel {
 		btnAfrika.setBackground(new Color(0, 153, 255));
 		btnAfrika.setBounds(395, 212, 170, 59);
 		add(btnAfrika);
-
 
 		JButton btnNordamerika = new JButton("Nordamerika");
 		btnNordamerika.addActionListener(e -> {
@@ -73,9 +69,5 @@ public class GUIMenu2 extends JPanel {
 		frame.setResizable(false);
 		frame.setVisible(true);
 	}
-
-	public static void main(String[] args) {
-
-		new GUIMenu2();
-	}
+	
 }
