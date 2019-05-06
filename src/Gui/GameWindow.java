@@ -137,7 +137,7 @@ public class GameWindow extends JFrame {
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 
-		JButton infoButton = new JButton("New button");
+		JButton infoButton = new JButton();
 		infoButton.setBounds(408, 16, 65, 55);
 		panel_1.add(infoButton);
 		int offset = infoButton.getInsets().left;
