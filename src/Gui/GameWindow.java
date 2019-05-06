@@ -2,12 +2,17 @@ package Gui;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.Color;
+
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JTextPane;
 import client.Viewer;
+
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -15,9 +20,11 @@ import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 
 public class GameWindow extends JFrame {
-	
+
+
 	private String res;
 	private Viewer viewer = new Viewer();
+	private ImageIcon icon = new ImageIcon("C:\\Users\\Said\\git\\goGeo\\src\\Gui\\icon.png");
 
 
 	public GameWindow() {
@@ -133,7 +140,16 @@ public class GameWindow extends JFrame {
 		JButton infoButton = new JButton("New button");
 		infoButton.setBounds(408, 16, 65, 55);
 		panel_1.add(infoButton);
+		int offset = infoButton.getInsets().left;
+		infoButton.setIcon(resizeIcon(icon, infoButton.getWidth() - offset, infoButton.getHeight() - offset));
 
+
+	}
+	
+	private static Icon resizeIcon(ImageIcon icon, int resizedWidth, int resizedHeight) {
+	    Image img = icon.getImage();  
+	    Image resizedImage = img.getScaledInstance(resizedWidth, resizedHeight,  java.awt.Image.SCALE_SMOOTH);  
+	    return new ImageIcon(resizedImage);
 	}
 
 	public static void main(String[] args) {
@@ -142,4 +158,3 @@ public class GameWindow extends JFrame {
 		gw.setVisible(true);
 	}
 }
-
