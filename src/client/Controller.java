@@ -15,16 +15,25 @@ public class Controller {
 //		this.connection = connection;
 //	}
 	
+	
+	/*
+	 * Tillfällig lösning ska ändras till att connect sker på anrop från startmenyn
+	 */
 	public Controller() {
 		 demoWindow = new DemoWindow(this);
 		 connection = new Connection("Localhost", 9000,this);
-		 connect();
+//		 connect();  bortkommenterad för test, bör finnas sen
+		 demoWindow.getViewer().setController(this);
 	}
 	
 	
-	public void connect() {
-		connection.connect();
-	}
+	/*
+	 * bortkommenterad för test, bör finnas sen
+	 */
+	
+//	public void connect() {
+//		connection.connect();
+//	}
 	
 	public void sendMessage(Guess guess) {
 		connection.sendMessage(guess);

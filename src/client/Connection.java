@@ -30,11 +30,15 @@ public class Connection {
 		this.address = address;
 		this.port = port;
 		this.controller = controller;
+		connect();
+		receiver = new serverReceiver();
+		receiver.start();
 	}
 	
 	public void sendMessage(Guess guess) {
 		try {
 			oos.writeObject(guess);
+			System.out.println("Guess sent from client");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -68,8 +72,10 @@ public class Connection {
 		public void run() {
 			while(true) {
 				try {
-					Guess guess = (Guess) ois.readObject();
-					
+					Guess guess;
+					guess = (Guess) ois.readObject();
+					controller.receiveMessage(guess);
+					System.out.println("Guess received on Clientside");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

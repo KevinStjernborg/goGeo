@@ -41,8 +41,10 @@ public class Viewer {
 	private JXMapViewer viewer;
 	private Timer timer;
 	private GeoPosition Paris = new GeoPosition(48.8566, 2.3522);
-	private Guess guess;
-	
+	private Guess guess = null;
+	private Guess playerTwoGuess;
+	private Controller controller; //tillfällig lösning till GUI är klart och hur spelet ska fungera, ex en avsluta runda knapp eller direkt när man klickar? Behöver veta för struktur
+	private HashSet hashset = new HashSet<SwingWaypoint>();
 	
 	
 	/**
@@ -65,15 +67,31 @@ public class Viewer {
 		addDoubleClick();
 		timer = new Timer();
 		
-
+		
 	}
 	/**
 	 * Adds a marker on the map that shows where the player clicked
 	 * @param p1
 	 */
-	public void addLocation(GeoPosition p1) {
+	
+	/*
+	 * TODO 
+	 * Kontrollera att flera waypoints kan synas utan att skickas med som parameter direkt
+	 */
+	public void addOneLocation(GeoPosition p1) {
 		Set<SwingWaypoint> waypoints = new HashSet<SwingWaypoint>(Arrays.asList(new SwingWaypoint("p1", p1)));
+		WaypointPainter<Waypoint> waypointPainter = new WaypointPainter<Waypoint>();
+		waypointPainter.setWaypoints(waypoints);
+		List<Painter<JXMapViewer>> painters = new ArrayList<Painter<JXMapViewer>>();
+		painters.add(waypointPainter);
 
+		CompoundPainter<JXMapViewer> painter = new CompoundPainter<JXMapViewer>(painters);
+		viewer.setOverlayPainter(painter);
+
+	}
+	
+	public void addTwoLocations(GeoPosition p1, GeoPosition p2) {
+		Set<SwingWaypoint> waypoints = new HashSet<SwingWaypoint>(Arrays.asList(new SwingWaypoint("p1", p1), new SwingWaypoint("p2", p2)));
 		WaypointPainter<Waypoint> waypointPainter = new WaypointPainter<Waypoint>();
 		waypointPainter.setWaypoints(waypoints);
 		List<Painter<JXMapViewer>> painters = new ArrayList<Painter<JXMapViewer>>();
@@ -85,7 +103,17 @@ public class Viewer {
 	}
 
 	public void addOtherPlayersGuess(GeoPosition geo) {
-		addLocation(geo);
+		System.out.println("Guess receiver in viewer");
+		removePaint();
+		addTwoLocations(guess.getGeo(), geo);
+	}
+	
+	/*
+	 * Ska tas bort, tillfällig lösning för testning
+	 */
+	
+	public void setController(Controller controller) {
+		this.controller = controller;
 	}
 
 	/**
@@ -103,18 +131,22 @@ public class Viewer {
 							public void run() {
 								if (eventCnt == 1) {
 								} else if (eventCnt > 1) {
-									removePaint();
+//									removePaint();
 									Point p = e.getPoint();
 									Point2D pt = viewer.convertGeoPositionToPoint(Paris);
 									GeoPosition geo = viewer.convertPointToGeoPosition(p);
 									guess = new Guess(geo.getLatitude(), geo.getLongitude(), geo );
 									System.out.println("Distance in kilometers: " + distFrom(geo.getLatitude(),
 											geo.getLongitude(), Paris.getLatitude(), Paris.getLongitude()));
-									addLocation(geo);
+									hashset.add(geo);
+									addOneLocation(geo);
+									controller.sendMessage(guess);
+									System.out.println("Guess sent");
+								
 								}
 								eventCnt = 0;
 							}
-						}, 400);
+						}, 1000);
 					}
 				}
 				if (e.getButton() == 3) {

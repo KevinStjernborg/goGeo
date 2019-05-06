@@ -1,8 +1,10 @@
 package shared;
 
+import java.io.Serializable;
+
 import org.jxmapviewer.viewer.GeoPosition;
 
-public class Guess {
+public class Guess implements Serializable {
 	private double x;
 	private double y;
 	private double kilometers;

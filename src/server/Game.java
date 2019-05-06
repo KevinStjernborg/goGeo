@@ -15,7 +15,9 @@ public class Game {
 	public Game(Client clientOne, Client clientTwo) {
 		this.clientOne = clientOne;
 		this.clientTwo = clientTwo;
+		guessListener = new GuessListener();
 		guessListener.start();
+		System.out.println("Game started");
 	}
 	
 	
@@ -42,6 +44,7 @@ public class Game {
 						clientTwo.sendOtherPlayersGuess(clientOne.getGuess());
 						clientOne.setBooleanGuessFalse();
 						clientTwo.setBooleanGuessFalse();
+						System.out.println("Guess retrieved from both clients");
 					}
 				} catch (InterruptedException e) {
 					e.printStackTrace();

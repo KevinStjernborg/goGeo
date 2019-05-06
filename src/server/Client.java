@@ -19,8 +19,10 @@ public class Client {
 	public Client(Socket socket) {
 		this.socket = socket;
 		hasGuess = false;
+		receiver = new Receiver();
+		receiver.start();
 		try {
-			ois = new ObjectInputStream(socket.getInputStream());
+//			ois = new ObjectInputStream(socket.getInputStream());
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			} catch (IOException e) {
 			e.printStackTrace();
@@ -64,9 +66,11 @@ public class Client {
 		public void run() {
 			while(true) {
 				try {
-					Guess guess = (Guess) ois.readObject();
+					ois = new ObjectInputStream(socket.getInputStream());
+					guess = (Guess) ois.readObject();
 					setGuess(guess);
 					setBooleanGuessTrue();
+					System.out.println("Guess recieved");
 				}catch(Exception e) {
 					e.printStackTrace();
 				}
