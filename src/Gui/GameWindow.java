@@ -11,7 +11,6 @@ import java.awt.Color;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JTextPane;
 import client.Viewer;
 
 import javax.swing.JButton;
@@ -175,23 +174,31 @@ public class GameWindow extends JFrame {
 	
 	}
 
-	private Icon resizeIcon(ImageIcon icon, int resizedWidth, int resizedHeight) {
-		Image img = icon.getImage();  
-		Image resizedImage = img.getScaledInstance(resizedWidth, resizedHeight,  java.awt.Image.SCALE_SMOOTH);  
-		return new ImageIcon(resizedImage);
-	}
+	/**
+	 * Resizes the selected {@link ImageIcon} to fit the selected {@link JButton}
+	 * @param button
+	 * @param icon
+	 */
 
 	public void fitIconToButton(JButton button, ImageIcon icon) {
+		Image img = icon.getImage();
 		int offset = button.getInsets().left;
-		button.setIcon(resizeIcon(icon, button.getWidth() - offset, button.getHeight() - offset));
+		int W = button.getWidth() - offset;
+		int H = button.getHeight() - offset;
+		Image resizedImage = img.getScaledInstance(W, H, java.awt.Image.SCALE_SMOOTH);
+		button.setIcon(new ImageIcon(resizedImage));
 	}
 
 	public void setText(String text) {
-		textPane.setText(textPane.getText() + "\n" + text);
-		//textPane.append("\n" + text);
+		textPane.append("\n" + text);
 	}
 	public String getText() {
 		return textPane.getText();
+	}
+	
+	public void setTimerText(String text) {
+		timerLabel.setText(text);
+		timerLabel.updateUI();
 	}
 
 	public static void main(String[] args) {
