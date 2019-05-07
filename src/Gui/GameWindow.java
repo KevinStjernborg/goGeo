@@ -1,6 +1,8 @@
 package Gui;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.BorderLayout;
@@ -12,13 +14,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JTextPane;
 import client.Viewer;
 
-
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
-import javax.swing.JLayeredPane;
+import javax.swing.JTextArea;
+import javax.swing.BoxLayout;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.DropMode;
 
 public class GameWindow extends JFrame {
 
@@ -33,136 +36,143 @@ public class GameWindow extends JFrame {
 	private ImageIcon arrowDownIcon = new ImageIcon("C:\\Users\\Said\\git\\goGeo\\src\\Gui\\arrowDowntest.png");
 	private ImageIcon resignImage = new ImageIcon("C:\\Users\\Said\\Desktop\\resign.png");
 
+	private JPanel mapPanel = new JPanel();
+	//private JTextPane textPane = new JTextPane();
+
+	private JTextArea textPane = new JTextArea();
+	private JScrollPane PanelTextConsole = new JScrollPane(textPane);
+	private JPanel panel = new JPanel();
+	private JPanel promptPanel = new JPanel();
+	private JLabel lblNewLabel = new JLabel("InstructionPrompt");
+	private JPanel boardPanel = new JPanel();
+	private JLabel scoreHeader = new JLabel("SCORE");
+	private JLabel player1lbl = new JLabel("Player 1");
+	private JLabel player2lbl = new JLabel("Player 2");
+	private JLabel timerLabel = new JLabel("5");
+	private JSeparator separator = new JSeparator();
+	private JLabel scorelbl1 = new JLabel("New label");
+	private JLabel scorelbl2 = new JLabel("New label");
+	private JPanel submitPanel = new JPanel();
+	private JButton submitButton = new JButton(""); 
+	private JPanel zoomPanel = new JPanel();
+	private JButton zoomUp = new JButton("");
+	private JButton zoomDown = new JButton("");
+	private JPanel resignPanel = new JPanel();
+	private JButton resignButton = new JButton("");
+	private JPanel infoPanel = new JPanel();
+	private JButton infoButton = new JButton();
+
+
 	public GameWindow() {
-	
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		setVisible(true);
 		getContentPane().setLayout(null);
 
-		JPanel mapPanel = new JPanel();
 		mapPanel.setBounds(15, 76, 1230, 743);
 		getContentPane().add(mapPanel,BorderLayout.CENTER);
-		mapPanel.setLayout(new BorderLayout(0, 0));
-		mapPanel.add(viewer.getViewer()); 
+		mapPanel.add(viewer.getViewer());
+		mapPanel.setLayout(new BoxLayout(mapPanel, BoxLayout.X_AXIS));
 
-		JPanel PanelTextConsole = new JPanel();
-		PanelTextConsole.setBounds(15, 835, 758, 135);
-		getContentPane().add(PanelTextConsole);
-		PanelTextConsole.setLayout(null);
-
-		JTextPane textPane = new JTextPane();
+		panel.setForeground(Color.BLACK);
+		panel.setBackground(Color.BLACK);
+		panel.setBounds(15, 835, 758, 135);
+		getContentPane().add(panel);
+		panel.setLayout(new BorderLayout(0, 0));
+		panel.add(PanelTextConsole);
+		
+		
+		textPane.setRows(10);
+		textPane.setLineWrap(true);
 		textPane.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		textPane.setBounds(0, 0, 758, 135);
-		PanelTextConsole.add(textPane);
 		textPane.setForeground(Color.WHITE);
 		textPane.setBackground(Color.BLACK);
 		textPane.setText("HÄRHRÄ");
-		textPane.setEditable(false);
-
-		JPanel promptPanel = new JPanel();
+		PanelTextConsole.add(textPane);
 		promptPanel.setBounds(98, 16, 1060, 44);
-		getContentPane().add(promptPanel);
+		
+		PanelTextConsole.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		PanelTextConsole.setViewportView(textPane);
 
-		JLabel lblNewLabel = new JLabel("InstructionPrompt");
 		lblNewLabel.setBackground(Color.BLACK);
 		lblNewLabel.setForeground(Color.RED);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 23));
 		promptPanel.add(lblNewLabel);
 
-		JPanel boardPanel = new JPanel();
 		boardPanel.setBackground(Color.WHITE);
 		boardPanel.setBounds(1398, 76, 498, 743);
 		getContentPane().add(boardPanel);
 		boardPanel.setLayout(null);
 
-		JLabel scoreHeader = new JLabel("SCORE");
 		scoreHeader.setHorizontalAlignment(SwingConstants.CENTER);
 		scoreHeader.setFont(new Font("Tahoma", Font.BOLD, 17));
 		scoreHeader.setBounds(195, 16, 88, 38);
 		boardPanel.add(scoreHeader);
 
-		JLabel player1lbl = new JLabel("Player 1");
 		player1lbl.setBounds(15, 81, 137, 38);
 		boardPanel.add(player1lbl);
 
-		JLabel player2lbl = new JLabel("Player 2");
 		player2lbl.setBounds(15, 152, 137, 38);
 		boardPanel.add(player2lbl);
 
-		JLabel timerLabel = new JLabel("5");
 		timerLabel.setFont(new Font("Tahoma", Font.BOLD, 99));
 		timerLabel.setForeground(Color.BLACK);
 		timerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		timerLabel.setBounds(15, 316, 468, 411);
 		boardPanel.add(timerLabel);
 
-		JSeparator separator = new JSeparator();
 		separator.setForeground(Color.DARK_GRAY);
 		separator.setBackground(Color.DARK_GRAY);
 		separator.setBounds(0, 316, 498, 2);
 		boardPanel.add(separator);
-		
-		JLabel scorelbl1 = new JLabel("New label");
+
 		scorelbl1.setBounds(346, 81, 137, 38);
 		boardPanel.add(scorelbl1);
-		
-		JLabel scorelbl2 = new JLabel("New label");
+
 		scorelbl2.setBounds(346, 152, 137, 38);
 		boardPanel.add(scorelbl2);
 
-		JPanel submitPanel = new JPanel();
 		submitPanel.setBounds(788, 835, 370, 135);
 		getContentPane().add(submitPanel);
 		submitPanel.setLayout(null);
 
-		JButton submitButton = new JButton("");
 		submitButton.setIcon(new ImageIcon("C:\\Users\\Said\\Desktop\\Backgroundtestsa.png"));
 		submitButton.setForeground(Color.GREEN);
 		submitButton.setBackground(Color.GREEN);
 		submitButton.setBounds(15, 16, 342, 103);
 		submitPanel.add(submitButton);
 
-		JPanel zoomPanel = new JPanel();
 		zoomPanel.setBounds(1260, 76, 123, 743);
 		getContentPane().add(zoomPanel);
 		zoomPanel.setLayout(null);
 
-		JButton zoomUp = new JButton("");
 		zoomUp.setBounds(15, 102, 45, 115);
 		zoomPanel.add(zoomUp);
-		int offsetUp = zoomUp.getInsets().left;
-		zoomUp.setIcon(resizeIcon(arrowUpIcon, zoomUp.getWidth() - offsetUp, zoomUp.getHeight() - offsetUp));
+		fitIconToButton(zoomUp, arrowUpIcon);
 
-		JButton zoomDown = new JButton("");
 		zoomDown.setBounds(15, 404, 45, 115);
 		zoomPanel.add(zoomDown);
-		int offsetDown = zoomDown.getInsets().left;
-		zoomDown.setIcon(resizeIcon(arrowDownIcon, zoomDown.getWidth() - offsetDown, zoomDown.getHeight() - offsetDown));
+		fitIconToButton(zoomDown, arrowDownIcon);
 
-		JPanel resignPanel = new JPanel();
 		resignPanel.setBounds(1398, 835, 498, 137);
 		getContentPane().add(resignPanel);
 		resignPanel.setLayout(null);
 
-		JButton resignButton = new JButton("");
 		resignButton.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 27));
 		resignButton.setBounds(15, 16, 468, 103);
 		resignPanel.add(resignButton);
-		int offsetResign = resignButton.getInsets().left;
-		resignButton.setIcon(resizeIcon(resignImage, resignButton.getWidth() - offsetResign, resignButton.getHeight() - offsetResign));
-		
-		JPanel infoPanel = new JPanel();
+		fitIconToButton(resignButton, resignImage);
+
 		infoPanel.setBounds(1398, 16, 498, 44);
 		getContentPane().add(infoPanel);
 		infoPanel.setLayout(null);
-		
-				JButton infoButton = new JButton();
-				infoButton.setBounds(444, 0, 54, 45);
-				infoPanel.add(infoButton);
-				int offsetInfo = infoButton.getInsets().left;
-				infoButton.setIcon(resizeIcon(infoIcon, infoButton.getWidth() - offsetInfo, infoButton.getHeight() - offsetInfo));
+
+		infoButton.setBounds(444, 0, 54, 45);
+		infoPanel.add(infoButton);
+		fitIconToButton(infoButton, infoIcon);
+	
 	}
 
 	private Icon resizeIcon(ImageIcon icon, int resizedWidth, int resizedHeight) {
@@ -171,10 +181,25 @@ public class GameWindow extends JFrame {
 		return new ImageIcon(resizedImage);
 	}
 
+	public void fitIconToButton(JButton button, ImageIcon icon) {
+		int offset = button.getInsets().left;
+		button.setIcon(resizeIcon(icon, button.getWidth() - offset, button.getHeight() - offset));
+	}
+
+	public void setText(String text) {
+		textPane.setText(textPane.getText() + "\n" + text);
+		//textPane.append("\n" + text);
+	}
+	public String getText() {
+		return textPane.getText();
+	}
 
 	public static void main(String[] args) {
 		GameWindow gw = new GameWindow();
 		gw.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		gw.setVisible(true);
+		gw.setText("\n"+"\n");
+		gw.setText("hej");
 	}
+
 }
