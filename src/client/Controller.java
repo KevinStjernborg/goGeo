@@ -1,34 +1,39 @@
 package client;
 
+import Gui.GameWindow;
 import shared.Guess;
 
 /*
- * Ska fungera som en länk mellan klassen för spelfönstret och connection. 
- * Kan också vara användbar om det ska hanteras flera fönster, ex startmeny, spelfönster, instruktioner osv.
+ * Ska fungera som en lï¿½nk mellan klassen fï¿½r spelfï¿½nstret och connection. 
+ * Kan ocksï¿½ vara anvï¿½ndbar om det ska hanteras flera fï¿½nster, ex startmeny, spelfï¿½nster, instruktioner osv.
  */
 public class Controller {
-	private DemoWindow demoWindow;
+	//private DemoWindow demoWindow; SSS
 	private Connection connection;
 	
+	private GameWindow window;
+	
+	
 //	public Controller(DemoWindow demoWindow,Connection connection ) {
-//		this.demoWindow = demoWindow;
+//		this.demoWindow = demoWindow; 
 //		this.connection = connection;
 //	}
 	
 	
 	/*
-	 * Tillfällig lösning ska ändras till att connect sker på anrop från startmenyn
+	 * Tillfï¿½llig lï¿½sning ska ï¿½ndras till att connect sker pï¿½ anrop frï¿½n startmenyn
 	 */
 	public Controller() {
-		 demoWindow = new DemoWindow(this);
+		// demoWindow = new DemoWindow(this); SSS
 		 connection = new Connection("Localhost", 9000,this);
-//		 connect();  bortkommenterad för test, bör finnas sen
-		 demoWindow.getViewer().setController(this);
+//		 connect();  bortkommenterad fï¿½r test, bï¿½r finnas sen
+		// demoWindow.getViewer().setController(this); SSS
+		 window = new GameWindow();
 	}
 	
 	
 	/*
-	 * bortkommenterad för test, bör finnas sen
+	 * bortkommenterad fï¿½r test, bï¿½r finnas sen
 	 */
 	
 //	public void connect() {
@@ -40,11 +45,11 @@ public class Controller {
 	}
 	
 	/*
-	 * Lägg till kod för vad som sker om de bara är ett bekräftelsemeddelande från servern att ett spel har startats
+	 * Lï¿½gg till kod fï¿½r vad som sker om de bara ï¿½r ett bekrï¿½ftelsemeddelande frï¿½n servern att ett spel har startats
 	 * 
 	 */
 	public void receiveMessage(Guess guess) {
-		demoWindow.getViewer().addOtherPlayersGuess(guess.getGeo());
+	//	demoWindow.getViewer().addOtherPlayersGuess(guess.getGeo()); SSS
 	}
 	
 	

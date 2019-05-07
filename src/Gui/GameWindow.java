@@ -101,18 +101,26 @@ public class GameWindow extends JFrame {
 		separator.setBackground(Color.DARK_GRAY);
 		separator.setBounds(0, 316, 498, 2);
 		boardPanel.add(separator);
+		
+		JLabel scorelbl1 = new JLabel("New label");
+		scorelbl1.setBounds(346, 81, 137, 38);
+		boardPanel.add(scorelbl1);
+		
+		JLabel scorelbl2 = new JLabel("New label");
+		scorelbl2.setBounds(346, 152, 137, 38);
+		boardPanel.add(scorelbl2);
 
-		JPanel panel = new JPanel();
-		panel.setBounds(788, 835, 370, 135);
-		getContentPane().add(panel);
-		panel.setLayout(null);
+		JPanel submitPanel = new JPanel();
+		submitPanel.setBounds(788, 835, 370, 135);
+		getContentPane().add(submitPanel);
+		submitPanel.setLayout(null);
 
 		JButton submitButton = new JButton("");
 		submitButton.setIcon(new ImageIcon("C:\\Users\\Said\\Desktop\\Backgroundtestsa.png"));
 		submitButton.setForeground(Color.GREEN);
 		submitButton.setBackground(Color.GREEN);
 		submitButton.setBounds(15, 16, 342, 103);
-		panel.add(submitButton);
+		submitPanel.add(submitButton);
 
 		JPanel zoomPanel = new JPanel();
 		zoomPanel.setBounds(1260, 76, 123, 743);
@@ -131,23 +139,28 @@ public class GameWindow extends JFrame {
 		int offsetDown = zoomDown.getInsets().left;
 		zoomDown.setIcon(resizeIcon(arrowDownIcon, zoomDown.getWidth() - offsetDown, zoomDown.getHeight() - offsetDown));
 
-		JButton infoButton = new JButton();
-		infoButton.setBounds(29, 682, 54, 45);
-		zoomPanel.add(infoButton);
-		int offsetInfo = infoButton.getInsets().left;
-		infoButton.setIcon(resizeIcon(infoIcon, infoButton.getWidth() - offsetInfo, infoButton.getHeight() - offsetInfo));
-
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(1398, 835, 498, 137);
-		getContentPane().add(panel_1);
-		panel_1.setLayout(null);
+		JPanel resignPanel = new JPanel();
+		resignPanel.setBounds(1398, 835, 498, 137);
+		getContentPane().add(resignPanel);
+		resignPanel.setLayout(null);
 
 		JButton resignButton = new JButton("");
 		resignButton.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 27));
 		resignButton.setBounds(15, 16, 468, 103);
-		panel_1.add(resignButton);
+		resignPanel.add(resignButton);
 		int offsetResign = resignButton.getInsets().left;
 		resignButton.setIcon(resizeIcon(resignImage, resignButton.getWidth() - offsetResign, resignButton.getHeight() - offsetResign));
+		
+		JPanel infoPanel = new JPanel();
+		infoPanel.setBounds(1398, 16, 498, 44);
+		getContentPane().add(infoPanel);
+		infoPanel.setLayout(null);
+		
+				JButton infoButton = new JButton();
+				infoButton.setBounds(444, 0, 54, 45);
+				infoPanel.add(infoButton);
+				int offsetInfo = infoButton.getInsets().left;
+				infoButton.setIcon(resizeIcon(infoIcon, infoButton.getWidth() - offsetInfo, infoButton.getHeight() - offsetInfo));
 	}
 
 	private Icon resizeIcon(ImageIcon icon, int resizedWidth, int resizedHeight) {
