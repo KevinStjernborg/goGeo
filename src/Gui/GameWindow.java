@@ -28,7 +28,7 @@ public class GameWindow extends JFrame {
 
 
 	public GameWindow() {
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		setVisible(true);
@@ -37,11 +37,11 @@ public class GameWindow extends JFrame {
 
 		JPanel mapPanel = new JPanel();
 		mapPanel.setBounds(15, 76, 1230, 743);
-
 		getContentPane().add(mapPanel,BorderLayout.CENTER);
-		mapPanel.add(viewer.getViewer());
 		mapPanel.setLayout(new BorderLayout(0, 0));
+		mapPanel.add(viewer.getViewer()); 
 
+		
 		JPanel PanelTextConsole = new JPanel();
 		PanelTextConsole.setBounds(15, 835, 758, 135);
 		getContentPane().add(PanelTextConsole);
