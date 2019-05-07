@@ -24,18 +24,21 @@ public class GameWindow extends JFrame {
 
 	private String res;
 	private Viewer viewer = new Viewer();
+
+	//Bör skapa en dir med alla resources för att inte hårdkoda i datorn. 
+
 	private ImageIcon infoIcon = new ImageIcon("C:\\Users\\Said\\git\\goGeo\\src\\Gui\\icon.png");
 	private ImageIcon arrowUpIcon = new ImageIcon("C:\\Users\\Said\\git\\goGeo\\src\\Gui\\arrow-971322_960_720.png");
 	private ImageIcon arrowDownIcon = new ImageIcon("C:\\Users\\Said\\git\\goGeo\\src\\Gui\\arrowDowntest.png");
-
+	private ImageIcon resignImage = new ImageIcon("C:\\Users\\Said\\Desktop\\resign.png");
 
 	public GameWindow() {
+	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		setVisible(true);
 		getContentPane().setLayout(null);
-
 
 		JPanel mapPanel = new JPanel();
 		mapPanel.setBounds(15, 76, 1230, 743);
@@ -43,7 +46,6 @@ public class GameWindow extends JFrame {
 		mapPanel.setLayout(new BorderLayout(0, 0));
 		mapPanel.add(viewer.getViewer()); 
 
-		
 		JPanel PanelTextConsole = new JPanel();
 		PanelTextConsole.setBounds(15, 835, 758, 135);
 		getContentPane().add(PanelTextConsole);
@@ -129,25 +131,31 @@ public class GameWindow extends JFrame {
 		int offsetDown = zoomDown.getInsets().left;
 		zoomDown.setIcon(resizeIcon(arrowDownIcon, zoomDown.getWidth() - offsetDown, zoomDown.getHeight() - offsetDown));
 
+		JButton infoButton = new JButton();
+		infoButton.setBounds(29, 682, 54, 45);
+		zoomPanel.add(infoButton);
+		int offsetInfo = infoButton.getInsets().left;
+		infoButton.setIcon(resizeIcon(infoIcon, infoButton.getWidth() - offsetInfo, infoButton.getHeight() - offsetInfo));
+
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(1398, 835, 498, 135);
+		panel_1.setBounds(1398, 835, 498, 137);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 
-		JButton infoButton = new JButton();
-		infoButton.setBounds(408, 16, 65, 55);
-		panel_1.add(infoButton);
-		int offsetInfo = infoButton.getInsets().left;
-		infoButton.setIcon(resizeIcon(infoIcon, infoButton.getWidth() - offsetInfo, infoButton.getHeight() - offsetInfo));
+		JButton resignButton = new JButton("");
+		resignButton.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 27));
+		resignButton.setBounds(15, 16, 468, 103);
+		panel_1.add(resignButton);
+		int offsetResign = resignButton.getInsets().left;
+		resignButton.setIcon(resizeIcon(resignImage, resignButton.getWidth() - offsetResign, resignButton.getHeight() - offsetResign));
 	}
-	
+
 	private Icon resizeIcon(ImageIcon icon, int resizedWidth, int resizedHeight) {
-	    Image img = icon.getImage();  
-	    Image resizedImage = img.getScaledInstance(resizedWidth, resizedHeight,  java.awt.Image.SCALE_SMOOTH);  
-	    return new ImageIcon(resizedImage);
+		Image img = icon.getImage();  
+		Image resizedImage = img.getScaledInstance(resizedWidth, resizedHeight,  java.awt.Image.SCALE_SMOOTH);  
+		return new ImageIcon(resizedImage);
 	}
-	
-	
+
 
 	public static void main(String[] args) {
 		GameWindow gw = new GameWindow();
