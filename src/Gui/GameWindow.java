@@ -25,7 +25,7 @@ public class GameWindow extends JFrame {
 	private String res;
 	private Viewer viewer = new Viewer();
 
-	//Bör skapa en dir med alla resources för att inte hårdkoda i datorn. 
+	//Bör skapa en dir med alla resources för att inte hårdkoda. 
 
 	private ImageIcon infoIcon = new ImageIcon("C:\\Users\\Said\\git\\goGeo\\src\\Gui\\icon.png");
 	private ImageIcon arrowUpIcon = new ImageIcon("C:\\Users\\Said\\git\\goGeo\\src\\Gui\\arrow-971322_960_720.png");
