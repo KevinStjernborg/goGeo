@@ -2,6 +2,7 @@ package client;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
@@ -44,7 +45,7 @@ public class Viewer {
 	private GeoPosition Paris = new GeoPosition(48.8566, 2.3522);
 	private Guess guess = null;
 	private Guess playerTwoGuess;
-	private Controller controller; //tillfällig lösning till GUI är klart och hur spelet ska fungera, ex en avsluta runda knapp eller direkt när man klickar? Behöver veta för struktur
+	private Controller controller; //tillfï¿½llig lï¿½sning till GUI ï¿½r klart och hur spelet ska fungera, ex en avsluta runda knapp eller direkt nï¿½r man klickar? Behï¿½ver veta fï¿½r struktur
 	private HashSet hashset = new HashSet<SwingWaypoint>();
 	
 	
@@ -85,7 +86,6 @@ public class Viewer {
 		waypointPainter.setWaypoints(waypoints);
 		List<Painter<JXMapViewer>> painters = new ArrayList<Painter<JXMapViewer>>();
 		painters.add(waypointPainter);
-
 		CompoundPainter<JXMapViewer> painter = new CompoundPainter<JXMapViewer>(painters);
 		viewer.setOverlayPainter(painter);
 
@@ -111,7 +111,7 @@ public class Viewer {
 	}
 	
 	/*
-	 * Ska tas bort, tillfällig lösning för testning
+	 * Ska tas bort, tillfï¿½llig lï¿½sning fï¿½r testning
 	 */
 	
 	public void setController(Controller controller) {
@@ -141,7 +141,8 @@ public class Viewer {
 									System.out.println("Distance in kilometers: " + distFrom(geo.getLatitude(),
 											geo.getLongitude(), Paris.getLatitude(), Paris.getLongitude()));
 									hashset.add(geo);
-									addOneLocation(geo);
+									//addOneLocation(geo);
+									addTwoLocations(geo,Paris);
 									controller.sendMessage(guess);
 									System.out.println("Guess sent");
 								
@@ -203,6 +204,15 @@ public class Viewer {
 		int distance = (int) dist;
 
 		return distance;
+	}
+	public static void main(String[] args) {
+		Frame f = new Frame();
+		Viewer v = new Viewer();
+		f.add(v.getViewer());
+		f.setVisible(true);
+		f.setSize(1000, 1000);
+		
+		
 	}
 
 }

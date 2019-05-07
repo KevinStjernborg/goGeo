@@ -11,6 +11,8 @@ import java.awt.Color;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+
+import client.Controller;
 import client.Viewer;
 
 import javax.swing.JButton;
@@ -26,7 +28,8 @@ import java.awt.SystemColor;
 
 public class GameWindow extends JFrame {
 
-
+	
+	private Controller controller;
 	private String res;
 	private Viewer viewer = new Viewer();
 
@@ -63,8 +66,17 @@ public class GameWindow extends JFrame {
 	private JPanel infoPanel = new JPanel();
 	private JButton infoButton = new JButton();
 
-
 	public GameWindow() {
+		initialize();
+	}
+	
+	public GameWindow(Controller controller) {
+		this.controller = controller;
+		initialize();
+		
+	}
+
+	public void initialize() {
 		getContentPane().setBackground(SystemColor.activeCaption);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -173,6 +185,7 @@ public class GameWindow extends JFrame {
 		resignButton.setBounds(15, 16, 468, 103);
 		resignPanel.add(resignButton);
 		fitIconToButton(resignButton, resignImage);
+		infoPanel.setBackground(SystemColor.activeCaption);
 
 		infoPanel.setBounds(1398, 16, 498, 44);
 		getContentPane().add(infoPanel);
@@ -193,7 +206,6 @@ public class GameWindow extends JFrame {
 	 * @param button
 	 * @param icon
 	 */
-
 	public void fitIconToButton(JButton button, ImageIcon icon) {
 		Image img = icon.getImage();
 		int offset = button.getInsets().left;

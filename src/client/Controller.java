@@ -2,6 +2,7 @@ package client;
 
 import Gui.GameWindow;
 import shared.Guess;
+import shared.Locations;
 
 /*
  * Ska fungera som en l�nk mellan klassen f�r spelf�nstret och connection. 
@@ -10,6 +11,7 @@ import shared.Guess;
 public class Controller {
 	//private DemoWindow demoWindow; SSS
 	private Connection connection;
+	private Locations locations;
 	
 	private GameWindow window;
 	
@@ -28,7 +30,7 @@ public class Controller {
 		 connection = new Connection("Localhost", 9000,this);
 //		 connect();  bortkommenterad f�r test, b�r finnas sen
 		// demoWindow.getViewer().setController(this); SSS
-		 window = new GameWindow();
+		 window = new GameWindow(this);
 	}
 	
 	
