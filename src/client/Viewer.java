@@ -39,9 +39,9 @@ import org.jxmapviewer.viewer.WaypointPainter;
 import shared.Guess;
 
 public class Viewer {
-	private static int eventCnt;
+	
 	private JXMapViewer viewer;
-	private Timer timer;
+
 	private GeoPosition Paris = new GeoPosition(48.8566, 2.3522);
 	private Guess guess = null;
 	private Guess playerTwoGuess;
@@ -67,8 +67,6 @@ public class Viewer {
 		viewer.addMouseWheelListener(new ZoomMouseWheelListenerCursor(viewer));
 		viewer.setZoom(16);
 		addDoubleClick();
-		timer = new Timer();
-		
 		
 	}
 	/**
@@ -189,7 +187,6 @@ public class Viewer {
 		float dist = (float) (earthRadius * c);
 		dist = dist / 1000;
 		int distance = (int) dist;
-
 		return distance;
 	}
 	
@@ -200,8 +197,5 @@ public class Viewer {
 		f.add(v.getViewer());
 		f.setVisible(true);
 		f.setSize(1000, 1000);
-		
-		
 	}
-
 }

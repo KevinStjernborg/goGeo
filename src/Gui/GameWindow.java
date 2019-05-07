@@ -25,8 +25,10 @@ import javax.swing.BoxLayout;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.DropMode;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class GameWindow extends JFrame {
+public class GameWindow extends JFrame implements ActionListener{
 
 	
 	private Controller controller;
@@ -73,12 +75,10 @@ public class GameWindow extends JFrame {
 	public GameWindow(Controller controller) {
 		this.controller = controller;
 		initialize();
-		
 	}
 
 	public void initialize() {
 		getContentPane().setBackground(SystemColor.activeCaption);
-
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setExtendedState(JFrame.MAXIMIZED_BOTH); 
@@ -171,6 +171,7 @@ public class GameWindow extends JFrame {
 		zoomUp.setBounds(15, 102, 45, 115);
 		zoomPanel.add(zoomUp);
 		fitIconToButton(zoomUp, arrowUpIcon);
+		zoomUp.addActionListener(this);
 
 		zoomDown.setBounds(15, 404, 45, 115);
 		zoomPanel.add(zoomDown);
@@ -253,6 +254,16 @@ public class GameWindow extends JFrame {
 		scorelbl2.updateUI();
 	}
 	
+//	@Override  TODO: Denna funkar ej, kolla hur det görs i listener för viewer.. 
+//	public void actionPerformed(ActionEvent e) {
+//		if (e.getSource() == zoomUp) {
+//			viewer.getViewer().setZoom(18);
+//		}
+//		
+//	}
+//	
+	
+	
 	public static void main(String[] args) {
 		GameWindow gw = new GameWindow();
 		gw.setExtendedState(JFrame.MAXIMIZED_BOTH); 
@@ -272,4 +283,6 @@ public class GameWindow extends JFrame {
 		gw.setConsoleText("\n"+"\n");
 		gw.setConsoleText("hej");
 	}
+
+	
 }
