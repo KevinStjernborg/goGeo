@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
+import javax.swing.JLayeredPane;
 
 public class GameWindow extends JFrame {
 
@@ -52,6 +53,7 @@ public class GameWindow extends JFrame {
 		PanelTextConsole.setLayout(null);
 
 		JTextPane textPane = new JTextPane();
+		textPane.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		textPane.setBounds(0, 0, 758, 135);
 		PanelTextConsole.add(textPane);
 		textPane.setForeground(Color.WHITE);
