@@ -58,7 +58,7 @@ public class GameWindow extends JFrame {
 		textPane.setEditable(false);
 
 		JPanel promptPanel = new JPanel();
-		promptPanel.setBounds(98, 16, 781, 44);
+		promptPanel.setBounds(98, 16, 1060, 44);
 		getContentPane().add(promptPanel);
 
 		JLabel lblNewLabel = new JLabel("InstructionPrompt");
