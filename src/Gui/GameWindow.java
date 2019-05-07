@@ -31,10 +31,11 @@ public class GameWindow extends JFrame {
 
 	//Bör skapa en dir med alla resources för att inte hårdkoda. 
 
-	private ImageIcon infoIcon = new ImageIcon("C:\\Users\\Said\\git\\goGeo\\src\\Gui\\icon.png");
-	private ImageIcon arrowUpIcon = new ImageIcon("C:\\Users\\Said\\git\\goGeo\\src\\Gui\\arrow-971322_960_720.png");
-	private ImageIcon arrowDownIcon = new ImageIcon("C:\\Users\\Said\\git\\goGeo\\src\\Gui\\arrowDowntest.png");
-	private ImageIcon resignImage = new ImageIcon("C:\\Users\\Said\\Desktop\\resign.png");
+	private ImageIcon infoIcon = new ImageIcon("images//icon.png");
+	private ImageIcon arrowUpIcon = new ImageIcon("images//arrowUp.png");
+	private ImageIcon arrowDownIcon = new ImageIcon("images//arrowDown.png");
+	private ImageIcon resignImage = new ImageIcon("images//resign.png");
+	private ImageIcon submitImage = new ImageIcon("images//Backgroundtestsa.png");
 
 	private JPanel mapPanel = new JPanel();
 	//private JTextPane textPane = new JTextPane();
@@ -82,7 +83,6 @@ public class GameWindow extends JFrame {
 		getContentPane().add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 		panel.add(PanelTextConsole);
-		
 		
 		textPane.setRows(10);
 		textPane.setLineWrap(true);
@@ -138,7 +138,7 @@ public class GameWindow extends JFrame {
 		getContentPane().add(submitPanel);
 		submitPanel.setLayout(null);
 
-		submitButton.setIcon(new ImageIcon("C:\\Users\\Said\\Desktop\\Backgroundtestsa.png"));
+		submitButton.setIcon(submitImage);
 		submitButton.setForeground(Color.GREEN);
 		submitButton.setBackground(Color.GREEN);
 		submitButton.setBounds(15, 16, 342, 103);
@@ -198,6 +198,18 @@ public class GameWindow extends JFrame {
 		GameWindow gw = new GameWindow();
 		gw.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		gw.setVisible(true);
+		gw.setText("\n"+"\n");
+		gw.setText("hej");
+		gw.setText("\n"+"\n");
+		gw.setText("hej");
+		gw.setText("\n"+"\n");
+		gw.setText("hej");
+		gw.setText("\n"+"\n");
+		gw.setText("hej");
+		gw.setText("\n"+"\n");
+		gw.setText("hej");
+		gw.setText("\n"+"\n");
+		gw.setText("hej");
 		gw.setText("\n"+"\n");
 		gw.setText("hej");
 	}
