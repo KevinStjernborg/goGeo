@@ -16,11 +16,13 @@ import client.Viewer;
 import javax.swing.JButton;
 
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.BoxLayout;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.DropMode;
+import java.awt.SystemColor;
 
 public class GameWindow extends JFrame {
 
@@ -37,21 +39,20 @@ public class GameWindow extends JFrame {
 	private ImageIcon submitImage = new ImageIcon("images//Backgroundtestsa.png");
 
 	private JPanel mapPanel = new JPanel();
-	//private JTextPane textPane = new JTextPane();
 
 	private JTextArea textPane = new JTextArea();
 	private JScrollPane PanelTextConsole = new JScrollPane(textPane);
 	private JPanel panel = new JPanel();
 	private JPanel promptPanel = new JPanel();
-	private JLabel lblNewLabel = new JLabel("InstructionPrompt");
+	private JLabel promptLabel = new JLabel("InstructionPrompt");
 	private JPanel boardPanel = new JPanel();
 	private JLabel scoreHeader = new JLabel("SCORE");
 	private JLabel player1lbl = new JLabel("Player 1");
 	private JLabel player2lbl = new JLabel("Player 2");
 	private JLabel timerLabel = new JLabel("5");
 	private JSeparator separator = new JSeparator();
-	private JLabel scorelbl1 = new JLabel("New label");
-	private JLabel scorelbl2 = new JLabel("New label");
+	private JLabel scorelbl1 = new JLabel("0");
+	private JLabel scorelbl2 = new JLabel("999,999,999");
 	private JPanel submitPanel = new JPanel();
 	private JButton submitButton = new JButton(""); 
 	private JPanel zoomPanel = new JPanel();
@@ -64,6 +65,7 @@ public class GameWindow extends JFrame {
 
 
 	public GameWindow() {
+		getContentPane().setBackground(SystemColor.activeCaption);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -82,6 +84,8 @@ public class GameWindow extends JFrame {
 		getContentPane().add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 		panel.add(PanelTextConsole);
+		promptPanel.setBackground(SystemColor.activeCaption);
+		getContentPane().add(promptPanel);
 		
 		textPane.setRows(10);
 		textPane.setLineWrap(true);
@@ -89,18 +93,17 @@ public class GameWindow extends JFrame {
 		textPane.setForeground(Color.WHITE);
 		textPane.setBackground(Color.BLACK);
 		textPane.setText("HÄRHRÄ");
-		PanelTextConsole.add(textPane);
 		promptPanel.setBounds(98, 16, 1060, 44);
 		
 		PanelTextConsole.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		PanelTextConsole.setViewportView(textPane);
 
-		lblNewLabel.setBackground(Color.BLACK);
-		lblNewLabel.setForeground(Color.RED);
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 23));
-		promptPanel.add(lblNewLabel);
+		promptLabel.setBackground(Color.BLACK);
+		promptLabel.setForeground(new Color(0, 255, 0));
+		promptLabel.setFont(new Font("Tahoma", Font.BOLD, 23));
+		promptPanel.add(promptLabel);
 
-		boardPanel.setBackground(Color.WHITE);
+		boardPanel.setBackground(new Color(0, 128, 128));
 		boardPanel.setBounds(1398, 76, 498, 743);
 		getContentPane().add(boardPanel);
 		boardPanel.setLayout(null);
@@ -109,9 +112,11 @@ public class GameWindow extends JFrame {
 		scoreHeader.setFont(new Font("Tahoma", Font.BOLD, 17));
 		scoreHeader.setBounds(195, 16, 88, 38);
 		boardPanel.add(scoreHeader);
+		player1lbl.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 19));
 
 		player1lbl.setBounds(15, 81, 137, 38);
 		boardPanel.add(player1lbl);
+		player2lbl.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 19));
 
 		player2lbl.setBounds(15, 152, 137, 38);
 		boardPanel.add(player2lbl);
@@ -126,12 +131,15 @@ public class GameWindow extends JFrame {
 		separator.setBackground(Color.DARK_GRAY);
 		separator.setBounds(0, 316, 498, 2);
 		boardPanel.add(separator);
+		scorelbl1.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 19));
 
-		scorelbl1.setBounds(346, 81, 137, 38);
+		scorelbl1.setBounds(234, 81, 249, 38);
 		boardPanel.add(scorelbl1);
+		scorelbl2.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 19));
 
-		scorelbl2.setBounds(346, 152, 137, 38);
+		scorelbl2.setBounds(234, 152, 249, 38);
 		boardPanel.add(scorelbl2);
+		submitPanel.setBackground(SystemColor.activeCaption);
 
 		submitPanel.setBounds(788, 835, 370, 135);
 		getContentPane().add(submitPanel);
@@ -142,6 +150,7 @@ public class GameWindow extends JFrame {
 		submitButton.setBackground(Color.GREEN);
 		submitButton.setBounds(15, 16, 342, 103);
 		submitPanel.add(submitButton);
+		zoomPanel.setBackground(SystemColor.activeCaption);
 
 		zoomPanel.setBounds(1260, 76, 123, 743);
 		getContentPane().add(zoomPanel);
@@ -154,6 +163,7 @@ public class GameWindow extends JFrame {
 		zoomDown.setBounds(15, 404, 45, 115);
 		zoomPanel.add(zoomDown);
 		fitIconToButton(zoomDown, arrowDownIcon);
+		resignPanel.setBackground(SystemColor.activeCaption);
 
 		resignPanel.setBounds(1398, 835, 498, 137);
 		getContentPane().add(resignPanel);
@@ -171,6 +181,10 @@ public class GameWindow extends JFrame {
 		infoButton.setBounds(444, 0, 54, 45);
 		infoPanel.add(infoButton);
 		fitIconToButton(infoButton, infoIcon);
+		
+		JButton menuButton = new JButton("Menu");
+		menuButton.setBounds(0, 0, 415, 44);
+		infoPanel.add(menuButton);
 	
 	}
 
@@ -189,7 +203,7 @@ public class GameWindow extends JFrame {
 		button.setIcon(new ImageIcon(resizedImage));
 	}
 
-	public void setText(String text) {
+	public void setConsoleText(String text) {
 		textPane.append("\n" + text);
 	}
 	public String getText() {
@@ -200,25 +214,49 @@ public class GameWindow extends JFrame {
 		timerLabel.setText(text);
 		timerLabel.updateUI();
 	}
-
+	
+	public void setPromptText(String text) {
+		promptLabel.setText(text);
+		promptLabel.updateUI();
+	}
+	public void setPlayer1(String name) {
+		player1lbl.setText(name);
+		player1lbl.updateUI();
+	}
+	public void setPlayer2(String name) {
+		player2lbl.setText(name);
+		player2lbl.updateUI();
+	}
+	
+	public void setScorePlayer1(int score) {
+		String res = Integer.toString(score);
+		scorelbl1.setText(res);
+		scorelbl1.updateUI();
+	}
+	
+	public void setScorePlayer2(int score) {
+		String res = Integer.toString(score);
+		scorelbl2.setText(res);
+		scorelbl2.updateUI();
+	}
+	
 	public static void main(String[] args) {
 		GameWindow gw = new GameWindow();
 		gw.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		gw.setVisible(true);
-		gw.setText("\n"+"\n");
-		gw.setText("hej");
-		gw.setText("\n"+"\n");
-		gw.setText("hej");
-		gw.setText("\n"+"\n");
-		gw.setText("hej");
-		gw.setText("\n"+"\n");
-		gw.setText("hej");
-		gw.setText("\n"+"\n");
-		gw.setText("hej");
-		gw.setText("\n"+"\n");
-		gw.setText("hej");
-		gw.setText("\n"+"\n");
-		gw.setText("hej");
+		gw.setConsoleText("\n"+"\n");
+		gw.setConsoleText("hej");
+		gw.setConsoleText("\n"+"\n");
+		gw.setConsoleText("hej");
+		gw.setConsoleText("\n"+"\n");
+		gw.setConsoleText("hej");
+		gw.setConsoleText("\n"+"\n");
+		gw.setConsoleText("hej");
+		gw.setConsoleText("\n"+"\n");
+		gw.setConsoleText("hej");
+		gw.setConsoleText("\n"+"\n");
+		gw.setConsoleText("hej");
+		gw.setConsoleText("\n"+"\n");
+		gw.setConsoleText("hej");
 	}
-
 }
