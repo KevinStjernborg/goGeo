@@ -104,7 +104,7 @@ public class GameWindow extends JFrame {
 		textPane.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		textPane.setForeground(Color.WHITE);
 		textPane.setBackground(Color.BLACK);
-		textPane.setText("HÄRHRÄ");
+		textPane.setText("Welcome to goGeo! I Hope you'll have a great stay!");
 		promptPanel.setBounds(98, 16, 1060, 44);
 		
 		PanelTextConsole.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -190,6 +190,7 @@ public class GameWindow extends JFrame {
 		infoPanel.setBounds(1398, 16, 498, 44);
 		getContentPane().add(infoPanel);
 		infoPanel.setLayout(null);
+		infoButton.setToolTipText("Här");
 
 		infoButton.setBounds(444, 0, 54, 45);
 		infoPanel.add(infoButton);

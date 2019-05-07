@@ -125,33 +125,20 @@ public class Viewer {
 	public void addDoubleClick() {
 		viewer.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(final MouseEvent e) {
-				if (e.getButton() == 1 && e.getButton() == 1) {
-					eventCnt = e.getClickCount();
-					if (e.getClickCount() == 1) {
-						timer.schedule(new TimerTask() {
-							@Override
-							public void run() {
-								if (eventCnt == 1) {
-								} else if (eventCnt > 1) {
-//									removePaint();
-									Point p = e.getPoint();
-									Point2D pt = viewer.convertGeoPositionToPoint(Paris);
-									GeoPosition geo = viewer.convertPointToGeoPosition(p);
-									guess = new Guess(geo.getLatitude(), geo.getLongitude(), geo );
-									System.out.println("Distance in kilometers: " + distFrom(geo.getLatitude(),
-											geo.getLongitude(), Paris.getLatitude(), Paris.getLongitude()));
-									hashset.add(geo);
-									//addOneLocation(geo);
-									addTwoLocations(geo,Paris);
-									controller.sendMessage(guess);
-									System.out.println("Guess sent");
-								
-								}
-								eventCnt = 0;
-							}
-						}, 1000);
-					}
+				if (e.getClickCount()==2) {
+					Point p = e.getPoint();
+					Point2D pt = viewer.convertGeoPositionToPoint(Paris);
+					GeoPosition geo = viewer.convertPointToGeoPosition(p);
+					//guess = new Guess(geo.getLatitude(), geo.getLongitude(), geo );
+					System.out.println("Distance in kilometers: " + distFrom(geo.getLatitude(),
+							geo.getLongitude(), Paris.getLatitude(), Paris.getLongitude()));
+					hashset.add(geo);
+					//addOneLocation(geo);
+					addTwoLocations(geo,Paris);
+					controller.sendMessage(new Guess(geo.getLatitude(), geo.getLongitude(), geo));
+					System.out.println("Guess sent");
 				}
+
 				if (e.getButton() == 3) {
 					System.out.println("right click");
 					removePaint();
@@ -205,6 +192,8 @@ public class Viewer {
 
 		return distance;
 	}
+	
+	
 	public static void main(String[] args) {
 		Frame f = new Frame();
 		Viewer v = new Viewer();
