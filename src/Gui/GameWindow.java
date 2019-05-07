@@ -24,7 +24,9 @@ public class GameWindow extends JFrame {
 
 	private String res;
 	private Viewer viewer = new Viewer();
-	private ImageIcon icon = new ImageIcon("C:\\Users\\Said\\git\\goGeo\\src\\Gui\\icon.png");
+	private ImageIcon infoIcon = new ImageIcon("C:\\Users\\Said\\git\\goGeo\\src\\Gui\\icon.png");
+	private ImageIcon arrowUpIcon = new ImageIcon("C:\\Users\\Said\\git\\goGeo\\src\\Gui\\arrow-971322_960_720.png");
+	private ImageIcon arrowDownIcon = new ImageIcon("C:\\Users\\Said\\git\\goGeo\\src\\Gui\\arrowDowntest.png");
 
 
 	public GameWindow() {
@@ -105,10 +107,6 @@ public class GameWindow extends JFrame {
 
 		JButton submitButton = new JButton("");
 		submitButton.setIcon(new ImageIcon("C:\\Users\\Said\\Desktop\\Backgroundtestsa.png"));
-		submitButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		submitButton.setForeground(Color.GREEN);
 		submitButton.setBackground(Color.GREEN);
 		submitButton.setBounds(15, 16, 342, 103);
@@ -119,18 +117,17 @@ public class GameWindow extends JFrame {
 		getContentPane().add(zoomPanel);
 		zoomPanel.setLayout(null);
 
-		JButton zoomUp = new JButton("New button");
-		zoomUp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		zoomUp.setIcon(null);
+		JButton zoomUp = new JButton("");
 		zoomUp.setBounds(15, 102, 45, 115);
 		zoomPanel.add(zoomUp);
+		int offsetUp = zoomUp.getInsets().left;
+		zoomUp.setIcon(resizeIcon(arrowUpIcon, zoomUp.getWidth() - offsetUp, zoomUp.getHeight() - offsetUp));
 
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(15, 404, 45, 115);
-		zoomPanel.add(btnNewButton);
+		JButton zoomDown = new JButton("");
+		zoomDown.setBounds(15, 404, 45, 115);
+		zoomPanel.add(zoomDown);
+		int offsetDown = zoomDown.getInsets().left;
+		zoomDown.setIcon(resizeIcon(arrowDownIcon, zoomDown.getWidth() - offsetDown, zoomDown.getHeight() - offsetDown));
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(1398, 835, 498, 135);
@@ -140,17 +137,17 @@ public class GameWindow extends JFrame {
 		JButton infoButton = new JButton();
 		infoButton.setBounds(408, 16, 65, 55);
 		panel_1.add(infoButton);
-		int offset = infoButton.getInsets().left;
-		infoButton.setIcon(resizeIcon(icon, infoButton.getWidth() - offset, infoButton.getHeight() - offset));
-
-
+		int offsetInfo = infoButton.getInsets().left;
+		infoButton.setIcon(resizeIcon(infoIcon, infoButton.getWidth() - offsetInfo, infoButton.getHeight() - offsetInfo));
 	}
 	
-	private static Icon resizeIcon(ImageIcon icon, int resizedWidth, int resizedHeight) {
+	private Icon resizeIcon(ImageIcon icon, int resizedWidth, int resizedHeight) {
 	    Image img = icon.getImage();  
 	    Image resizedImage = img.getScaledInstance(resizedWidth, resizedHeight,  java.awt.Image.SCALE_SMOOTH);  
 	    return new ImageIcon(resizedImage);
 	}
+	
+	
 
 	public static void main(String[] args) {
 		GameWindow gw = new GameWindow();
