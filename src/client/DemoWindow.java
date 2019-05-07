@@ -137,7 +137,7 @@ public class DemoWindow {
 		CoordPanel.add(lblCoordinatesDisplay);
 		frame.setVisible(true);
 		
-
+		frame.pack();
 	}
 
 	public Viewer getViewer() {
