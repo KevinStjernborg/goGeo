@@ -52,6 +52,7 @@ public class Viewer {
 	/**
 	 * Constructor for the class
 	 */
+	
 	public Viewer() {
 		/*
 		 * initierar kartdelen

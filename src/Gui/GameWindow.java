@@ -255,12 +255,12 @@ public class GameWindow extends JFrame implements ActionListener{
 	}
 	
 //	@Override  TODO: Denna funkar ej, kolla hur det görs i listener för viewer.. 
-//	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) {
 //		if (e.getSource() == zoomUp) {
 //			viewer.getViewer().setZoom(18);
 //		}
 //		
-//	}
+	}
 //	
 	
 	
@@ -283,6 +283,4 @@ public class GameWindow extends JFrame implements ActionListener{
 		gw.setConsoleText("\n"+"\n");
 		gw.setConsoleText("hej");
 	}
-
-	
 }
