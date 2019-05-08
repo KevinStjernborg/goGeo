@@ -52,7 +52,6 @@ public class Viewer {
 	/**
 	 * Constructor for the class
 	 */
-	
 	public Viewer() {
 		/*
 		 * initierar kartdelen
@@ -128,13 +127,13 @@ public class Viewer {
 					Point p = e.getPoint();
 					Point2D pt = viewer.convertGeoPositionToPoint(Paris);
 					GeoPosition geo = viewer.convertPointToGeoPosition(p);
-					//guess = new Guess(geo.getLatitude(), geo.getLongitude(), geo );
+					guess = new Guess(geo.getLatitude(), geo.getLongitude(), geo );
 					System.out.println("Distance in kilometers: " + distFrom(geo.getLatitude(),
 							geo.getLongitude(), Paris.getLatitude(), Paris.getLongitude()));
 					hashset.add(geo);
 					//addOneLocation(geo);
 					addTwoLocations(geo,Paris);
-					controller.sendMessage(new Guess(geo.getLatitude(), geo.getLongitude(), geo));
+					controller.sendMessage(guess);
 					System.out.println("Guess sent");
 				}
 
