@@ -10,9 +10,9 @@ import shared.Guess;
 
 /*
  * TODO
- * Lägg till vad som sker ett meddelande tas emot
+ * Lï¿½gg till vad som sker ett meddelande tas emot
  * skriv controller?
- * Ändra struktur från game till message.
+ * ï¿½ndra struktur frï¿½n game till message.
  */
 
 public class Connection {
@@ -33,12 +33,13 @@ public class Connection {
 		connect();
 		receiver = new serverReceiver();
 		receiver.start();
+		
 	}
 	
 	public void sendMessage(Guess guess) {
 		try {
 			oos.writeObject(guess);
-			System.out.println("Guess sent from client");
+			System.out.println("Guess sent from connection class");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

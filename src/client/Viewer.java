@@ -37,6 +37,7 @@ import org.jxmapviewer.viewer.Waypoint;
 import org.jxmapviewer.viewer.WaypointPainter;
 
 import shared.Guess;
+import shared.Locations;
 
 public class Viewer {
 	
@@ -45,8 +46,9 @@ public class Viewer {
 	private GeoPosition Paris = new GeoPosition(48.8566, 2.3522);
 	private Guess guess = null;
 	private Guess playerTwoGuess;
-	private Controller controller; //tillf�llig l�sning till GUI �r klart och hur spelet ska fungera, ex en avsluta runda knapp eller direkt n�r man klickar? Beh�ver veta f�r struktur
 	private HashSet hashset = new HashSet<SwingWaypoint>();
+	private boolean doubleClickActive;
+	private Locations locations;
 	
 	
 	/**
@@ -67,7 +69,8 @@ public class Viewer {
 		viewer.addMouseWheelListener(new ZoomMouseWheelListenerCursor(viewer));
 		viewer.setZoom(16);
 		addDoubleClick();
-		
+		enableMarkers();
+
 	}
 	/**
 	 * Adds a marker on the map that shows where the player clicked
@@ -112,8 +115,12 @@ public class Viewer {
 	 * Ska tas bort, tillf�llig l�sning f�r testning
 	 */
 	
-	public void setController(Controller controller) {
-		this.controller = controller;
+//	public void setController(Controller controller) {
+//		this.controller = controller;
+//	}
+	
+	public void setPlayerOneGuess(Guess guess) {
+		this.guess = guess;
 	}
 
 	/**
@@ -123,23 +130,23 @@ public class Viewer {
 	public void addDoubleClick() {
 		viewer.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(final MouseEvent e) {
-				if (e.getClickCount()==2) {
+				if (e.getClickCount()==2 && doubleClickActive == true) {
 					Point p = e.getPoint();
 					Point2D pt = viewer.convertGeoPositionToPoint(Paris);
 					GeoPosition geo = viewer.convertPointToGeoPosition(p);
 					guess = new Guess(geo.getLatitude(), geo.getLongitude(), geo );
+					setPlayerOneGuess(guess);
 					System.out.println("Distance in kilometers: " + distFrom(geo.getLatitude(),
 							geo.getLongitude(), Paris.getLatitude(), Paris.getLongitude()));
-					hashset.add(geo);
-					//addOneLocation(geo);
-					addTwoLocations(geo,Paris);
-					controller.sendMessage(guess);
+					addOneLocation(geo);
+					
 					System.out.println("Guess sent");
 				}
 
 				if (e.getButton() == 3) {
 					System.out.println("right click");
 					removePaint();
+					disableMarkers();
 				}
 			}
 		});
@@ -155,6 +162,14 @@ public class Viewer {
 	public JXMapViewer getViewer() {
 		return viewer;
 	}
+	
+	public void disableMarkers() {
+		doubleClickActive = false;
+	}
+	
+	public void enableMarkers() {
+		doubleClickActive = true;
+	}
 
 	/**
 	 * Removes the marker that represents the position that the player clicks
@@ -165,6 +180,10 @@ public class Viewer {
 		CompoundPainter<JXMapViewer> painter = new CompoundPainter<JXMapViewer>(painters);
 		viewer.setOverlayPainter(painter);
 		painter.clearCache();
+	}
+	
+	public Guess getGuess() {
+		return this.guess;
 	}
 
 	/**
@@ -191,11 +210,11 @@ public class Viewer {
 	}
 	
 	
-	public static void main(String[] args) {
-		Frame f = new Frame();
-		Viewer v = new Viewer();
-		f.add(v.getViewer());
-		f.setVisible(true);
-		f.setSize(1000, 1000);
-	}
+//	public static void main(String[] args) {
+//		Frame f = new Frame();
+//		Viewer v = new Viewer();
+//		f.add(v.getViewer());
+//		f.setVisible(true);
+//		f.setSize(1000, 1000);
+//	}
 }

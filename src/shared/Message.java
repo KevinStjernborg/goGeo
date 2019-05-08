@@ -1,7 +1,7 @@
 package shared;
 
 /**
- * Tänkt att fungera som den klassen som skickas fram och tillbaka, kan byggas på med fler booleans beroende på vad den innehåller
+ * Tï¿½nkt att fungera som den klassen som skickas fram och tillbaka, kan byggas pï¿½ med fler booleans beroende pï¿½ vad den innehï¿½ller
  * @author kevin
  *
  */
@@ -9,12 +9,13 @@ package shared;
 public class Message {
 	private Guess guess;
 	private int timerInt;
+	private String playerName;
 	private boolean containsGuess;
-	private boolean containsTimerInt;
+	private boolean containsGameFoundMessage;
 	
 	public Message() {
 		containsGuess = false;
-		containsTimerInt = false;
+		containsGameFoundMessage = false;
 	}
 
 	public boolean containsGuess() {
@@ -23,7 +24,7 @@ public class Message {
 
 
 	public boolean containsStartTimer() {
-		return containsTimerInt;
+		return containsGameFoundMessage;
 	}
 
 	public Guess getGuess() {

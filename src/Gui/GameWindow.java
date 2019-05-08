@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 
 import client.Controller;
 import client.Viewer;
+import shared.Guess;
 
 import javax.swing.JButton;
 
@@ -27,10 +28,11 @@ import javax.swing.DropMode;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Frame;
 
 public class GameWindow extends JFrame implements ActionListener{
 
-	
+
 	private Controller controller;
 	private String res;
 	private Viewer viewer = new Viewer();
@@ -67,11 +69,13 @@ public class GameWindow extends JFrame implements ActionListener{
 	private JButton resignButton = new JButton("");
 	private JPanel infoPanel = new JPanel();
 	private JButton infoButton = new JButton();
+	private JButton menuButton = new JButton("Menu");
+	private JButton exitButton = new JButton("Exit");
 
 	public GameWindow() {
 		initialize();
 	}
-	
+
 	public GameWindow(Controller controller) {
 		this.controller = controller;
 		initialize();
@@ -80,9 +84,6 @@ public class GameWindow extends JFrame implements ActionListener{
 	public void initialize() {
 		getContentPane().setBackground(SystemColor.activeCaption);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setResizable(false);
-		setExtendedState(JFrame.MAXIMIZED_BOTH); 
-		setVisible(true);
 		getContentPane().setLayout(null);
 
 		mapPanel.setBounds(15, 76, 1230, 743);
@@ -98,7 +99,7 @@ public class GameWindow extends JFrame implements ActionListener{
 		panel.add(PanelTextConsole);
 		promptPanel.setBackground(SystemColor.activeCaption);
 		getContentPane().add(promptPanel);
-		
+
 		textPane.setRows(10);
 		textPane.setLineWrap(true);
 		textPane.setFont(new Font("Tahoma", Font.PLAIN, 19));
@@ -106,7 +107,7 @@ public class GameWindow extends JFrame implements ActionListener{
 		textPane.setBackground(Color.BLACK);
 		textPane.setText("Welcome to goGeo! I Hope you'll have a great stay!");
 		promptPanel.setBounds(98, 16, 1060, 44);
-		
+
 		PanelTextConsole.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		PanelTextConsole.setViewportView(textPane);
 
@@ -163,6 +164,7 @@ public class GameWindow extends JFrame implements ActionListener{
 		submitButton.setBounds(15, 16, 342, 103);
 		submitPanel.add(submitButton);
 		zoomPanel.setBackground(SystemColor.activeCaption);
+		submitButton.addActionListener(this);
 
 		zoomPanel.setBounds(1260, 76, 123, 743);
 		getContentPane().add(zoomPanel);
@@ -177,6 +179,7 @@ public class GameWindow extends JFrame implements ActionListener{
 		zoomPanel.add(zoomDown);
 		fitIconToButton(zoomDown, arrowDownIcon);
 		resignPanel.setBackground(SystemColor.activeCaption);
+		zoomDown.addActionListener(this);
 
 		resignPanel.setBounds(1398, 835, 498, 137);
 		getContentPane().add(resignPanel);
@@ -193,14 +196,22 @@ public class GameWindow extends JFrame implements ActionListener{
 		infoPanel.setLayout(null);
 		infoButton.setToolTipText("Här");
 
-		infoButton.setBounds(444, 0, 54, 45);
+		infoButton.setBounds(225, -1, 54, 45);
 		infoPanel.add(infoButton);
 		fitIconToButton(infoButton, infoIcon);
-		
-		JButton menuButton = new JButton("Menu");
-		menuButton.setBounds(0, 0, 415, 44);
+
+		menuButton.setBounds(0, 0, 210, 44);
 		infoPanel.add(menuButton);
-	
+		menuButton.addActionListener(this);
+
+		exitButton.setForeground(Color.RED);
+		exitButton.setBounds(368, -1, 115, 45);
+		infoPanel.add(exitButton);
+		exitButton.addActionListener(this);
+
+		setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		setUndecorated(true);
+		setVisible(true);
 	}
 
 	/**
@@ -220,54 +231,100 @@ public class GameWindow extends JFrame implements ActionListener{
 	public void setConsoleText(String text) {
 		textPane.append("\n" + text);
 	}
-	public String getText() {
+
+	public String getConsoleText() {
 		return textPane.getText();
 	}
 	
+	public Viewer getViewer() {
+		return viewer;
+	}
+
+	public void setInstruction(String location) {
+		promptLabel.setText("Tryck på: " + location);
+	}
+
 	public void setTimerText(String text) {
 		timerLabel.setText(text);
 		timerLabel.updateUI();
 	}
-	
+
 	public void setPromptText(String text) {
 		promptLabel.setText(text);
 		promptLabel.updateUI();
 	}
-	public void setPlayer1(String name) {
-		player1lbl.setText(name);
-		player1lbl.updateUI();
+	public void setPlayerName(String name, int player) {
+		if (player ==1 ) {
+			player1lbl.setText(name);
+			player1lbl.updateUI();
+		}
+		if (player == 2) {
+			player2lbl.setText(name);
+			player2lbl.updateUI();
+		}
 	}
-	public void setPlayer2(String name) {
-		player2lbl.setText(name);
-		player2lbl.updateUI();
+
+	public void setPlayerScore(long score, int player) {
+		String res = Long.toString(score);
+		if(player == 1 ) {
+			scorelbl1.setText(res);
+			scorelbl1.updateUI();
+		}
+		if( player == 2) {
+			scorelbl2.setText(res);
+			scorelbl2.updateUI();
+		}		
 	}
 	
-	public void setScorePlayer1(int score) {
-		String res = Integer.toString(score);
-		scorelbl1.setText(res);
-		scorelbl1.updateUI();
+	
+	public void setStartMessage() {
+		setConsoleText("Searching for game...");
 	}
 	
-	public void setScorePlayer2(int score) {
-		String res = Integer.toString(score);
-		scorelbl2.setText(res);
-		scorelbl2.updateUI();
+	public void setFoundGameMessage() {
+		setConsoleText("Game found. Timer starts in 3 seconds");
 	}
-	
-//	@Override  TODO: Denna funkar ej, kolla hur det görs i listener för viewer.. 
+
+
+	@Override
 	public void actionPerformed(ActionEvent e) {
-//		if (e.getSource() == zoomUp) {
-//			viewer.getViewer().setZoom(18);
-//		}
-//		
+
+		if (e.getSource() == exitButton) {
+			System.exit(EXIT_ON_CLOSE);
+
+		}
+
+		if(e.getSource() == menuButton) {
+			dispose();
+			new GUIMenu1();
+		}
+
+		if (e.getSource() == submitButton) {
+				Guess guess = viewer.getGuess();
+				controller.sendMessage(guess);
+		}
+
+		if (e.getSource() == resignButton) {
+			//TODO Resign from game
+		}
+
+		if(e.getSource() == zoomDown) {
+			int z = viewer.getViewer().getZoom();
+			viewer.getViewer().setZoom(z+1);
+
+		}
+		if(e.getSource() == zoomUp) {
+			int z = viewer.getViewer().getZoom();
+			viewer.getViewer().setZoom(z-1);
+		}
+
+
 	}
-//	
-	
-	
+
+
+
 	public static void main(String[] args) {
 		GameWindow gw = new GameWindow();
-		gw.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-		gw.setVisible(true);
 		gw.setConsoleText("\n"+"\n");
 		gw.setConsoleText("hej");
 		gw.setConsoleText("\n"+"\n");
