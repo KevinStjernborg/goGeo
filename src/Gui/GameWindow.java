@@ -40,7 +40,7 @@ public class GameWindow extends JFrame implements ActionListener{
 
 	private Controller controller;
 	private String res;
-	private Viewer viewer = new Viewer();
+	private Viewer viewer;
 
 	//Bör skapa en dir med alla resources för att inte hårdkoda. 
 
@@ -79,10 +79,14 @@ public class GameWindow extends JFrame implements ActionListener{
 	private int timerCount;
 	private int rounds = 0;
 	private int score;
+//	private int hashMapChoice;
 	
 
-	public GameWindow() {
+	public GameWindow(int hashMapChoice) {
+		viewer = new Viewer(hashMapChoice);
 		initialize();
+		startConsoleTimer();
+
 	}
 
 	public GameWindow(Controller controller) {
@@ -397,7 +401,7 @@ public class GameWindow extends JFrame implements ActionListener{
 
 
 	public static void main(String[] args) {
-		GameWindow gw = new GameWindow();
+//		GameWindow gw = new GameWindow();
 //		gw.setConsoleText("\n"+"\n");
 //		gw.setConsoleText("hej");
 //		gw.setConsoleText("\n"+"\n");
@@ -412,6 +416,6 @@ public class GameWindow extends JFrame implements ActionListener{
 //		gw.setConsoleText("hej");
 //		gw.setConsoleText("\n"+"\n");
 //		gw.setConsoleText("hej");
-		gw.startConsoleTimer();
+//		gw.startConsoleTimer();
 	}
 }

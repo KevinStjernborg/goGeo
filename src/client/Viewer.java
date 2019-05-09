@@ -55,13 +55,14 @@ public class Viewer {
 	private boolean roundFinished;
 	private int hashMapController;
 	private HashMap locationHashMap;
+	private int locationsInt;
 
 	
 	
 	/**
 	 * Constructor for the class
 	 */
-	public Viewer() {
+	public Viewer(int choice) {
 		/*
 		 * initierar kartdelen
 		 */
@@ -78,7 +79,7 @@ public class Viewer {
 		addDoubleClick();
 		enableMarkers();
 		locations = new Locations();
-		getLocationHashMap();
+		getLocationHashMap(choice);
 	}
 	/**
 	 * Adds a marker on the map that shows where the player clicked
@@ -86,8 +87,8 @@ public class Viewer {
 	 */
 	
 	
-	public void getLocationHashMap() {
-		locationHashMap = locations.getHashMap(1);
+	public void getLocationHashMap(int choice) {
+		locationHashMap = locations.getHashMap(choice);
 	}
 	
 	public String getCurrentStringLocation() {

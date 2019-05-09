@@ -21,18 +21,18 @@ public class GUIMenu2 extends JPanel {
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.getContentPane().add(this, BorderLayout.CENTER); // JPanel på JFrame
 
-		JButton btnEuropa = new JButton("Europa");
+		JButton btnEuropa = new JButton("Tyskland");
 		btnEuropa.addActionListener(e -> {
-			System.out.println("btnEuropa was pressed");
+			GameWindow gameWindow = new GameWindow(3);
 		});
 		btnEuropa.setBackground(new Color(0, 153, 255));
 		btnEuropa.setForeground(SystemColor.controlHighlight);
 		btnEuropa.setBounds(395, 120, 170, 59);
 		add(btnEuropa);
 
-		JButton btnAfrika = new JButton("Afrika");
+		JButton btnAfrika = new JButton("Storbritannien");
 		btnAfrika.addActionListener(e -> {
-			System.out.println("btnAfrika was pressed");
+			GameWindow gameWindow = new GameWindow(2);
 		});
 		btnAfrika.setForeground(SystemColor.controlHighlight);
 		btnAfrika.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
@@ -40,23 +40,23 @@ public class GUIMenu2 extends JPanel {
 		btnAfrika.setBounds(395, 212, 170, 59);
 		add(btnAfrika);
 
-		JButton btnNordamerika = new JButton("Nordamerika");
+		JButton btnNordamerika = new JButton("Frankrike");
 		btnNordamerika.addActionListener(e -> {
-			System.out.println("btnNordamerika was pressed");
+			GameWindow gameWindow = new GameWindow(1);
 		});
 		btnNordamerika.setBackground(new Color(0, 153, 255));
 		btnNordamerika.setForeground(SystemColor.controlHighlight);
 		btnNordamerika.setBounds(395, 304, 170, 59);
 		add(btnNordamerika);
 
-		JButton btnSydamerika = new JButton("Sydamerika");
-		btnSydamerika.addActionListener(e -> {
-			System.out.println("btnSydamerika was pressed");
-		});
-		btnSydamerika.setBackground(new Color(0, 153, 255));
-		btnSydamerika.setForeground(SystemColor.controlHighlight);
-		btnSydamerika.setBounds(395, 396, 170, 59);
-		add(btnSydamerika);
+//		JButton btnSydamerika = new JButton("Sydamerika"); // inget fjärde alternativ just nu //Kevin
+//		btnSydamerika.addActionListener(e -> {
+//			System.out.println("btnSydamerika was pressed");
+//		});
+//		btnSydamerika.setBackground(new Color(0, 153, 255));
+//		btnSydamerika.setForeground(SystemColor.controlHighlight);
+//		btnSydamerika.setBounds(395, 396, 170, 59);
+//		add(btnSydamerika);
 
 		jLabel = new JLabel();
 		jLabel.setBounds(-118, 5, 1236, 628);
