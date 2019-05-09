@@ -78,7 +78,7 @@ public class Controller {
 			gameWindow.getViewer().addOtherPlayersGuess(guess.getGeo());
 			
 		}
-		if(message.containsStartMessage()) {
+		if(message.containsStartMessage()) {    //Lägg till att skicka användarnamn till den andra
 			gameWindow.setConsoleText(message.getStartMessage());
 		}
 	}
