@@ -19,6 +19,7 @@ import shared.Guess;
 import javax.swing.JButton;
 
 import javax.swing.SwingConstants;
+import javax.swing.text.DefaultCaret;
 
 import java.util.Date;
 import java.util.Timer;
@@ -76,6 +77,8 @@ public class GameWindow extends JFrame implements ActionListener{
 	private JButton menuButton = new JButton("Menu");
 	private JButton exitButton = new JButton("Exit");
 	private int timerCount;
+	private int rounds = 0;
+	
 
 	public GameWindow() {
 		initialize();
@@ -217,6 +220,7 @@ public class GameWindow extends JFrame implements ActionListener{
 		setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		setUndecorated(true);
 		setVisible(true);
+
 	}
 
 	/**
@@ -287,7 +291,7 @@ public class GameWindow extends JFrame implements ActionListener{
 	}
 	
 	public void setFoundGameMessage() {
-		setConsoleText("Game found. Timer starts in 3 seconds");
+		setConsoleText("Game found. Game starts in:");
 	}
 
 
@@ -326,8 +330,31 @@ public class GameWindow extends JFrame implements ActionListener{
 
 	}
 	
-	public void startTimer() {
-		timerCount = 5;
+	public void startConsoleTimer() {
+		timerCount = 3;
+		setFoundGameMessage();
+		Timer timer = new Timer();
+		TimerTask myTask = new TimerTask() {
+			
+		    @Override
+		    public void run() {
+		    	if(timerCount == -1 || rounds == 5) {
+		        	timer.cancel();
+		        	startGameTimer();
+		        }
+		        setConsoleText( ""  + timerCount);
+		        timerCount--;
+		        
+		        
+		    }
+		};
+
+		timer.schedule(myTask, 0, 1000);
+	}
+	
+	public void startGameTimer() {
+		rounds++;
+		timerCount = 30;
 		Timer timer = new Timer();
 		TimerTask myTask = new TimerTask() {
 			
@@ -335,7 +362,7 @@ public class GameWindow extends JFrame implements ActionListener{
 		    public void run() {
 		        setTimerText("" + timerCount);
 		        timerCount--;
-		        if(timerCount == -1) {
+		        if(timerCount == -1 || viewer.isRoundFinished()) {
 		        	timer.cancel();
 		        	viewer.disableMarkers();
 		        }
@@ -350,20 +377,20 @@ public class GameWindow extends JFrame implements ActionListener{
 
 	public static void main(String[] args) {
 		GameWindow gw = new GameWindow();
-		gw.setConsoleText("\n"+"\n");
-		gw.setConsoleText("hej");
-		gw.setConsoleText("\n"+"\n");
-		gw.setConsoleText("hej");
-		gw.setConsoleText("\n"+"\n");
-		gw.setConsoleText("hej");
-		gw.setConsoleText("\n"+"\n");
-		gw.setConsoleText("hej");
-		gw.setConsoleText("\n"+"\n");
-		gw.setConsoleText("hej");
-		gw.setConsoleText("\n"+"\n");
-		gw.setConsoleText("hej");
-		gw.setConsoleText("\n"+"\n");
-		gw.setConsoleText("hej");
-		gw.startTimer();
+//		gw.setConsoleText("\n"+"\n");
+//		gw.setConsoleText("hej");
+//		gw.setConsoleText("\n"+"\n");
+//		gw.setConsoleText("hej");
+//		gw.setConsoleText("\n"+"\n");
+//		gw.setConsoleText("hej");
+//		gw.setConsoleText("\n"+"\n");
+//		gw.setConsoleText("hej");
+//		gw.setConsoleText("\n"+"\n");
+//		gw.setConsoleText("hej");
+//		gw.setConsoleText("\n"+"\n");
+//		gw.setConsoleText("hej");
+//		gw.setConsoleText("\n"+"\n");
+//		gw.setConsoleText("hej");
+		gw.startConsoleTimer();
 	}
 }

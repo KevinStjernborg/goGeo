@@ -49,6 +49,7 @@ public class Viewer {
 	private HashSet hashset = new HashSet<SwingWaypoint>();
 	private boolean doubleClickActive;
 	private Locations locations;
+	private boolean roundFinished;
 	
 	
 	/**
@@ -109,6 +110,18 @@ public class Viewer {
 		System.out.println("Guess receiver in viewer");
 		removePaint();
 		addTwoLocations(guess.getGeo(), geo);
+	}
+	
+	public boolean isRoundFinished() {
+		return roundFinished;
+	}
+	
+	public void setRoundAsFinished() {
+		roundFinished = true;
+	}
+	
+	public void setRoundAsUnfinished() {
+		roundFinished = false;
 	}
 	
 	/*

@@ -80,7 +80,7 @@ public class Controller {
 		}
 		if(message.containsStartMessage()) {    //Lägg till att skicka användarnamn till den andra
 			gameWindow.setConsoleText(message.getStartMessage());
-			gameWindow.startTimer();
+			gameWindow.startConsoleTimer();
 		}
 	}
 	
