@@ -4,6 +4,7 @@ package client;
 import Gui.GameWindow;
 import shared.Guess;
 import shared.Locations;
+import shared.Message;
 
 
 /*
@@ -62,7 +63,9 @@ public class Controller {
 	}
 
 	public void sendMessage(Guess guess) {
-		connection.sendMessage(guess);
+		Message message = new Message();
+		message.setGuess(guess);
+		connection.sendMessage(message);
 		System.out.println("Passed through controller");
 	}
 
@@ -70,8 +73,15 @@ public class Controller {
 	 * L�gg till kod f�r vad som sker om de bara �r ett bekr�ftelsemeddelande fr�n servern att ett spel har startats
 	 * 
 	 */
-	public void receiveMessage(Guess guess) {
-		gameWindow.getViewer().addOtherPlayersGuess(guess.getGeo());
+	public void receiveMessage(Message message) {
+		if(message.containsGuess()) {
+			Guess guess = message.getGuess();
+			gameWindow.getViewer().addOtherPlayersGuess(guess.getGeo());
+
+		}
+		if(message.containsStartMessage()) {
+			
+		}
 	}
 	
 	

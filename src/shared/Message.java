@@ -1,21 +1,23 @@
 package shared;
 
+import java.io.Serializable;
+
 /**
  * T�nkt att fungera som den klassen som skickas fram och tillbaka, kan byggas p� med fler booleans beroende p� vad den inneh�ller
  * @author kevin
  *
  */
 
-public class Message {
+public class Message implements Serializable{
 	private Guess guess;
 	private int timerInt;
 	private String playerName;
 	private boolean containsGuess;
-	private boolean containsGameFoundMessage;
+	private boolean containsStartMessage;
 	
 	public Message() {
 		containsGuess = false;
-		containsGameFoundMessage = false;
+		containsStartMessage = false;
 	}
 
 	public boolean containsGuess() {
@@ -23,8 +25,8 @@ public class Message {
 	}
 
 
-	public boolean containsStartTimer() {
-		return containsGameFoundMessage;
+	public boolean containsStartMessage() {
+		return containsStartMessage;
 	}
 
 	public Guess getGuess() {

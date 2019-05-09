@@ -5,7 +5,7 @@ import shared.Guess;
 
 /*
  * TODO
- * Ta bort inre klass, onödigt? 
+ * Ta bort inre klass, onï¿½digt? 
  */
 public class Game {
 	private Client clientOne;
@@ -22,7 +22,7 @@ public class Game {
 	
 	
 	/**
-	 * Skicka ut timer eller bara meddelande att starta i båda klienterna
+	 * Skicka ut timer eller bara meddelande att starta i bï¿½da klienterna
 	 */
 	
 	public void start() {
@@ -31,7 +31,7 @@ public class Game {
 	
 	
 	/**
-	 * Klass för att ta emot gissning och skicka vidare till en annan klient
+	 * Klass fï¿½r att ta emot gissning och skicka vidare till en annan klient
 	 */
 	private class GuessListener extends Thread {
 		
@@ -40,8 +40,8 @@ public class Game {
 				try {
 					Thread.sleep(500);
 					if(clientOne.getBooleanGuess() == true && clientTwo.getBooleanGuess() == true) {
-						clientOne.sendOtherPlayersGuess(clientTwo.getGuess());
-						clientTwo.sendOtherPlayersGuess(clientOne.getGuess());
+						clientOne.sendOtherPlayersGuess(clientTwo.getMessage());
+						clientTwo.sendOtherPlayersGuess(clientOne.getMessage());
 						clientOne.setBooleanGuessFalse();
 						clientTwo.setBooleanGuessFalse();
 						System.out.println("Guess retrieved from both clients");

@@ -7,6 +7,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import shared.Guess;
+import shared.Message;
 
 /*
  * TODO
@@ -36,9 +37,9 @@ public class Connection {
 		
 	}
 	
-	public void sendMessage(Guess guess) {
+	public void sendMessage(Message message) {
 		try {
-			oos.writeObject(guess);
+			oos.writeObject(message);
 			System.out.println("Guess sent from connection class");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,9 +74,9 @@ public class Connection {
 		public void run() {
 			while(true) {
 				try {
-					Guess guess;
-					guess = (Guess) ois.readObject();
-					controller.receiveMessage(guess);
+					Message message;
+					message = (Message) ois.readObject();
+					controller.receiveMessage(message);
 					System.out.println("Guess received on Clientside");
 				} catch (Exception e) {
 					e.printStackTrace();

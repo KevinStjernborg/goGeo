@@ -5,13 +5,15 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import shared.Guess;
+import shared.Message;
 
 
 public class Client {
 	private Socket socket;
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
-	private Guess guess;
+//	private Guess guess;
+	private Message message;
 	private Receiver receiver;
 	private Game game;
 	private Boolean hasGuess;
@@ -29,33 +31,34 @@ public class Client {
 		}
 	}
 	
-	public void setGuess(Guess guess) {
-		this.guess = guess;
+	public void setMessage(Message message) {
+		this.message = message;
 	}
 	
-	public Guess getGuess() {
-		return guess;
+	public Message getMessage() {
+		setBooleanGuessFalse();
+		return message;
 	}
 	
 //	public void setGame(Game game) {
 //		this.game = game;
 //	}
 	
-	public void setBooleanGuessTrue() {
+	public void setBooleanGuessTrue() { //rename
 		hasGuess = true;
 	}
 	
-	public void setBooleanGuessFalse() {
+	public void setBooleanGuessFalse() { //rename
 		hasGuess = false;
 	}
 	
-	public boolean getBooleanGuess() {
+	public boolean getBooleanGuess() { //rename
 		return hasGuess;
 	}
 	
-	public void sendOtherPlayersGuess(Guess guess) {
+	public void sendOtherPlayersGuess(Message message) {
 		try {
-			oos.writeObject(guess);
+			oos.writeObject(message);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -67,8 +70,9 @@ public class Client {
 			while(true) {
 				try {
 					ois = new ObjectInputStream(socket.getInputStream());
-					guess = (Guess) ois.readObject();
-					setGuess(guess);
+					
+					message = (Message) ois.readObject();
+					setMessage(message);
 					setBooleanGuessTrue();
 					System.out.println("Guess recieved");
 				}catch(Exception e) {
