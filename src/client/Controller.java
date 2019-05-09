@@ -66,7 +66,6 @@ public class Controller {
 		Message message = new Message();
 		message.setGuess(guess);
 		connection.sendMessage(message);
-		System.out.println("Passed through controller");
 	}
 
 	/*
@@ -77,10 +76,10 @@ public class Controller {
 		if(message.containsGuess()) {
 			Guess guess = message.getGuess();
 			gameWindow.getViewer().addOtherPlayersGuess(guess.getGeo());
-
+			
 		}
 		if(message.containsStartMessage()) {
-			
+			gameWindow.setStartMessage();
 		}
 	}
 	

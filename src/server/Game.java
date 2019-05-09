@@ -1,6 +1,7 @@
 package server;
 
 import shared.Guess;
+import shared.Message;
 
 
 /*
@@ -25,8 +26,8 @@ public class Game {
 	 * Skicka ut timer eller bara meddelande att starta i b�da klienterna
 	 */
 	
-	public void start() {
-		
+	public void sendStartMessage() {
+		Message message = new Message();
 	}
 	
 	
