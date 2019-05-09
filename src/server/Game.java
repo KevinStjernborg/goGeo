@@ -3,16 +3,23 @@ package server;
 import shared.Guess;
 import shared.Message;
 
-
-/*
- * TODO
- * Ta bort inre klass, on�digt? 
+/**
+ * A class containing two {@link Client} object representing a game.
+ * 
+ * @author Kevin Stjernborg
+ *
  */
 public class Game {
 	private Client clientOne;
 	private Client clientTwo;
 	private GuessListener guessListener;
-	
+
+	/**
+	 * Constructor
+	 * 
+	 * @param clientOne A client object representing player one
+	 * @param clientTwo Player two A client object representing player two
+	 */
 	public Game(Client clientOne, Client clientTwo) {
 		this.clientOne = clientOne;
 		this.clientTwo = clientTwo;
@@ -20,31 +27,34 @@ public class Game {
 		guessListener.start();
 		System.out.println("Game started");
 	}
-	
-	
+
 	/**
-	 * Skicka ut timer eller bara meddelande att starta i b�da klienterna
+	 * A method for sending out a message to the clients that a game has been found.
 	 */
-	
+
 	public void sendStartMessage() {
 		Message message = new Message();
 		message.setStartMessage();
 		clientOne.sendMessage(message);
 		clientTwo.sendMessage(message);
-		
+
 	}
-	
-	
+
 	/**
-	 * Klass f�r att ta emot gissning och skicka vidare till en annan klient
+	 * Inner class that checks if a guess from both player has been received at the
+	 * server. If the condition is met it will then forward the guess to the other
+	 * player
+	 * 
+	 * @author Kevin Stjernborg
+	 *
 	 */
 	private class GuessListener extends Thread {
-		
+
 		public void run() {
-			while(true) {
+			while (true) {
 				try {
 					Thread.sleep(500);
-					if(clientOne.getBooleanGuess() == true && clientTwo.getBooleanGuess() == true) {
+					if (clientOne.getBooleanGuess() == true && clientTwo.getBooleanGuess() == true) {
 						clientOne.sendMessage(clientTwo.getMessage());
 						clientTwo.sendMessage(clientOne.getMessage());
 						clientOne.setBooleanGuessFalse();
@@ -54,7 +64,7 @@ public class Game {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				
+
 			}
 		}
 	}
