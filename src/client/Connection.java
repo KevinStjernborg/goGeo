@@ -5,15 +5,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
-
-import shared.Guess;
 import shared.Message;
 
-/*
- * TODO
- * L�gg till vad som sker ett meddelande tas emot
- * skriv controller?
- * �ndra struktur fr�n game till message.
+/**
+ * A class for connecting to the server with functionality for send and
+ * receiving {@link Message} objects.
+ * 
+ * @author Kevin Stjernborg
+ *
  */
 
 public class Connection {
@@ -22,11 +21,16 @@ public class Connection {
 	private ObjectOutputStream oos;
 	private int port;
 	private String address;
-//	private serverSender sender;
 	private serverReceiver receiver;
 	private Controller controller;
-	
-	
+
+	/**
+	 * Constructor for the class
+	 * 
+	 * @param address    The IP address to connect to
+	 * @param port       Port to connect to
+	 * @param controller a {@link Controller} for the class.
+	 */
 	public Connection(String address, int port, Controller controller) {
 		this.address = address;
 		this.port = port;
@@ -34,9 +38,14 @@ public class Connection {
 		connect();
 		receiver = new serverReceiver();
 		receiver.start();
-		
+
 	}
-	
+
+	/**
+	 * Method for sending a {@link Message} object.
+	 * 
+	 * @param message Message object to be sent.
+	 */
 	public void sendMessage(Message message) {
 		try {
 			oos.writeObject(message);
@@ -44,10 +53,13 @@ public class Connection {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	
+
+	/**
+	 * A method for connecting to the server and initializing the Objectinput and
+	 * output streams.
+	 */
 	public void connect() {
 		try {
 			socket = new Socket(address, port);
@@ -60,19 +72,17 @@ public class Connection {
 			e.printStackTrace();
 		}
 	}
-	
-	
-//	
-//	private class serverSender extends Thread {
-//
-//		public void run() {
-//			oos.writeObject(guess);
-//		}
-//	}
-	
-	private class serverReceiver extends Thread{
+
+	/**
+	 * A private class that listens for incoming {@link Message} objects
+	 * 
+	 * @author Kevin Stjernborg
+	 *
+	 */
+
+	private class serverReceiver extends Thread {
 		public void run() {
-			while(true) {
+			while (true) {
 				try {
 					Message message;
 					message = (Message) ois.readObject();
