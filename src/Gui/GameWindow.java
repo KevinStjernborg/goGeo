@@ -19,7 +19,11 @@ import shared.Guess;
 import javax.swing.JButton;
 
 import javax.swing.SwingConstants;
-import javax.swing.Timer;
+
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.BoxLayout;
@@ -71,6 +75,7 @@ public class GameWindow extends JFrame implements ActionListener{
 	private JButton infoButton = new JButton();
 	private JButton menuButton = new JButton("Menu");
 	private JButton exitButton = new JButton("Exit");
+	private int timerCount;
 
 	public GameWindow() {
 		initialize();
@@ -320,6 +325,26 @@ public class GameWindow extends JFrame implements ActionListener{
 
 
 	}
+	
+	public void startTimer() {
+		timerCount = 5;
+		Timer timer = new Timer();
+		TimerTask myTask = new TimerTask() {
+			
+		    @Override
+		    public void run() {
+		        setTimerText("" + timerCount);
+		        timerCount--;
+		        if(timerCount == -1) {
+		        	timer.cancel();
+		        	viewer.disableMarkers();
+		        }
+		        
+		    }
+		};
+
+		timer.schedule(myTask, 0, 1000);
+	}
 
 
 
@@ -339,5 +364,6 @@ public class GameWindow extends JFrame implements ActionListener{
 		gw.setConsoleText("hej");
 		gw.setConsoleText("\n"+"\n");
 		gw.setConsoleText("hej");
+		gw.startTimer();
 	}
 }

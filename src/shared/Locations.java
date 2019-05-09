@@ -51,7 +51,7 @@ public class Locations {
 	
 	public void getLocation(String name) {
 		locations.get(name);
-		locations.remove(name);
+//		locations.remove(name);
 	}
 	
 	public void addEurope() {
