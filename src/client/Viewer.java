@@ -43,8 +43,8 @@ import shared.Locations;
 
 
 /**
- * 
- * @author kevin
+ * A class containing {@link JXMapViewer} with added functionality suited for the game.
+ * @author Kevin Stjernborg
  *
  */
 public class Viewer {
