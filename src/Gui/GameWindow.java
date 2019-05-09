@@ -314,9 +314,9 @@ public class GameWindow extends JFrame implements ActionListener{
 			Guess guess = viewer.getGuess();
 			guess.setTime(timerCount);
 			guess.calculateScore();
-			setConsoleText("You were " + guess.getKilometers() + " Kilometers away from " + promptLabel.getText());
+			setConsoleText("You were " + guess.getKilometers() + " Kilometers away from ");
 			score = score +  guess.getScore();
-			scoreHeader.setText("" + score);
+			scorelbl1.setText("" + score);
 //				controller.sendMessage(guess);
 		}
 
@@ -347,7 +347,7 @@ public class GameWindow extends JFrame implements ActionListener{
 		    @Override
 		    public void run() {
 		    	if(rounds != 5) {
-		    		if(timerCount == -1 ) {
+		    		if(timerCount <= -1 ) {
 			        	timer.cancel();
 			        	startGameTimer();
 
@@ -365,12 +365,14 @@ public class GameWindow extends JFrame implements ActionListener{
 
 		timer.schedule(myTask, 0, 1000);
 	}
-	
+	/*
+	 * Lägg till metod för vad som sker när timern når noll, ex ett meddelande etc
+	 */
 	public void startGameTimer() {
 		viewer.enableMarkers();
 		viewer.setGameLocation();
 		viewer.getCurrentStringLocation();
-		promptLabel.setText("\n find: " + viewer.getCurrentStringLocation());
+		promptLabel.setText(" Find: " + viewer.getCurrentStringLocation());
 		rounds++;
 		timerCount = 30;
 		Timer timer = new Timer();
