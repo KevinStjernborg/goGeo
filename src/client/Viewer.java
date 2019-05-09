@@ -41,6 +41,12 @@ import org.jxmapviewer.viewer.WaypointPainter;
 import shared.Guess;
 import shared.Locations;
 
+
+/**
+ * 
+ * @author kevin
+ *
+ */
 public class Viewer {
 	
 	private JXMapViewer viewer;
@@ -63,9 +69,7 @@ public class Viewer {
 	 * Constructor for the class
 	 */
 	public Viewer(int choice) {
-		/*
-		 * initierar kartdelen
-		 */
+
 		TileFactoryInfo info = new OSMTileFactoryInfo("Test", "http://c.tile.stamen.com/watercolor");
 		DefaultTileFactory tileFactory = new DefaultTileFactory(info);
 		tileFactory.setThreadPoolSize(8);
@@ -76,7 +80,7 @@ public class Viewer {
 		viewer.addMouseMotionListener(mia);
 		viewer.addMouseWheelListener(new ZoomMouseWheelListenerCursor(viewer));
 		viewer.setZoom(16);
-		addDoubleClick();
+		mouseDoubleClicked();
 		enableMarkers();
 		locations = new Locations();
 		getLocationHashMap(choice);
@@ -86,16 +90,27 @@ public class Viewer {
 	 * @param p1
 	 */
 	
+	/**
+	 * Gets a hashmap of choice from the {@link Locations} class.
+	 * @param choice Choice for case switch statement.
+	 */
 	
 	public void getLocationHashMap(int choice) {
 		locationHashMap = locations.getHashMap(choice);
 	}
 	
+	/**
+	 * Gets the current string describing the location
+	 * @return  String describing current location
+	 */
+	
 	public String getCurrentStringLocation() {
 		return currentStringLocation;
 	}
 	
-	
+	/**
+	 * Iterates through the hashmap by one and removes the key and value it iterates through
+	 */
 	public void setGameLocation() {
 		Iterator iterator = locationHashMap.entrySet().iterator();
 
@@ -108,9 +123,11 @@ public class Viewer {
 	
 	
 	
-	/*
-	 * TODO 
-	 * Kontrollera att flera waypoints kan synas utan att skickas med som parameter direkt
+
+	
+	/**
+	 * Adds one marker to the map at the x and y coordinates of the {@link GeoPosition}
+	 * @param p1 The geoposition containing x and y coordinates
 	 */
 	public void addOneLocation(GeoPosition p1) {
 		Set<SwingWaypoint> waypoints = new HashSet<SwingWaypoint>(Arrays.asList(new SwingWaypoint("p1", p1)));
@@ -123,6 +140,11 @@ public class Viewer {
 
 	}
 	
+	/**
+	 * Adds two marker to the map at the x and y coordinates of the {@link GeoPosition}
+	 * @param p1 The geoposition containing x and y coordinates representing player one
+	 * @param p2 The geoposition containing x and y coordinates representing player two
+	 */
 	public void addTwoLocations(GeoPosition p1, GeoPosition p2) {
 		Set<MyWaypoint> waypoints = new HashSet<MyWaypoint>(Arrays.asList(new MyWaypoint("p1",Color.BLUE, p1), new MyWaypoint("p2",Color.RED, p2)));
 		WaypointPainter<MyWaypoint> waypointPainter = new WaypointPainter<MyWaypoint>();
@@ -136,41 +158,52 @@ public class Viewer {
 
 	}
 
+	/**
+	 * A method for adding another players {@link GeoPosition}
+	 * @param geo Player two's geoposition
+	 */
 	public void addOtherPlayersGuess(GeoPosition geo) {
 		System.out.println("Guess receiver in viewer");
 		removePaint();
 		addTwoLocations(guess.getGeo(), geo);
 	}
-	
+	/**
+	 * A getter for the boolean representing if a round is finished.
+	 * @return Boolean representing the state of current round
+	 */
 	public boolean isRoundFinished() {
 		return roundFinished;
 	}
 	
+	/**
+	 * Setting the boolean roundfinished as true
+	 */
 	public void setRoundAsFinished() {
 		roundFinished = true;
 	}
 	
+	/**
+	 * Setting the boolean roundfinished as false
+	 */
 	public void setRoundAsUnfinished() {
 		roundFinished = false;
 	}
 	
-	/*
-	 * Ska tas bort, tillf�llig l�sning f�r testning
+
+	/**
+	 * A setter for player one's guess
+	 * @param guess
 	 */
-	
-//	public void setController(Controller controller) {
-//		this.controller = controller;
-//	}
-	
 	public void setPlayerOneGuess(Guess guess) {
 		this.guess = guess;
 	}
 
 	/**
-	 * Adds double click and sets the action once double click occours
-	 * Clears the map of existing markers and creates, and if one already exists, replaces the existing one
+	 * Adds double click and places a marker at the coordinates the player clicked on and creates a {@link GeoPosition} object.
+	 * A {@link Guess} object is created with geoposition and its set as the current guess of the round.
+	 * 
 	 */
-	public void addDoubleClick() {
+	public void mouseDoubleClicked() {
 		viewer.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(final MouseEvent e) {
 				if (e.getClickCount()==2 && doubleClickActive == true) {
@@ -188,11 +221,6 @@ public class Viewer {
 					System.out.println("Guess sent");
 				}
 
-				if (e.getButton() == 3) {
-					System.out.println("right click");
-					removePaint();
-					disableMarkers();
-				}
 			}
 		});
 
@@ -207,17 +235,21 @@ public class Viewer {
 	public JXMapViewer getViewer() {
 		return viewer;
 	}
-	
+	 /**
+	  * Setting the boolean for disabling the doubleclick event
+	  */
 	public void disableMarkers() {
 		doubleClickActive = false;
 	}
-	
+	/**
+	 * Setting the boolean for enabling the doubleclick event
+	 */
 	public void enableMarkers() {
 		doubleClickActive = true;
 	}
 
 	/**
-	 * Removes the marker that represents the position that the player clicks
+	 * Removes all markers on the map
 	 */
 
 	public void removePaint() {
@@ -227,6 +259,10 @@ public class Viewer {
 		painter.clearCache();
 	}
 	
+	/**
+	 * A getter for the guess.
+	 * @return {@link Guess} The players guess 
+	 */
 	public Guess getGuess() {
 		return this.guess;
 	}
@@ -234,10 +270,10 @@ public class Viewer {
 	/**
 	 * Calculates the distance between two coordinates
 	 * 
-	 * @param lat1
-	 * @param lng1
-	 * @param lat2
-	 * @param lng2
+	 * @param lat1 Latitude of coordinate one
+	 * @param lng1 Longitude of coordinate one
+	 * @param lat2 Latitude of coordinate one
+	 * @param lng2 Longitude of coordinate one
 	 * @return distance in kilometers
 	 */
 
@@ -255,11 +291,4 @@ public class Viewer {
 	}
 	
 	
-//	public static void main(String[] args) {
-//		Frame f = new Frame();
-//		Viewer v = new Viewer();
-//		f.add(v.getViewer());
-//		f.setVisible(true);
-//		f.setSize(1000, 1000);
-//	}
 }

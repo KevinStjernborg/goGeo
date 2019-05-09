@@ -340,7 +340,10 @@ public class GameWindow extends JFrame implements ActionListener{
 
 
 	}
-	
+	/**
+	 * Starts the timer thats printed to the console in the gamewindow.
+	 * 
+	 */
 	public void startConsoleTimer() {
 		timerCount = 3;
 		viewer.setRoundAsUnfinished();
@@ -372,6 +375,12 @@ public class GameWindow extends JFrame implements ActionListener{
 	/*
 	 * Lägg till metod för vad som sker när timern når noll, ex ett meddelande etc
 	 */
+
+	/**
+	 * Starts the 30 second timer that defines each round, once the timer has run out
+	 * and the the counter for rounds isnt at five it will start the three second timer again.
+	 */
+
 	public void startGameTimer() {
 		viewer.enableMarkers();
 		viewer.setGameLocation();
