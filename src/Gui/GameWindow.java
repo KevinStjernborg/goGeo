@@ -291,7 +291,7 @@ public class GameWindow extends JFrame implements ActionListener{
 	}
 	
 	public void setFoundGameMessage() {
-		setConsoleText("Game found. Game starts in:");
+		setConsoleText("Round starts in:");
 	}
 
 
@@ -309,8 +309,9 @@ public class GameWindow extends JFrame implements ActionListener{
 		}
 
 		if (e.getSource() == submitButton) {
+			viewer.setRoundAsFinished();
 				Guess guess = viewer.getGuess();
-				controller.sendMessage(guess);
+//				controller.sendMessage(guess);
 		}
 
 		if (e.getSource() == resignButton) {
@@ -332,6 +333,7 @@ public class GameWindow extends JFrame implements ActionListener{
 	
 	public void startConsoleTimer() {
 		timerCount = 3;
+		viewer.setRoundAsUnfinished();
 		setFoundGameMessage();
 		Timer timer = new Timer();
 		TimerTask myTask = new TimerTask() {
@@ -353,6 +355,10 @@ public class GameWindow extends JFrame implements ActionListener{
 	}
 	
 	public void startGameTimer() {
+		viewer.enableMarkers();
+		viewer.setGameLocation();
+		viewer.getCurrentStringLocation();
+		promptLabel.setText("find: " + viewer.getCurrentStringLocation());
 		rounds++;
 		timerCount = 30;
 		Timer timer = new Timer();
@@ -365,6 +371,7 @@ public class GameWindow extends JFrame implements ActionListener{
 		        if(timerCount == -1 || viewer.isRoundFinished()) {
 		        	timer.cancel();
 		        	viewer.disableMarkers();
+		        	startConsoleTimer();
 		        }
 		        
 		    }

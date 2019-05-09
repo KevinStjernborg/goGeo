@@ -12,7 +12,9 @@ import java.awt.event.MouseMotionListener;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.Timer;
@@ -43,13 +45,17 @@ public class Viewer {
 	
 	private JXMapViewer viewer;
 
-	private GeoPosition Paris = new GeoPosition(48.8566, 2.3522);
+	private GeoPosition currentGeoLocation;
+	private String currentStringLocation;
 	private Guess guess = null;
 	private Guess playerTwoGuess;
 	private HashSet hashset = new HashSet<SwingWaypoint>();
 	private boolean doubleClickActive;
 	private Locations locations;
 	private boolean roundFinished;
+	private int hashMapController;
+	private HashMap locationHashMap;
+
 	
 	
 	/**
@@ -71,12 +77,35 @@ public class Viewer {
 		viewer.setZoom(16);
 		addDoubleClick();
 		enableMarkers();
-
+		locations = new Locations();
+		getLocationHashMap();
 	}
 	/**
 	 * Adds a marker on the map that shows where the player clicked
 	 * @param p1
 	 */
+	
+	
+	public void getLocationHashMap() {
+		locationHashMap = locations.getHashMap(1);
+	}
+	
+	public String getCurrentStringLocation() {
+		return currentStringLocation;
+	}
+	
+	
+	public void setGameLocation() {
+		Iterator iterator = locationHashMap.entrySet().iterator();
+
+			HashMap.Entry pair = (HashMap.Entry)iterator.next();	
+			currentGeoLocation = (GeoPosition) pair.getValue();
+			currentStringLocation = (String) pair.getKey();
+			iterator.remove();
+
+			}
+	
+	
 	
 	/*
 	 * TODO 
@@ -145,12 +174,12 @@ public class Viewer {
 			public void mouseClicked(final MouseEvent e) {
 				if (e.getClickCount()==2 && doubleClickActive == true) {
 					Point p = e.getPoint();
-					Point2D pt = viewer.convertGeoPositionToPoint(Paris);
+					Point2D pt = viewer.convertGeoPositionToPoint(currentGeoLocation);
 					GeoPosition geo = viewer.convertPointToGeoPosition(p);
 					guess = new Guess(geo.getLatitude(), geo.getLongitude(), geo );
 					setPlayerOneGuess(guess);
 					System.out.println("Distance in kilometers: " + distFrom(geo.getLatitude(),
-							geo.getLongitude(), Paris.getLatitude(), Paris.getLongitude()));
+							geo.getLongitude(), currentGeoLocation.getLatitude(), currentGeoLocation.getLongitude()));
 					addOneLocation(geo);
 					
 					System.out.println("Guess sent");
