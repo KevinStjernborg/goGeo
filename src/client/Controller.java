@@ -79,7 +79,7 @@ public class Controller {
 			
 		}
 		if(message.containsStartMessage()) {
-			gameWindow.setStartMessage();
+			gameWindow.setConsoleText(message.getStartMessage());
 		}
 	}
 	

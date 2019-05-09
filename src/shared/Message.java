@@ -12,6 +12,7 @@ public class Message implements Serializable{
 	private Guess guess;
 	private int timerInt;
 	private String playerName;
+	private String startMessage;
 	private boolean containsGuess;
 	private boolean containsStartMessage;
 	
@@ -45,6 +46,15 @@ public class Message implements Serializable{
 	public void setStartTimer(int startTimer) {
 		containsGuess = true;
 		this.timerInt = startTimer;
+	}
+	
+	public void setStartMessage() {
+		startMessage = "Game found";
+		containsStartMessage = true;
+	}
+	
+	public String getStartMessage() {
+		return startMessage;
 	}
 	
 	

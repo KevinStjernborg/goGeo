@@ -28,6 +28,10 @@ public class Game {
 	
 	public void sendStartMessage() {
 		Message message = new Message();
+		message.setStartMessage();
+		clientOne.sendMessage(message);
+		clientTwo.sendMessage(message);
+		
 	}
 	
 	
@@ -41,8 +45,8 @@ public class Game {
 				try {
 					Thread.sleep(500);
 					if(clientOne.getBooleanGuess() == true && clientTwo.getBooleanGuess() == true) {
-						clientOne.sendOtherPlayersGuess(clientTwo.getMessage());
-						clientTwo.sendOtherPlayersGuess(clientOne.getMessage());
+						clientOne.sendMessage(clientTwo.getMessage());
+						clientTwo.sendMessage(clientOne.getMessage());
 						clientOne.setBooleanGuessFalse();
 						clientTwo.setBooleanGuessFalse();
 						System.out.println("Guess retrieved from both clients");

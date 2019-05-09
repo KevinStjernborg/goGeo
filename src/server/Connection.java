@@ -9,7 +9,7 @@ public class Connection {
 	private int port;
 	private Handler handler;
 	private MatchMaker matchMaker;
-	Buffer<Client> clientBuffer = new Buffer<Client>();  //Kanske skriva en queue klass? Någon fördel med att byta? 
+	Buffer<Client> clientBuffer = new Buffer<Client>();  //Kanske skriva en queue klass? Nï¿½gon fï¿½rdel med att byta? 
 	ArrayList<Game> games = new ArrayList<Game>();
 
 	public Connection(int port) {
@@ -49,7 +49,7 @@ public class Connection {
 					Thread.sleep(500);
 					if (clientBuffer.size() >= 2) {
 						Game game = new Game(clientBuffer.get(), clientBuffer.get());
-						game.start();
+						game.sendStartMessage();
 						games.add(game);
 					}
 				} catch (InterruptedException e) {

@@ -56,7 +56,7 @@ public class Client {
 		return hasGuess;
 	}
 	
-	public void sendOtherPlayersGuess(Message message) {
+	public void sendMessage(Message message) {
 		try {
 			oos.writeObject(message);
 		} catch (IOException e) {
