@@ -7,14 +7,14 @@ import org.jxmapviewer.viewer.GeoPosition;
 public class Guess implements Serializable {
 	private double x;
 	private double y;
-	private double kilometers;
+	private int kilometers;
 	private double time;
 	private int score;
 	private GeoPosition geo;
 
 	/*
 	 * TODO
-	 * ta bort x och y variabler, behövs inte, allt finns i geo
+	 * ta bort x och y variabler, behï¿½vs inte, allt finns i geo
 	 * 
 	 */
 	public Guess(double x, double y, GeoPosition geo) {
@@ -27,7 +27,7 @@ public class Guess implements Serializable {
 		return "Coordinate [x=" + x + ", y=" + y + "]";
 	}
 	
-	public void setDistance(Double kilometers) {
+	public void setDistance(int kilometers) {
 		this.kilometers = kilometers;
 	}
 	
@@ -55,10 +55,14 @@ public class Guess implements Serializable {
 		return geo;
 	}
 	/*
-	 * Metod kan flyttas beroende på vad som passar bäst länge fram
+	 * Metod kan flyttas beroende pï¿½ vad som passar bï¿½st lï¿½nge fram
 	 */
 	public void calculateScore() {
-		score = (int) (this.kilometers * time / 2);
+		score = (int) (400 - kilometers);
+		score = (int) (score * time);
+		if(score <=0) {
+			score = 0;
+		}
 	}
 	
 	

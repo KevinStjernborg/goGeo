@@ -78,6 +78,7 @@ public class GameWindow extends JFrame implements ActionListener{
 	private JButton exitButton = new JButton("Exit");
 	private int timerCount;
 	private int rounds = 0;
+	private int score;
 	
 
 	public GameWindow() {
@@ -310,7 +311,12 @@ public class GameWindow extends JFrame implements ActionListener{
 
 		if (e.getSource() == submitButton) {
 			viewer.setRoundAsFinished();
-				Guess guess = viewer.getGuess();
+			Guess guess = viewer.getGuess();
+			guess.setTime(timerCount);
+			guess.calculateScore();
+			setConsoleText("You were " + guess.getKilometers() + " Kilometers away from " + promptLabel.getText());
+			score = score +  guess.getScore();
+			scoreHeader.setText("" + score);
 //				controller.sendMessage(guess);
 		}
 
@@ -340,9 +346,15 @@ public class GameWindow extends JFrame implements ActionListener{
 			
 		    @Override
 		    public void run() {
-		    	if(timerCount == -1 || rounds == 5) {
-		        	timer.cancel();
-		        	startGameTimer();
+		    	if(rounds != 5) {
+		    		if(timerCount == -1 ) {
+			        	timer.cancel();
+			        	startGameTimer();
+
+		    		}
+
+		        } else {
+		        	setConsoleText("You finished with a score of " + score );
 		        }
 		        setConsoleText( ""  + timerCount);
 		        timerCount--;
@@ -358,7 +370,7 @@ public class GameWindow extends JFrame implements ActionListener{
 		viewer.enableMarkers();
 		viewer.setGameLocation();
 		viewer.getCurrentStringLocation();
-		promptLabel.setText("find: " + viewer.getCurrentStringLocation());
+		promptLabel.setText("\n find: " + viewer.getCurrentStringLocation());
 		rounds++;
 		timerCount = 30;
 		Timer timer = new Timer();

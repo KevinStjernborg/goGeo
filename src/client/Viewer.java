@@ -178,6 +178,8 @@ public class Viewer {
 					GeoPosition geo = viewer.convertPointToGeoPosition(p);
 					guess = new Guess(geo.getLatitude(), geo.getLongitude(), geo );
 					setPlayerOneGuess(guess);
+					int distance = (int) distFrom(geo.getLatitude(), geo.getLongitude(), currentGeoLocation.getLatitude(), currentGeoLocation.getLongitude());
+					guess.setDistance(distance);
 					System.out.println("Distance in kilometers: " + distFrom(geo.getLatitude(),
 							geo.getLongitude(), currentGeoLocation.getLatitude(), currentGeoLocation.getLongitude()));
 					addOneLocation(geo);
@@ -247,7 +249,7 @@ public class Viewer {
 		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 		float dist = (float) (earthRadius * c);
 		dist = dist / 1000;
-		int distance = (int) dist;
+		int distance = Math.round(dist);
 		return distance;
 	}
 	
