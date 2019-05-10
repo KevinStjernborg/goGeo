@@ -4,58 +4,82 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import shared.Guess;
 import shared.Message;
 
+/**
+ * A class representing a connected client which receives {@link Message} objects for the {@link Game}.
+ * @author Kevin Stjernborg
+ *
+ */
 
 public class Client {
 	private Socket socket;
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
-//	private Guess guess;
 	private Message message;
 	private Receiver receiver;
-	private Game game;
-	private Boolean hasGuess;
-	
+	private Boolean hasMessage;
+
 	public Client(Socket socket) {
 		this.socket = socket;
-		hasGuess = false;
+		hasMessage = false;
 		receiver = new Receiver();
 		receiver.start();
 		try {
-//			ois = new ObjectInputStream(socket.getInputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
 			oos = new ObjectOutputStream(socket.getOutputStream());
-			} catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * A method for setting the current message.
+	 * 
+	 * @param message
+	 */
 	public void setMessage(Message message) {
 		this.message = message;
 	}
-	
+
+	/**
+	 * A method for getting the current message.
+	 * 
+	 * @return
+	 */
 	public Message getMessage() {
-		setBooleanGuessFalse();
+		setMessageBooleanFalse();
 		return message;
 	}
-	
-//	public void setGame(Game game) {
-//		this.game = game;
-//	}
-	
-	public void setBooleanGuessTrue() { //rename
-		hasGuess = true;
+
+	/**
+	 * A method for setting the boolean hasMessage as true.
+	 */
+	public void setMessageBooleanTrue() { // rename
+		hasMessage = true;
 	}
-	
-	public void setBooleanGuessFalse() { //rename
-		hasGuess = false;
+
+	/**
+	 * A method for setting the boolean hasMessage as false.
+	 */
+
+	public void setMessageBooleanFalse() { // rename
+		hasMessage = false;
 	}
-	
-	public boolean getBooleanGuess() { //rename
-		return hasGuess;
+
+	/**
+	 * A method for getting the boolean hasMessage
+	 */
+
+	public boolean getMessageBoolean() { // rename
+		return hasMessage;
 	}
-	
+
+	/**
+	 * A method for sending a {@link Message} to the connected client
+	 * 
+	 * @param message
+	 */
 	public void sendMessage(Message message) {
 		try {
 			oos.writeObject(message);
@@ -63,27 +87,33 @@ public class Client {
 			e.printStackTrace();
 		}
 	}
-	
-	private class Receiver extends Thread{
-		
+
+	/**
+	 * A private class listening for incoming {@link Message} objects. If a message
+	 * is receive the boolean hasMessage is changed and the message is set as the
+	 * current message.
+	 * 
+	 * @author Kevin Stjernborg
+	 *
+	 */
+
+	private class Receiver extends Thread {
+
 		public void run() {
-			while(true) {
+			while (true) {
 				try {
 					ois = new ObjectInputStream(socket.getInputStream());
-					
+
 					message = (Message) ois.readObject();
 					setMessage(message);
-					setBooleanGuessTrue();
+					setMessageBooleanTrue();
 					System.out.println("Guess recieved");
-				}catch(Exception e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		}
-		
-	}
-	
 
-	
-	
+	}
+
 }

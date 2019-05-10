@@ -54,11 +54,11 @@ public class Game {
 			while (true) {
 				try {
 					Thread.sleep(500);
-					if (clientOne.getBooleanGuess() == true && clientTwo.getBooleanGuess() == true) {
+					if (clientOne.getMessageBoolean() == true && clientTwo.getMessageBoolean() == true) {
 						clientOne.sendMessage(clientTwo.getMessage());
 						clientTwo.sendMessage(clientOne.getMessage());
-						clientOne.setBooleanGuessFalse();
-						clientTwo.setBooleanGuessFalse();
+						clientOne.setMessageBooleanFalse();
+						clientTwo.setMessageBooleanFalse();
 						System.out.println("Guess retrieved from both clients");
 					}
 				} catch (InterruptedException e) {
