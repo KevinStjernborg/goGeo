@@ -1,4 +1,4 @@
-package client;
+package borrowed;
 
 import org.jxmapviewer.JXMapViewer;
 import org.jxmapviewer.viewer.WaypointPainter;

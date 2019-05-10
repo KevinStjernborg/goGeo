@@ -30,6 +30,9 @@ import org.jxmapviewer.viewer.TileFactoryInfo;
 import org.jxmapviewer.viewer.Waypoint;
 import org.jxmapviewer.viewer.WaypointPainter;
 
+import borrowed.FancyWaypointRenderer;
+import borrowed.MyWaypoint;
+import borrowed.SwingWaypoint;
 import shared.Guess;
 import shared.Locations;
 
@@ -48,13 +51,10 @@ public class Viewer {
 	private String currentStringLocation;
 	private Guess guess = null;
 	private Guess playerTwoGuess;
-	private HashSet hashset = new HashSet<SwingWaypoint>();
 	private boolean doubleClickActive;
 	private Locations locations;
 	private boolean roundFinished;
-	private int hashMapController;
 	private HashMap locationHashMap;
-	private int locationsInt;
 
 	/**
 	 * Constructor for the class
@@ -213,7 +213,7 @@ public class Viewer {
 					Point p = e.getPoint();
 					Point2D pt = viewer.convertGeoPositionToPoint(currentGeoLocation);
 					GeoPosition geo = viewer.convertPointToGeoPosition(p);
-					guess = new Guess(geo.getLatitude(), geo.getLongitude(), geo);
+					guess = new Guess(geo);
 					setPlayerOneGuess(guess);
 					int distance = (int) distFrom(geo.getLatitude(), geo.getLongitude(),
 							currentGeoLocation.getLatitude(), currentGeoLocation.getLongitude());
