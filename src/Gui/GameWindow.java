@@ -411,20 +411,5 @@ public class GameWindow extends JFrame implements ActionListener{
 
 	public static void main(String[] args) {
 //		GameWindow gw = new GameWindow();
-//		gw.setConsoleText("\n"+"\n");
-//		gw.setConsoleText("hej");
-//		gw.setConsoleText("\n"+"\n");
-//		gw.setConsoleText("hej");
-//		gw.setConsoleText("\n"+"\n");
-//		gw.setConsoleText("hej");
-//		gw.setConsoleText("\n"+"\n");
-//		gw.setConsoleText("hej");
-//		gw.setConsoleText("\n"+"\n");
-//		gw.setConsoleText("hej");
-//		gw.setConsoleText("\n"+"\n");
-//		gw.setConsoleText("hej");
-//		gw.setConsoleText("\n"+"\n");
-//		gw.setConsoleText("hej");
-//		gw.startConsoleTimer();
 	}
 }
