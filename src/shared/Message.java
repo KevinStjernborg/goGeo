@@ -3,62 +3,83 @@ package shared;
 import java.io.Serializable;
 
 /**
- * T�nkt att fungera som den klassen som skickas fram och tillbaka, kan byggas p� med fler booleans beroende p� vad den inneh�ller
- * @author kevin
+ * A class containing either a startmessage and a playername or a {@link Guess}
+ * object.
+ * 
+ * @author Kevin Stjernborg
  *
  */
 
-public class Message implements Serializable{
+public class Message implements Serializable {
 	private Guess guess;
-	private int timerInt;
 	private String playerName;
 	private String startMessage;
 	private boolean containsGuess;
 	private boolean containsStartMessage;
-	
+
+	/**
+	 * Constructor
+	 */
 	public Message() {
 		containsGuess = false;
 		containsStartMessage = false;
 	}
 
+	/**
+	 * A getter for the boolean containsGuess
+	 * 
+	 * @return
+	 */
 	public boolean containsGuess() {
 		return containsGuess;
 	}
 
-
+	/**
+	 * A getter for the boolean containsStartMessage
+	 * 
+	 * @return
+	 */
 	public boolean containsStartMessage() {
 		return containsStartMessage;
 	}
 
+	/**
+	 * A getter for the {@link Guess} object
+	 * 
+	 * @return
+	 */
 	public Guess getGuess() {
 		return guess;
 	}
 
-	public int getStartTimer() {
-		return timerInt;
-	}
+	/**
+	 * A method for setting the class {@link Guess} guess object
+	 * 
+	 * @param guess
+	 */
 
 	public void setGuess(Guess guess) {
 		containsGuess = true;
 		this.guess = guess;
 	}
 
-	public void setStartTimer(int startTimer) {
-		containsGuess = true;
-		this.timerInt = startTimer;
-	}
-	
+	/**
+	 * A method for initializing the start message and changing the boolean
+	 * containsStartMessage as true
+	 */
 	public void setStartMessage() {
 		startMessage = "Game found";
 		containsStartMessage = true;
 	}
-	
+
+	/**
+	 * A method for getting the start message
+	 * 
+	 * @return the start message
+	 */
+
 	public String getStartMessage() {
 		return startMessage;
 	}
-	
-	
-	
-	
-	
+
 }
