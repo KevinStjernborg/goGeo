@@ -1,7 +1,7 @@
 package client;
 
 
-import Gui.GameWindow;
+import gui.GameWindowSP;
 import shared.Guess;
 import shared.Locations;
 import shared.Message;
@@ -16,13 +16,14 @@ public class Controller {
 
 	private Connection connection;
 	private Locations locations;
-	private GameWindow gameWindow;
+	private GameWindowSP gameWindow;
+	private int hashMapChoice = 1;
 //	private User user;
 //	private Buffer<Locations> buffer = new Buffer<Locations>();
 
 
 	public Controller() {
-		gameWindow = new GameWindow(this);
+		gameWindow = new GameWindowSP(this, hashMapChoice);
 		locations = new Locations();
 		connection = new Connection("localhost",9000, this);
 		gameWindow.setStartMessage();

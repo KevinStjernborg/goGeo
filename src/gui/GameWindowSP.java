@@ -1,4 +1,4 @@
-package Gui;
+package gui;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -35,7 +35,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Frame;
 
-public class GameWindow extends JFrame implements ActionListener{
+public class GameWindowSP extends JFrame implements ActionListener{
 
 
 	private Controller controller;
@@ -82,14 +82,15 @@ public class GameWindow extends JFrame implements ActionListener{
 //	private int hashMapChoice;
 	
 
-	public GameWindow(int hashMapChoice) {
+	public GameWindowSP(int hashMapChoice) {
 		viewer = new Viewer(hashMapChoice);
 		initialize();
 		startConsoleTimer();
 
 	}
 
-	public GameWindow(Controller controller) {
+	public GameWindowSP(Controller controller, int hashMapChoice) {
+		viewer = new Viewer(hashMapChoice);
 		this.controller = controller;
 		initialize();
 	}

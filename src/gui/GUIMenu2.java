@@ -1,4 +1,4 @@
-package Gui;
+package gui;
 
 import java.awt.*;
 import javax.swing.*;
@@ -23,7 +23,7 @@ public class GUIMenu2 extends JPanel {
 
 		JButton btnEuropa = new JButton("Tyskland");
 		btnEuropa.addActionListener(e -> {
-			GameWindow gameWindow = new GameWindow(3);
+			GameWindowSP gameWindow = new GameWindowSP(3);
 		});
 		btnEuropa.setBackground(new Color(0, 153, 255));
 		btnEuropa.setForeground(SystemColor.controlHighlight);
@@ -32,7 +32,7 @@ public class GUIMenu2 extends JPanel {
 
 		JButton btnAfrika = new JButton("Storbritannien");
 		btnAfrika.addActionListener(e -> {
-			GameWindow gameWindow = new GameWindow(2);
+			GameWindowSP gameWindow = new GameWindowSP(2);
 		});
 		btnAfrika.setForeground(SystemColor.controlHighlight);
 		btnAfrika.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
@@ -42,7 +42,7 @@ public class GUIMenu2 extends JPanel {
 
 		JButton btnNordamerika = new JButton("Frankrike");
 		btnNordamerika.addActionListener(e -> {
-			GameWindow gameWindow = new GameWindow(1);
+			GameWindowSP gameWindow = new GameWindowSP(1);
 		});
 		btnNordamerika.setBackground(new Color(0, 153, 255));
 		btnNordamerika.setForeground(SystemColor.controlHighlight);
@@ -61,7 +61,7 @@ public class GUIMenu2 extends JPanel {
 		jLabel = new JLabel();
 		jLabel.setBounds(-118, 5, 1236, 628);
 
-		jLabel.setIcon(new ImageIcon("/Users/malinhallstrom/Desktop/wm.png"));
+		jLabel.setIcon(new ImageIcon("images/wm.png"));
 		this.add(jLabel);
 		jLabel.setLabelFor(btnAfrika);
 

@@ -1,4 +1,4 @@
-package Gui;
+package gui;
 
 import java.awt.*;
 import javax.swing.*;
@@ -47,7 +47,7 @@ public class GUIMenu1 extends JPanel implements ActionListener {
 		jLabel = new JLabel();
 		jLabel.setBounds(-118, 5, 1236, 628);
 
-		jLabel.setIcon(new ImageIcon("/Users/malinhallstrom/Desktop/wm.png"));
+		jLabel.setIcon(new ImageIcon("images/wm.png"));
 		this.add(jLabel);
 
 		frame.getContentPane().add(this, BorderLayout.CENTER); // JPanel på JFrame

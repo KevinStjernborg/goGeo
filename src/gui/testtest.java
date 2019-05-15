@@ -1,4 +1,4 @@
-package Gui;
+package gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -49,7 +49,7 @@ public class testtest extends JFrame {
 	 */
 	public testtest() {
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
-		viewer = new Viewer();
+		viewer = new Viewer(1);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 816, 674);
 		contentPane = new JPanel();
