@@ -2,6 +2,8 @@ package client;
 
 
 import gui.GUIMenu1;
+import gui.GUIMenu2;
+import gui.GameWindowMP;
 import gui.GameWindowSP;
 import shared.Guess;
 import shared.Locations;
@@ -17,28 +19,29 @@ public class Controller {
 
 	private Connection connection;
 	private Locations locations;
-	private GameWindowSP gameWindow;
+//	private GameWindowSP gameWindow;
 	private int hashMapChoice = 1;
 	private GUIMenu1 guiOne;
+	private GameWindowMP gameWindowMP;
 //	private User user;
 //	private Buffer<Locations> buffer = new Buffer<Locations>();
 
 
 	public Controller() {
 //		gameWindow = new GameWindowSP(this, hashMapChoice);
-		guiOne = new GUIMenu1();
+		guiOne = new GUIMenu1(this);
 		locations = new Locations();
 		connection = new Connection("localhost",9000, this);
-		gameWindow.setStartMessage();
+		gameWindowMP.setStartMessage();
 	}
 
 	public void setPromptInstruction(String name) {
 		locations.getLocation(name);
-		gameWindow.setInstruction(name);
+		gameWindowMP.setInstruction(name);
 	}
 
 	public void setTimer(String nr) {
-		gameWindow.setTimerText(nr);
+		gameWindowMP.setTimerText(nr);
 	}
 	/**
 	 * visar poängen i Guit. 
@@ -48,7 +51,7 @@ public class Controller {
 	 */
 	public void showPlayerScore(long score, int player) {
 		if (player == 1 || player ==2) {
-			gameWindow.setPlayerScore(score, player);
+			gameWindowMP.setPlayerScore(score, player);
 		}
 	}
 	/**
@@ -59,11 +62,11 @@ public class Controller {
 	 */
 	public void showPlayerName(String name, int player) {
 		if(player == 1 || player == 2 ) {
-			gameWindow.setPlayerName(name, player);
+			gameWindowMP.setPlayerName(name, player);
 		}
 	}
 	public void showConsoleMessage(String message) {
-		gameWindow.setConsoleText(message);
+		gameWindowMP.setConsoleText(message);
 	}
 
 	public void sendMessage(Guess guess) {
@@ -76,15 +79,27 @@ public class Controller {
 	 * L�gg till kod f�r vad som sker om de bara �r ett bekr�ftelsemeddelande fr�n servern att ett spel har startats
 	 * 
 	 */
+	
+	public void startGameModeMenu() {
+		new GUIMenu2(this);
+	}
+	
+	public void startMultiplayerGame() {
+		
+	}
+	
+	public void startSinglePlayerMenu() {
+		
+	}
 	public void receiveMessage(Message message) {
 		if(message.containsGuess()) {
 			Guess guess = message.getGuess();
-			gameWindow.getViewer().addOtherPlayersGuess(guess.getGeo());
+			gameWindowMP.getViewer().addOtherPlayersGuess(guess.getGeo());
 			
 		}
 		if(message.containsStartMessage()) {    //Lägg till att skicka användarnamn till den andra
-			gameWindow.setConsoleText(message.getStartMessage());
-			gameWindow.startConsoleTimer();
+			gameWindowMP.setConsoleText(message.getStartMessage());
+			gameWindowMP.startConsoleTimer();
 		}
 	}
 	

@@ -3,6 +3,7 @@ package gui;
 import java.awt.*;
 import javax.swing.*;
 
+import client.Controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,8 +11,10 @@ import java.awt.event.ActionListener;
 public class GUIMenu2 extends JPanel {
 
 	private ImageIcon image;
+	private Controller controller;
 
-	public GUIMenu2() {
+	public GUIMenu2(Controller controller) {
+		this.controller = controller;
 		image = new ImageIcon("images/wm.png");
 		setLayout(null);
 

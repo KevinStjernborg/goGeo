@@ -85,7 +85,7 @@ public class GameWindowMP extends JFrame implements ActionListener{
 	public GameWindowMP(int hashMapChoice) {
 		viewer = new Viewer(hashMapChoice);
 		initialize();
-		startConsoleTimer();
+//		startConsoleTimer();
 
 	}
 
@@ -311,7 +311,7 @@ public class GameWindowMP extends JFrame implements ActionListener{
 
 		if(e.getSource() == menuButton) {
 			dispose();
-			new GUIMenu1();
+			new GUIMenu1(controller);
 		}
 
 		if (e.getSource() == submitButton) {

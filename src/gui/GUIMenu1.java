@@ -2,6 +2,9 @@ package gui;
 
 import java.awt.*;
 import javax.swing.*;
+
+import client.Controller;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -14,8 +17,10 @@ public class GUIMenu1 extends JPanel implements ActionListener {
 	JButton btnInstruktioner;
 	JButton btnAvsluta;
 	JFrame frame;
+	private Controller controller;
 
-	public GUIMenu1() {
+	public GUIMenu1(Controller controller) {
+		this.controller = controller;
 		image = new ImageIcon("images/wm.png");
 		setLayout(null);
 
@@ -60,8 +65,7 @@ public class GUIMenu1 extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnNyttSpel) {
-			new GUIMenu2();
-			frame.setVisible(false);
+			controller.startGameModeMenu();
 		}
 
 		if (e.getSource() == btnInstruktioner) {
@@ -75,9 +79,5 @@ public class GUIMenu1 extends JPanel implements ActionListener {
 
 	}
 
-	public static void main(String[] args) {
 
-		new GUIMenu1();
-
-	}
 }
