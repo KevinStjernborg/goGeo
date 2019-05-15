@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 public class GUIMenu2 extends JPanel {
 
 	private ImageIcon image;
-	private JLabel jLabel;
 
 	public GUIMenu2() {
 		image = new ImageIcon("images/wm.png");
@@ -48,26 +47,20 @@ public class GUIMenu2 extends JPanel {
 		btnNordamerika.setForeground(SystemColor.controlHighlight);
 		btnNordamerika.setBounds(395, 304, 170, 59);
 		add(btnNordamerika);
-
-//		JButton btnSydamerika = new JButton("Sydamerika"); // inget fjärde alternativ just nu //Kevin
-//		btnSydamerika.addActionListener(e -> {
-//			System.out.println("btnSydamerika was pressed");
-//		});
-//		btnSydamerika.setBackground(new Color(0, 153, 255));
-//		btnSydamerika.setForeground(SystemColor.controlHighlight);
-//		btnSydamerika.setBounds(395, 396, 170, 59);
-//		add(btnSydamerika);
-
-		jLabel = new JLabel();
-		jLabel.setBounds(-118, 5, 1236, 628);
-
-		jLabel.setIcon(new ImageIcon("images/wm.png"));
-		this.add(jLabel);
-		jLabel.setLabelFor(btnAfrika);
+		
+		JButton btnMultiplayer = new JButton("Multiplayer");
+		btnMultiplayer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 GameWindowMP gameWindowMP = new GameWindowMP(1);
+			}
+		});
+		btnMultiplayer.setForeground(SystemColor.controlHighlight);
+		btnMultiplayer.setBackground(new Color(0, 153, 255));
+		btnMultiplayer.setBounds(395, 393, 170, 59);
+		add(btnMultiplayer);
 
 		frame.setSize(900, 630);
 		frame.setResizable(false);
 		frame.setVisible(true);
 	}
-	
 }

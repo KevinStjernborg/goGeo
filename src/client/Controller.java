@@ -1,6 +1,7 @@
 package client;
 
 
+import gui.GUIMenu1;
 import gui.GameWindowSP;
 import shared.Guess;
 import shared.Locations;
@@ -18,12 +19,14 @@ public class Controller {
 	private Locations locations;
 	private GameWindowSP gameWindow;
 	private int hashMapChoice = 1;
+	private GUIMenu1 guiOne;
 //	private User user;
 //	private Buffer<Locations> buffer = new Buffer<Locations>();
 
 
 	public Controller() {
-		gameWindow = new GameWindowSP(this, hashMapChoice);
+//		gameWindow = new GameWindowSP(this, hashMapChoice);
+		guiOne = new GUIMenu1();
 		locations = new Locations();
 		connection = new Connection("localhost",9000, this);
 		gameWindow.setStartMessage();
@@ -87,21 +90,5 @@ public class Controller {
 	
 	
 
-	public static void main(String[] args) {
-		Controller c = new Controller();
-		c.setPromptInstruction("Paris");
-		c.setTimer("3");
-		c.showPlayerScore(200000,1);
-		c.showPlayerName("Sara", 1);
-		c.showPlayerName("Pelle", 2);
-		c.showPlayerScore(214214, 2);
-		c.showPlayerScore(214214, 4);
-		c.showConsoleMessage("HJSJJS"
-				+ "chwonsolekjh\n"
-				+ "Ny rad");
-		c.showConsoleMessage("Nytt medd: AAAAAAAAAA");
-		c.showConsoleMessage("m");
 
-
-	}
 }
