@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * A server class for the game which handles connecting clients by creating
  * {@link Game} objects.
  * 
- * @author Kevin Stjernborg
+ * @author Kevin Stjernborg & Malin Hällström
  *
  */
 public class Connection {

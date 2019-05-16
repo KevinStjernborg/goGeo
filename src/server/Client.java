@@ -8,7 +8,7 @@ import shared.Message;
 
 /**
  * A class representing a connected client which receives {@link Message} objects for the {@link Game}.
- * @author Kevin Stjernborg
+ * @author Kevin Stjernborg & Agnes Hägnestrand
  *
  */
 

@@ -40,7 +40,7 @@ import shared.Locations;
  * A class containing {@link JXMapViewer} with added functionality suited for
  * the game.
  * 
- * @author Kevin Stjernborg
+ * @author Kevin Stjernborg & Said Mohammed
  *
  */
 public class Viewer {
