@@ -36,8 +36,7 @@ public class Connection {
 		this.port = port;
 		this.controller = controller;
 		connect();
-		receiver = new serverReceiver();
-		receiver.start();
+		
 
 	}
 
@@ -63,10 +62,11 @@ public class Connection {
 	public void connect() {
 		try {
 			socket = new Socket(address, port);
-			System.out.print("Connected to server // klient");
+//			System.out.print("Connected to server // klient");
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
-			
+			receiver = new serverReceiver();
+			receiver.start();
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -88,7 +88,7 @@ public class Connection {
 					Message message;
 					message = (Message) ois.readObject();
 					controller.receiveMessage(message);
-					System.out.println("Message received on Clientside");
+					System.out.println("Message received on Clientside" + message.containsGuess() + message.containsStartMessage());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

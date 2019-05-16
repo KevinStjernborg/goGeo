@@ -79,7 +79,6 @@ public class Connection {
 					Thread.sleep(500);
 					if (clientBuffer.size() >= 2) {
 						Game game = new Game(clientBuffer.get(), clientBuffer.get());
-						game.sendStartMessage();
 						games.add(game);
 						System.out.println("Game started // Server");
 

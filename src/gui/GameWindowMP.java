@@ -80,6 +80,8 @@ public class GameWindowMP extends JFrame implements ActionListener{
 	private int rounds = 0;
 	private int playerOneScore;
 	private int playerTwoScore;
+	private boolean consoleTimerAlive = false;
+	private boolean gameTimerAlive;
 	
 
 	public GameWindowMP(int hashMapChoice) {
@@ -354,7 +356,7 @@ public class GameWindowMP extends JFrame implements ActionListener{
 			
 		    @Override
 		    public void run() {
-		    	if(rounds != 5) {
+		    	if(rounds != 5 && consoleTimerAlive == false) {
 		    		if(timerCount <= -1 ) {
 			        	timer.cancel();
 			        	startGameTimer();
@@ -384,7 +386,6 @@ public class GameWindowMP extends JFrame implements ActionListener{
 	public void startGameTimer() {
 		viewer.enableMarkers();
 		viewer.setGameLocation();
-		viewer.getCurrentStringLocation();
 		promptLabel.setText(" Find: " + viewer.getCurrentStringLocation());
 		rounds++;
 		timerCount = 30;

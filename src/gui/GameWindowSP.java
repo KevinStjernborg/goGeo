@@ -411,6 +411,6 @@ public class GameWindowSP extends JFrame implements ActionListener{
 
 
 	public static void main(String[] args) {
-//		GameWindow gw = new GameWindow();
+		GameWindowSP gw = new GameWindowSP(1);
 	}
 }

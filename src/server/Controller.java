@@ -8,6 +8,6 @@ public class Controller {
 	
 	
 	public void start() {
-		connection = new Connection(8080);
+		connection = new Connection(8050);
 	}
 }
