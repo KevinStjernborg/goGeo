@@ -315,14 +315,14 @@ public class GameWindowMP extends JFrame implements ActionListener{
 		}
 
 		if (e.getSource() == submitButton) {
-			viewer.setRoundAsFinished();
 			Guess guess = viewer.getGuess();
 			guess.setTime(timerCount);
 			guess.calculateScore();
 			setConsoleText("You were " + guess.getKilometers() + " Kilometers away from ");
+			
 			score = score +  guess.getScore();
 			scorelbl1.setText("" + score);
-//				controller.sendMessage(guess);
+			controller.sendMessage(guess);
 		}
 
 		if (e.getSource() == resignButton) {
@@ -346,7 +346,7 @@ public class GameWindowMP extends JFrame implements ActionListener{
 	 * 
 	 */
 	public void startConsoleTimer() {
-		timerCount = 3;
+		timerCount = 30;
 		viewer.setRoundAsUnfinished();
 		setFoundGameMessage();
 		Timer timer = new Timer();

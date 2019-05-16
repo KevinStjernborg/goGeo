@@ -215,10 +215,10 @@ public class Viewer {
 					GeoPosition geo = viewer.convertPointToGeoPosition(p);
 					guess = new Guess(geo);
 					setPlayerOneGuess(guess);
-					int distance = (int) distFrom(geo.getLatitude(), geo.getLongitude(),
+					int distance = (int) distanceBetweenCoordinates(geo.getLatitude(), geo.getLongitude(),
 							currentGeoLocation.getLatitude(), currentGeoLocation.getLongitude());
 					guess.setDistance(distance);
-					System.out.println("Distance in kilometers: " + distFrom(geo.getLatitude(), geo.getLongitude(),
+					System.out.println("Distance in kilometers: " + distanceBetweenCoordinates(geo.getLatitude(), geo.getLongitude(),
 							currentGeoLocation.getLatitude(), currentGeoLocation.getLongitude()));
 					addOneLocation(geo);
 
@@ -284,7 +284,7 @@ public class Viewer {
 	 * @return distance in kilometers
 	 */
 
-	public static float distFrom(double lat1, double lng1, double lat2, double lng2) {
+	public static float distanceBetweenCoordinates(double lat1, double lng1, double lat2, double lng2) {
 		double earthRadius = 6371000; // meters
 		double dLat = Math.toRadians(lat2 - lat1);
 		double dLng = Math.toRadians(lng2 - lng1);

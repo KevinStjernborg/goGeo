@@ -30,10 +30,6 @@ public class Controller {
 	public Controller() {
 //		gameWindow = new GameWindowSP(this, hashMapChoice);
 		guiOne = new GUIMenu1(this);
-		locations = new Locations();
-		gameWindowMP = new GameWindowMP(this, 1);
-		gameWindowMP.setVisible(false);
-		connection = new Connection("127.0.0.1",8080, this);
 	}
 
 	public void setPromptInstruction(String name) {
@@ -86,7 +82,10 @@ public class Controller {
 	}
 	
 	public void startMultiplayerGame() {
-		gameWindowMP.setVisible(true);
+		gameWindowMP = new GameWindowMP(this, 1);
+		connection = new Connection("127.0.0.1",8080, this);
+		gameWindowMP.setConsoleText("Searching for a game...");
+
 
 		}
 	
@@ -97,7 +96,8 @@ public class Controller {
 		if(message.containsGuess()) {
 			Guess guess = message.getGuess();
 			gameWindowMP.getViewer().addOtherPlayersGuess(guess.getGeo());
-			
+			gameWindowMP.getViewer().setRoundAsFinished();
+			gameWindowMP.setPlayerScore(guess.getScore(), 2);
 		}
 		if(message.containsStartMessage()) {    //Lägg till att skicka användarnamn till den andra
 			System.out.println("Start message received");
