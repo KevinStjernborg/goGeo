@@ -64,7 +64,7 @@ public class GameWindowMP extends JFrame implements ActionListener{
 	private JLabel timerLabel = new JLabel("5");
 	private JSeparator separator = new JSeparator();
 	private JLabel scorelbl1 = new JLabel("0");
-	private JLabel scorelbl2 = new JLabel("999,999,999");
+	private JLabel scorelbl2 = new JLabel("0");
 	private JPanel submitPanel = new JPanel();
 	private JButton submitButton = new JButton(""); 
 	private JPanel zoomPanel = new JPanel();
@@ -282,14 +282,13 @@ public class GameWindowMP extends JFrame implements ActionListener{
 	}
 
 	public void setPlayerScore(int score, int player) {
-		String res = Long.toString(score);
 		if(player == 1 ) {
 			scorelbl1.setText(res);
 			scorelbl1.updateUI();
 		}
 		if( player == 2) {
 			playerTwoScore = playerTwoScore + score;
-			scorelbl2.setText(res);
+			scorelbl2.setText("" + playerTwoScore);
 			scorelbl2.updateUI();
 		}		
 	}
@@ -299,9 +298,9 @@ public class GameWindowMP extends JFrame implements ActionListener{
 		setConsoleText("Searching for game...");
 	}
 	
-	public void setFoundGameMessage() {
-		setConsoleText("Round starts in:");
-	}
+//	public void setFoundGameMessage() {
+//		setConsoleText("Round starts in:");
+//	}
 
 
 	@Override
@@ -348,9 +347,10 @@ public class GameWindowMP extends JFrame implements ActionListener{
 	 * 
 	 */
 	public void startConsoleTimer() {
-		timerCount = 30;
+		timerCount = 10;
+        setConsoleText( "Round " + rounds + " will start in "  + timerCount + " seconds.");
+        setConsoleText( "You will have 30 seconds each round, the timer is to the right!");
 		viewer.setRoundAsUnfinished();
-		setFoundGameMessage();
 		Timer timer = new Timer();
 		TimerTask myTask = new TimerTask() {
 			
@@ -365,7 +365,6 @@ public class GameWindowMP extends JFrame implements ActionListener{
 		        } else {
 		        	setConsoleText("You finished with a score of " + playerOneScore );
 		        }
-		        setConsoleText( ""  + timerCount);
 		        timerCount--;
 		        
 		        
@@ -388,6 +387,7 @@ public class GameWindowMP extends JFrame implements ActionListener{
 		viewer.setGameLocation();
 		viewer.removePaint();
 		promptLabel.setText(" Find: " + viewer.getCurrentStringLocation());
+		setConsoleText("Find: " + viewer.getCurrentStringLocation());
 		rounds++;
 		timerCount = 30;
 		Timer timer = new Timer();
