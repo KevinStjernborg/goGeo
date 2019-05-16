@@ -114,6 +114,12 @@ public class Client {
 					setMessageBooleanTrue();
 					System.out.println("Guess recieved");
 				} catch (Exception e) {
+					if(e.getMessage().contains("Socket closed")) {
+						//Thrown with message "socket closed" when the client is shutting down. No need to print.
+					} else if(e.getMessage().contains("Connection reset")) {
+						//No need to print.
+
+				} else {
 					e.printStackTrace();
 				}
 			}
@@ -121,4 +127,4 @@ public class Client {
 
 	}
 
-}
+	}}

@@ -356,7 +356,7 @@ public class GameWindowMP extends JFrame implements ActionListener{
 			
 		    @Override
 		    public void run() {
-		    	if(rounds != 5 && consoleTimerAlive == false) {
+		    	if(rounds != 5) {
 		    		if(timerCount <= -1 ) {
 			        	timer.cancel();
 			        	startGameTimer();
@@ -386,6 +386,7 @@ public class GameWindowMP extends JFrame implements ActionListener{
 	public void startGameTimer() {
 		viewer.enableMarkers();
 		viewer.setGameLocation();
+		viewer.removePaint();
 		promptLabel.setText(" Find: " + viewer.getCurrentStringLocation());
 		rounds++;
 		timerCount = 30;

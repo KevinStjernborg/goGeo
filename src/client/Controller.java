@@ -87,7 +87,6 @@ public class Controller {
 		connection = new Connection("localhost",8050, this);
 		gameWindowMP.setConsoleText("Searching for a game...");
 		guiTwo.dispose();
-
 		}
 	
 	public void startSinglePlayerMenu() {
