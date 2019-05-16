@@ -143,9 +143,9 @@ public class Viewer {
 	 * @param p2 The geoposition containing x and y coordinates representing player
 	 *           two
 	 */
-	public void addTwoLocations(GeoPosition p1, GeoPosition p2) {
+	public void addThreeLocations(GeoPosition p1, GeoPosition p2, GeoPosition p3) {
 		Set<MyWaypoint> waypoints = new HashSet<MyWaypoint>(
-				Arrays.asList(new MyWaypoint("p1", Color.BLUE, p1), new MyWaypoint("p2", Color.RED, p2)));
+				Arrays.asList(new MyWaypoint("p1", Color.BLUE, p1), new MyWaypoint("p2", Color.RED, p2), new MyWaypoint("p3", Color.BLACK, p3)));
 		WaypointPainter<MyWaypoint> waypointPainter = new WaypointPainter<MyWaypoint>();
 		waypointPainter.setWaypoints(waypoints);
 		waypointPainter.setRenderer(new FancyWaypointRenderer());
@@ -165,7 +165,7 @@ public class Viewer {
 	public void addOtherPlayersGuess(GeoPosition geo) {
 		System.out.println("Guess receiver in viewer");
 		removePaint();
-		addTwoLocations(guess.getGeo(), geo);
+		addThreeLocations(guess.getGeo(), geo, currentGeoLocation);
 	}
 
 	/**

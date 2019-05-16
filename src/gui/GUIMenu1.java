@@ -66,6 +66,7 @@ public class GUIMenu1 extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnNyttSpel) {
 			controller.startGameModeMenu();
+			this.frame.dispose();
 		}
 
 		if (e.getSource() == btnInstruktioner) {

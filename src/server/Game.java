@@ -26,6 +26,7 @@ public class Game {
 		guessListener = new GuessListener();
 		guessListener.start();
 		System.out.println("Game started");
+		sendStartMessage();
 	}
 
 	/**

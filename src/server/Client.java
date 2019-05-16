@@ -23,8 +23,8 @@ public class Client {
 	public Client(Socket socket) {
 		this.socket = socket;
 		hasMessage = false;
-		receiver = new Receiver();
-		receiver.start();
+//		receiver = new Receiver();
+//		receiver.start();
 		try {
 			ois = new ObjectInputStream(socket.getInputStream());
 			oos = new ObjectOutputStream(socket.getOutputStream());

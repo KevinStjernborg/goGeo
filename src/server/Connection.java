@@ -3,6 +3,7 @@ package server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.ArrayList;
 
 /**
@@ -30,6 +31,7 @@ public class Connection {
 		handler.start();
 		matchMaker = new MatchMaker();
 		matchMaker.start();
+		System.out.println("Constructor done // server");
 	}
 
 	/**
@@ -53,6 +55,7 @@ public class Connection {
 					Client client = new Client(socket);
 					clientBuffer.put(client);
 					System.out.println("Client connected // Server");
+					System.out.flush();
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -78,6 +81,8 @@ public class Connection {
 						Game game = new Game(clientBuffer.get(), clientBuffer.get());
 						game.sendStartMessage();
 						games.add(game);
+						System.out.println("Game started // Server");
+
 					}
 				} catch (InterruptedException e) {
 					e.printStackTrace();

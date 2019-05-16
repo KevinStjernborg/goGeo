@@ -4,6 +4,10 @@ public class Controller {
 	private Connection connection;
 	
 	public Controller() {
-		connection = new Connection(9000);
+	}
+	
+	
+	public void start() {
+		connection = new Connection(8080);
 	}
 }

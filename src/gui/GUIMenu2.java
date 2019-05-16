@@ -54,7 +54,7 @@ public class GUIMenu2 extends JPanel {
 		JButton btnMultiplayer = new JButton("Multiplayer");
 		btnMultiplayer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 GameWindowMP gameWindowMP = new GameWindowMP(1);
+				 controller.startMultiplayerGame();
 			}
 		});
 		btnMultiplayer.setForeground(SystemColor.controlHighlight);

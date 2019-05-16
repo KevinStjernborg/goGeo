@@ -29,10 +29,11 @@ public class Controller {
 
 	public Controller() {
 //		gameWindow = new GameWindowSP(this, hashMapChoice);
-		guiOne = new GUIMenu1(this);
-		locations = new Locations();
-		connection = new Connection("localhost",9000, this);
-		gameWindowMP.setStartMessage();
+//		guiOne = new GUIMenu1(this);
+//		locations = new Locations();
+//		gameWindowMP = new GameWindowMP(this, 1);
+//		gameWindowMP.setVisible(false);
+		connection = new Connection("127.0.0.1",8080, this);
 	}
 
 	public void setPromptInstruction(String name) {
@@ -85,8 +86,9 @@ public class Controller {
 	}
 	
 	public void startMultiplayerGame() {
-		
-	}
+		gameWindowMP.setVisible(true);
+
+		}
 	
 	public void startSinglePlayerMenu() {
 		
@@ -98,6 +100,7 @@ public class Controller {
 			
 		}
 		if(message.containsStartMessage()) {    //Lägg till att skicka användarnamn till den andra
+			System.out.println("Start message received");
 			gameWindowMP.setConsoleText(message.getStartMessage());
 			gameWindowMP.startConsoleTimer();
 		}
