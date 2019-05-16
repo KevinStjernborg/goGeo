@@ -12,13 +12,14 @@ public class GUIMenu2 extends JPanel {
 
 	private ImageIcon image;
 	private Controller controller;
+	private JFrame frame;
 
 	public GUIMenu2(Controller controller) {
 		this.controller = controller;
 		image = new ImageIcon("images/wm.png");
 		setLayout(null);
 
-		JFrame frame = new JFrame();
+		frame = new JFrame();
 
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.getContentPane().add(this, BorderLayout.CENTER); // JPanel på JFrame
@@ -61,9 +62,12 @@ public class GUIMenu2 extends JPanel {
 		btnMultiplayer.setBackground(new Color(0, 153, 255));
 		btnMultiplayer.setBounds(395, 393, 170, 59);
 		add(btnMultiplayer);
-
 		frame.setSize(900, 630);
 		frame.setResizable(false);
 		frame.setVisible(true);
+	}
+	
+	public void dispose() {
+		frame.dispose();
 	}
 }

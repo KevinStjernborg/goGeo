@@ -78,8 +78,8 @@ public class GameWindowMP extends JFrame implements ActionListener{
 	private JButton exitButton = new JButton("Exit");
 	private int timerCount;
 	private int rounds = 0;
-	private int score;
-//	private int hashMapChoice;
+	private int playerOneScore;
+	private int playerTwoScore;
 	
 
 	public GameWindowMP(int hashMapChoice) {
@@ -279,13 +279,14 @@ public class GameWindowMP extends JFrame implements ActionListener{
 		}
 	}
 
-	public void setPlayerScore(long score, int player) {
+	public void setPlayerScore(int score, int player) {
 		String res = Long.toString(score);
 		if(player == 1 ) {
 			scorelbl1.setText(res);
 			scorelbl1.updateUI();
 		}
 		if( player == 2) {
+			playerTwoScore = playerTwoScore + score;
 			scorelbl2.setText(res);
 			scorelbl2.updateUI();
 		}		
@@ -319,8 +320,8 @@ public class GameWindowMP extends JFrame implements ActionListener{
 			guess.setTime(timerCount);
 			guess.calculateScore();
 			setConsoleText("You were " + guess.getKilometers() + " Kilometers away from ");
-			score = score +  guess.getScore();
-			scorelbl1.setText("" + score);
+			playerOneScore = playerOneScore +  guess.getScore();
+			scorelbl1.setText("" + playerOneScore);
 			controller.sendMessage(guess);
 		}
 
@@ -357,11 +358,10 @@ public class GameWindowMP extends JFrame implements ActionListener{
 		    		if(timerCount <= -1 ) {
 			        	timer.cancel();
 			        	startGameTimer();
-
 		    		}
 
 		        } else {
-		        	setConsoleText("You finished with a score of " + score );
+		        	setConsoleText("You finished with a score of " + playerOneScore );
 		        }
 		        setConsoleText( ""  + timerCount);
 		        timerCount--;

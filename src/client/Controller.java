@@ -22,6 +22,7 @@ public class Controller {
 //	private GameWindowSP gameWindow;
 	private int hashMapChoice = 1;
 	private GUIMenu1 guiOne;
+	private GUIMenu2 guiTwo;
 	private GameWindowMP gameWindowMP;
 //	private User user;
 //	private Buffer<Locations> buffer = new Buffer<Locations>();
@@ -46,7 +47,7 @@ public class Controller {
 	 * @param score
 	 * @param player Måste vara antingen 1 eller 2. 
 	 */
-	public void showPlayerScore(long score, int player) {
+	public void showPlayerScore(int score, int player) {
 		if (player == 1 || player ==2) {
 			gameWindowMP.setPlayerScore(score, player);
 		}
@@ -78,14 +79,14 @@ public class Controller {
 	 */
 	
 	public void startGameModeMenu() {
-		new GUIMenu2(this);
+		guiTwo = new GUIMenu2(this);
 	}
 	
 	public void startMultiplayerGame() {
 		gameWindowMP = new GameWindowMP(this, 1);
 		connection = new Connection("127.0.0.1",8080, this);
 		gameWindowMP.setConsoleText("Searching for a game...");
-
+		guiTwo.dispose();
 
 		}
 	
