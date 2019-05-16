@@ -319,7 +319,6 @@ public class GameWindowMP extends JFrame implements ActionListener{
 			guess.setTime(timerCount);
 			guess.calculateScore();
 			setConsoleText("You were " + guess.getKilometers() + " Kilometers away from ");
-			
 			score = score +  guess.getScore();
 			scorelbl1.setText("" + score);
 			controller.sendMessage(guess);
