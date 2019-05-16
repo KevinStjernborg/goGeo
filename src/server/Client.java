@@ -17,16 +17,15 @@ public class Client {
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
 	private Message message;
-	private Receiver receiver;
+
 	private Boolean hasMessage;
 
 	public Client(Socket socket) {
 		this.socket = socket;
 		hasMessage = false;
-		receiver = new Receiver();
+		Receiver receiver = new Receiver();
 		receiver.start();
 		try {
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos = new ObjectOutputStream(socket.getOutputStream());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -98,7 +97,15 @@ public class Client {
 	 */
 
 	private class Receiver extends Thread {
-
+		
+		public Receiver() {
+			try {
+				ois = new ObjectInputStream(socket.getInputStream());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		public void run() {
 			while (true) {
 				try {

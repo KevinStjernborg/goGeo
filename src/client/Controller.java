@@ -29,10 +29,10 @@ public class Controller {
 
 	public Controller() {
 //		gameWindow = new GameWindowSP(this, hashMapChoice);
-//		guiOne = new GUIMenu1(this);
-//		locations = new Locations();
-//		gameWindowMP = new GameWindowMP(this, 1);
-//		gameWindowMP.setVisible(false);
+		guiOne = new GUIMenu1(this);
+		locations = new Locations();
+		gameWindowMP = new GameWindowMP(this, 1);
+		gameWindowMP.setVisible(false);
 		connection = new Connection("127.0.0.1",8080, this);
 	}
 
