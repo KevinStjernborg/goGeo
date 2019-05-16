@@ -364,6 +364,14 @@ public class GameWindowMP extends JFrame implements ActionListener{
 
 		        } else {
 		        	setConsoleText("You finished with a score of " + playerOneScore );
+		        	setConsoleText("Your opponent finished with a score of" + playerTwoScore);
+		        	if(playerOneScore > playerTwoScore) {
+		        		setConsoleText("Congratulations, you won! Well done!");
+		        		timer.cancel();
+		        	}else {
+		        		setConsoleText("You lost... Better luck next time! :)"); 
+		        		timer.cancel();
+		        	}
 		        }
 		        timerCount--;
 		        
@@ -398,6 +406,7 @@ public class GameWindowMP extends JFrame implements ActionListener{
 		        setTimerText("" + timerCount);
 		        timerCount--;
 		        if(timerCount == -1 || viewer.isRoundFinished()) {
+		        	setConsoleText("You ran out of time, remember only 30 seconds per round!");
 		        	timer.cancel();
 		        	viewer.disableMarkers();
 		        	startConsoleTimer();
