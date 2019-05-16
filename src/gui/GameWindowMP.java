@@ -405,7 +405,7 @@ public class GameWindowMP extends JFrame implements ActionListener{
 		    public void run() {
 		        setTimerText("" + timerCount);
 		        timerCount--;
-		        if(timerCount == -1 || viewer.isRoundFinished()) {
+		        if(timerCount == -1 || viewer.isRoundFinished()) {  //TODO skicka meddelande till servern att skicka den andras gissning om tiden tar slut!
 		        	setConsoleText("You ran out of time, remember only 30 seconds per round!");
 		        	timer.cancel();
 		        	viewer.disableMarkers();
