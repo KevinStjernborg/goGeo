@@ -43,16 +43,36 @@ public class Game {
 		clientTwo.sendMessage(message);
 
 	}
-	
+
+	/*
+	 *TODO Ändra så att request är sann så att rätt if-sats körs i controllern 
+	 */
 	public void getOtherPlayersGuess(int identifier) {
-		if(identifier == 1 && messageFromClientTwoReceived) {
-			clientOne.sendMessage(messageTwo);
+		if(identifier == 1) {
+			if(messageFromClientTwoReceived) {
+				messageOne.setRequestBooleanAsTrue();
+				clientOne.sendMessage(messageTwo);
+			}else {
+				Message message = new Message(); //create messageobject with message that other player also timed out
+				message.setRequestBooleanAsTrue();
+				clientOne.sendMessage(message);
+			}
+
 		}
-		else if(identifier == 1 && messageFromClientOneReceived) {
-			clientTwo.sendMessage(messageOne);
-		}else {
-			//create messageobject with message that other player also timed out
+		else if(identifier == 2 && messageFromClientOneReceived) {
+			if(messageFromClientOneReceived) {
+				messageOne.setRequestBooleanAsTrue();
+				clientTwo.sendMessage(messageOne);
+			}else {
+				Message message = new Message(); //create messageobject with message that other player also timed out
+				message.setRequestBooleanAsTrue();
+				clientTwo.sendMessage(message);
+			}
+
 		}
+
+			
+		
 		
 	}
 	

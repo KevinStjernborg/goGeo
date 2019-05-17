@@ -127,6 +127,7 @@ public class Client {
 					if (message.containsGuess()) {
 						if (identifier == 1) {
 							game.setMessageFromClientOne(message);
+						
 						} else {
 							game.setMessageFromClientTwo(message);
 						}
@@ -134,6 +135,7 @@ public class Client {
 
 					if (message.containsRequest()) {
 						game.getOtherPlayersGuess(identifier);
+						System.out.println("Request message received on serverside");
 					}
 				} catch (Exception e) {
 					if (e.getMessage().contains("Socket closed")) {
