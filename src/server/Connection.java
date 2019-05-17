@@ -19,6 +19,9 @@ public class Connection {
 	private MatchMaker matchMaker;
 	Buffer<Client> clientBuffer = new Buffer<Client>(); // Kanske skriva en queue klass? N�gon f�rdel med att byta?
 	ArrayList<Game> games = new ArrayList<Game>();
+	private Client tempClientOne;
+	private Client tempClientTwo;
+
 
 	/**
 	 * Constructor for the class
@@ -78,7 +81,13 @@ public class Connection {
 				try {
 					Thread.sleep(500);
 					if (clientBuffer.size() >= 2) {
-						Game game = new Game(clientBuffer.get(), clientBuffer.get());
+						tempClientOne = clientBuffer.get();
+						tempClientOne.markAsClientOne();
+						tempClientTwo = clientBuffer.get();
+						tempClientTwo.markAsClientTwo();
+						Game game = new Game(tempClientOne, tempClientTwo);
+						tempClientOne.setGame(game);
+						tempClientTwo.setGame(game);
 						games.add(game);
 						System.out.println("Game started // Server");
 

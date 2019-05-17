@@ -17,6 +17,8 @@ public class Client {
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
 	private Message message;
+	private Game game;
+	private int identifier;
 
 	private Boolean hasMessage;
 
@@ -30,6 +32,10 @@ public class Client {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
 	}
 
 	/**
@@ -49,6 +55,14 @@ public class Client {
 	public Message getMessage() {
 		setMessageBooleanFalse();
 		return message;
+	}
+
+	public void markAsClientOne() {
+		identifier = 1;
+	}
+
+	public void markAsClientTwo() {
+		identifier = 2;
 	}
 
 	/**
@@ -97,7 +111,7 @@ public class Client {
 	 */
 
 	private class Receiver extends Thread {
-		
+
 		public Receiver() {
 			try {
 				ois = new ObjectInputStream(socket.getInputStream());
@@ -105,26 +119,36 @@ public class Client {
 				e.printStackTrace();
 			}
 		}
-		
+
 		public void run() {
 			while (true) {
 				try {
 					message = (Message) ois.readObject();
-					setMessage(message);
-					setMessageBooleanTrue();
-					System.out.println("Guess recieved");
-				} catch (Exception e) {
-					if(e.getMessage().contains("Socket closed")) {
-						//Thrown with message "socket closed" when the client is shutting down. No need to print.
-					} else if(e.getMessage().contains("Connection reset")) {
-						//No need to print.
+					if (message.containsGuess()) {
+						if (identifier == 1) {
+							game.setMessageFromClientOne(message);
+						} else {
+							game.setMessageFromClientTwo(message);
+						}
+					}
 
-				} else {
-					e.printStackTrace();
+					if (message.containsRequest()) {
+						game.getOtherPlayersGuess(identifier);
+					}
+				} catch (Exception e) {
+					if (e.getMessage().contains("Socket closed")) {
+						// Thrown with message "socket closed" when the client is shutting down. No need
+						// to print.
+					} else if (e.getMessage().contains("Connection reset")) {
+						// No need to print.
+
+					} else {
+						e.printStackTrace();
+					}
 				}
 			}
+
 		}
 
 	}
-
-	}}
+}

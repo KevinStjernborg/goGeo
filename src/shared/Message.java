@@ -16,6 +16,7 @@ public class Message implements Serializable {
 	private String startMessage;
 	private boolean containsGuess;
 	private boolean containsStartMessage;
+	private boolean requestOtherPlayersGuess;
 
 	/**
 	 * Constructor
@@ -23,6 +24,7 @@ public class Message implements Serializable {
 	public Message() {
 		containsGuess = false;
 		containsStartMessage = false;
+		requestOtherPlayersGuess = false;
 	}
 
 	/**
@@ -33,6 +35,15 @@ public class Message implements Serializable {
 	public boolean containsGuess() {
 		return containsGuess;
 	}
+	public boolean containsRequest() {
+		return requestOtherPlayersGuess;
+	}
+	
+	public void setRequestBooleanAsTrue() {
+		requestOtherPlayersGuess = true;
+	}
+	
+
 
 	/**
 	 * A getter for the boolean containsStartMessage

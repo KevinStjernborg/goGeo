@@ -12,7 +12,10 @@ import shared.Message;
 public class Game {
 	private Client clientOne;
 	private Client clientTwo;
-	private GuessListener guessListener;
+	private Message messageOne;
+	private Message messageTwo;
+	private boolean messageFromClientOneReceived;
+	private boolean messageFromClientTwoReceived;
 
 	/**
 	 * Constructor
@@ -20,11 +23,11 @@ public class Game {
 	 * @param clientOne A client object representing player one
 	 * @param clientTwo Player two A client object representing player two
 	 */
+	
+	
 	public Game(Client clientOne, Client clientTwo) {
 		this.clientOne = clientOne;
 		this.clientTwo = clientTwo;
-		guessListener = new GuessListener();
-		guessListener.start();
 		System.out.println("Game started");
 		sendStartMessage();
 	}
@@ -40,34 +43,44 @@ public class Game {
 		clientTwo.sendMessage(message);
 
 	}
-
-	/**
-	 * Inner class that checks if a guess from both player has been received at the
-	 * server. If the condition is met it will then forward the guess to the other
-	 * player
-	 * 
-	 * @author Kevin Stjernborg
-	 *
-	 */
-	private class GuessListener extends Thread {
-
-		public void run() {
-			while (true) {
-				try {
-					Thread.sleep(500);
-					if (clientOne.getMessageBoolean() == true && clientTwo.getMessageBoolean() == true) {
-						clientOne.sendMessage(clientTwo.getMessage());
-						clientTwo.sendMessage(clientOne.getMessage());
-						clientOne.setMessageBooleanFalse();
-						clientTwo.setMessageBooleanFalse();
-						System.out.println("Guess retrieved from both clients");
-					}
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-
-			}
+	
+	public void getOtherPlayersGuess(int identifier) {
+		if(identifier == 1 && messageFromClientTwoReceived) {
+			clientOne.sendMessage(messageTwo);
+		}
+		else if(identifier == 1 && messageFromClientOneReceived) {
+			clientTwo.sendMessage(messageOne);
+		}else {
+			//create messageobject with message that other player also timed out
+		}
+		
+	}
+	
+	public void setMessageFromClientOne(Message message) {
+		if(messageFromClientTwoReceived == true) {
+			messageOne = message;
+			clientOne.sendMessage(messageTwo);
+			clientTwo.sendMessage(messageOne);
+			messageFromClientOneReceived = false;
+			messageFromClientTwoReceived = false;
+		}else {
+			messageOne = message;
+			messageFromClientOneReceived = true;
 		}
 	}
+	
+	public void setMessageFromClientTwo(Message message) {
+		if(messageFromClientOneReceived == true) {
+			messageTwo = message;
+			clientOne.sendMessage(messageTwo);
+			clientTwo.sendMessage(messageOne);
+			messageFromClientOneReceived = false;
+			messageFromClientTwoReceived = false;
+		}else {
+			messageTwo = message;
+			messageFromClientTwoReceived = true;
+		}
+	}
+
 
 }
