@@ -84,7 +84,7 @@ public class Controller {
 
 	public void startMultiplayerGame() {
 		gameWindowMP = new GameWindowMP(this, 1);
-		connection = new Connection("localhost", 8050, this);
+		connection = new Connection("10.2.3.223", 8050, this);
 		gameWindowMP.setConsoleText("Searching for a game...");
 		guiTwo.dispose();
 	}
