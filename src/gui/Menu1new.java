@@ -60,7 +60,6 @@ public class Menu1new extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnNyttSpel) {
-			new GUIMenu2();
 			frame.setVisible(false);
 		}
 
