@@ -100,7 +100,7 @@ public class Controller {
 	}
 
 	public void receiveMessage(Message message) {
-		if (message.containsGuess()) {
+		if (message.containsGuess() && message.containsRequest() == false) {
 			Guess guess = message.getGuess();
 			gameWindowMP.getViewer().addOtherPlayersGuess(guess.getGeo());
 			gameWindowMP.getViewer().setRoundAsFinished();
@@ -111,13 +111,13 @@ public class Controller {
 			gameWindowMP.setConsoleText(message.getStartMessage());
 			gameWindowMP.startConsoleTimer();
 		}
-		if (message.containsRequest() && message.containsGuess()) { // Lägga till markers för den andra och rätt plats?
+		if (message.containsRequest() == true && message.containsGuess()) { // Lägga till markers för den andra och rätt plats?
 			gameWindowMP.setPlayerScore(message.getGuess().getScore(), 2);
 			gameWindowMP.setConsoleText("Other player made it in time, their score has been updated.");
 			gameWindowMP.setConsoleText("C'mon you can do it!");
 		}
 
-		if (message.containsRequest() && message.getGuess() == null) {
+		if (message.containsRequest() == true && message.getGuess() == null) {
 			gameWindowMP.setConsoleText("You are in luck, other player timed out as well!");
 		}
 	}

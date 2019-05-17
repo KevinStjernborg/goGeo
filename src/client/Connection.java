@@ -88,7 +88,7 @@ public class Connection {
 					Message message;
 					message = (Message) ois.readObject();
 					controller.receiveMessage(message);
-					System.out.println("Message received on Clientside" + message.containsGuess() + message.containsStartMessage());
+					System.out.println("Message received on Clientside " + message.containsGuess() + message.containsStartMessage() + message.containsRequest());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

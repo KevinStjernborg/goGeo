@@ -50,7 +50,7 @@ public class Game {
 	public void getOtherPlayersGuess(int identifier) {
 		if(identifier == 1) {
 			if(messageFromClientTwoReceived) {
-				messageOne.setRequestBooleanAsTrue();
+				messageTwo.setRequestBooleanAsTrue();
 				clientOne.sendMessage(messageTwo);
 			}else {
 				Message message = new Message(); //create messageobject with message that other player also timed out
@@ -59,7 +59,7 @@ public class Game {
 			}
 
 		}
-		else if(identifier == 2 && messageFromClientOneReceived) {
+		else if(identifier == 2 ) {
 			if(messageFromClientOneReceived) {
 				messageOne.setRequestBooleanAsTrue();
 				clientTwo.sendMessage(messageOne);
