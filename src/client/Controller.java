@@ -2,8 +2,11 @@ package client;
 
 import gui.GUIMenu1;
 import gui.GUIMenu2;
+import gui.GameW;
 import gui.GameWindowMP;
 import gui.GameWindowSP;
+import gui.Menu1new;
+import gui.Menu2new;
 import shared.Guess;
 import shared.Locations;
 import shared.Message;
@@ -18,15 +21,19 @@ public class Controller {
 	private Locations locations;
 //	private GameWindowSP gameWindow;
 	private int hashMapChoice = 1;
-	private GUIMenu1 guiOne;
-	private GUIMenu2 guiTwo;
-	private GameWindowMP gameWindowMP;
+//	private GUIMenu1 guiOne;
+	private Menu1new guiOne;
+//	private GUIMenu2 guiTwo;
+	private Menu2new guiTwo;
+//	private GameWindowMP gameWindowMP;
+	private GameW gameWindowMP;
 //	private User user;
 //	private Buffer<Locations> buffer = new Buffer<Locations>();
 
 	public Controller() {
 //		gameWindow = new GameWindowSP(this, hashMapChoice);
-		guiOne = new GUIMenu1(this);
+//		guiOne = new GUIMenu1(this);
+		guiOne = new Menu1new(this);
 	}
 
 	public void setPromptInstruction(String name) {
@@ -79,14 +86,17 @@ public class Controller {
 	 */
 
 	public void startGameModeMenu() {
-		guiTwo = new GUIMenu2(this);
+//		guiTwo = new GUIMenu2(this);
+		guiTwo = new Menu2new(this);
+		
 	}
 
 	public void startMultiplayerGame() {
-		gameWindowMP = new GameWindowMP(this, 1);
-		connection = new Connection("10.2.3.223", 8050, this);
+		gameWindowMP = new GameW(this, 1);
+//		gameWindowMP = new GameWindowMP(this, 1);
+		connection = new Connection("10.0.0.7", 8050, this);
 		gameWindowMP.setConsoleText("Searching for a game...");
-		guiTwo.dispose();
+		//guiTwo.dispose();
 	}
 
 	public void startSinglePlayerMenu() {

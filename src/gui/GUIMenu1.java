@@ -75,6 +75,7 @@ public class GUIMenu1 extends JPanel implements ActionListener {
 		}
 		if (e.getSource() == btnAvsluta) {
 			frame.setVisible(false);
+			
 
 		}
 

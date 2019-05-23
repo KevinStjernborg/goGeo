@@ -86,7 +86,6 @@ public class GameWindowSP extends JFrame implements ActionListener{
 		viewer = new Viewer(hashMapChoice);
 		initialize();
 		startConsoleTimer();
-
 	}
 
 	public GameWindowSP(Controller controller, int hashMapChoice) {
@@ -234,6 +233,7 @@ public class GameWindowSP extends JFrame implements ActionListener{
 	 * @param button
 	 * @param icon
 	 */
+	
 	public void fitIconToButton(JButton button, ImageIcon icon) {
 		Image img = icon.getImage();
 		int offset = button.getInsets().left;

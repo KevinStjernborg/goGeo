@@ -33,6 +33,7 @@ import org.jxmapviewer.viewer.WaypointPainter;
 import borrowed.FancyWaypointRenderer;
 import borrowed.MyWaypoint;
 import borrowed.SwingWaypoint;
+import gui.ZoomListener;
 import shared.Guess;
 import shared.Locations;
 
@@ -69,7 +70,7 @@ public class Viewer {
 		MouseInputListener mia = new PanMouseInputListener(viewer);
 		viewer.addMouseListener(mia);
 		viewer.addMouseMotionListener(mia);
-		viewer.addMouseWheelListener(new ZoomMouseWheelListenerCursor(viewer));
+		viewer.addMouseWheelListener(new ZoomListener(viewer));
 		viewer.setZoom(16);
 		mouseDoubleClicked();
 		enableMarkers();
