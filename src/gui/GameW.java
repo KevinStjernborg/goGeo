@@ -7,6 +7,7 @@ import shared.Guess;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
 import java.awt.GraphicsDevice;
@@ -59,13 +60,13 @@ import javax.swing.border.CompoundBorder;
 public class GameW extends JFrame implements ActionListener {
 
 	private JPanel promptPanel = new JPanel();
-	private JLabel promptLabel = new JLabel("TRYCK PÅ LONDON");
+	private JLabel promptLabel = new JLabel("Get Ready!!!");
 	private JPanel buttonPanel = new JPanel();
 	private JPanel underColorPanel = new JPanel();
 	private JPanel btnGridPanel = new JPanel();
-	private JButton menuButton = new JButton("New button");
-	private JButton resignBtn = new JButton("New button");
-	private JButton exitButton = new JButton("New button");
+	private JButton menuButton = new JButton("Menu");
+	private JButton resignBtn = new JButton("Instructions");
+	private JButton exitButton = new JButton("Resign & Exit");
 	private JPanel mapPanel = new JPanel();
 	private JPanel zoomInnerPanel = new JPanel();
 	private JButton zoomInBtn = new JButton("");
@@ -74,14 +75,14 @@ public class GameW extends JFrame implements ActionListener {
 	private JPanel outerScorePanel = new JPanel();
 	private JPanel panel = new JPanel();
 	private JLabel player1lbl = new JLabel("PLAYER 1           ");
-	private JLabel scorelbl1 = new JLabel("999,999 ");
+	private JLabel scorelbl1 = new JLabel("0 ");
 	private JPanel innerScorePanel = new JPanel();
 	private JLabel player2lbl = new JLabel("PLAYER 2           ");
-	private JLabel scorelbl2 = new JLabel("999,999");
+	private JLabel scorelbl2 = new JLabel("0  ");
 	private JPanel outerTmerPanel = new JPanel();
 	private JPanel innerTimerPanel = new JPanel();
 	private	JLabel lblTimer = new JLabel("TIMER :     ");
-	private	JLabel timerValueLabel = new JLabel("300");
+	private	JLabel timerValueLabel = new JLabel("10");
 	private	JPanel textPanel = new JPanel();
 	private	JScrollPane scrollPane = new JScrollPane();
 	private	JTextArea textArea = new JTextArea();
@@ -89,7 +90,7 @@ public class GameW extends JFrame implements ActionListener {
 	private	JPanel innerSubmitPanel = new JPanel();
 	private	JButton submitButton = new JButton("SUBMIT");
 
-	private ImageIcon plusImage = new ImageIcon("images//plus.png");
+	
 	private ImageIcon arrowDown = new ImageIcon("images\\MINUS.png");
 	private ImageIcon arrowUp = new ImageIcon("images\\PLUS.png");
 	private final JPanel outerSubmitPanel = new JPanel();
@@ -102,6 +103,7 @@ public class GameW extends JFrame implements ActionListener {
 	private int playerTwoScore;
 	private int timerCount;
 	private int rounds = 0;
+	private final JLabel lblGogeo = new JLabel("goGeo");
 
 	public GameW(Controller controller, int hashMapChoice) {
 		viewer = new Viewer(hashMapChoice);
@@ -143,14 +145,27 @@ public class GameW extends JFrame implements ActionListener {
 		getContentPane().add(buttonPanel, "cell 2 0,growx,aligny top");
 		buttonPanel.setLayout(new BorderLayout(0, 0));
 
-		underColorPanel.setBackground(new Color(244, 164, 96));
+		underColorPanel.setBackground(new Color(245, 245, 245));
 		buttonPanel.add(underColorPanel, BorderLayout.SOUTH);
+		lblGogeo.setForeground(new Color(0, 128, 128));
+		lblGogeo.setFont(new Font("Snap ITC", Font.ITALIC, 50));
+		
+		underColorPanel.add(lblGogeo);
 
 		btnGridPanel.setBackground(Color.DARK_GRAY);
 		buttonPanel.add(btnGridPanel, BorderLayout.NORTH);
 		btnGridPanel.setLayout(new GridLayout(0, 3, 0, 0));
+		menuButton.setBackground(new Color(220, 220, 220));
+		menuButton.setFont(new Font("Snap ITC", Font.ITALIC, 19));
+		menuButton.setForeground(new Color(0, 128, 128));
 		btnGridPanel.add(menuButton);
+		resignBtn.setBackground(new Color(220, 220, 220));
+		resignBtn.setFont(new Font("Snap ITC", Font.ITALIC, 17));
+		resignBtn.setForeground(new Color(0, 128, 128));
 		btnGridPanel.add(resignBtn);
+		exitButton.setBackground(new Color(255, 0, 0));
+		exitButton.setFont(new Font("Snap ITC", Font.ITALIC, 16));
+		exitButton.setForeground(new Color(0, 0, 0));
 		btnGridPanel.add(exitButton);
 		mapPanel.setBorder(new MatteBorder(4, 4, 4, 4, (Color) new Color(0, 128, 128)));
 		exitButton.addActionListener(this);
@@ -254,8 +269,10 @@ public class GameW extends JFrame implements ActionListener {
 		BoardPanel.add(textPanel);
 		textPanel.setLayout(new BorderLayout(0, 0));
 		textPanel.add(scrollPane, BorderLayout.CENTER);
+		textArea.setEditable(false);
 		scrollPane.setViewportView(textArea);
 		scrollPane.setColumnHeaderView(lblBl);
+		
 		outerSubmitPanel.setBackground(new Color(245, 255, 250));
 
 		getContentPane().add(outerSubmitPanel, "cell 2 2,grow");
@@ -286,6 +303,7 @@ public class GameW extends JFrame implements ActionListener {
 	
 	public void setConsoleText(String text) {
 		textArea.append("\n" + text);
+		textArea.getCaret().setDot( Integer.MAX_VALUE );
 	}
 
 	public String getConsoleText() {
@@ -347,8 +365,12 @@ public class GameW extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == exitButton) {
-			System.exit(EXIT_ON_CLOSE);
-
+			int confirmed = JOptionPane.showConfirmDialog(null, "Are you sure you want to\n        Exit goGeo?","EXIT",JOptionPane.YES_NO_OPTION);
+	        if(confirmed == JOptionPane.YES_OPTION)
+	        {
+	        	System.exit(EXIT_ON_CLOSE);
+	        }
+		
 		}
 
 //		if(e.getSource() == menuButton) {
