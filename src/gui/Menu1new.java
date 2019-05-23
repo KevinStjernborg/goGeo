@@ -75,12 +75,12 @@ public class Menu1new extends JPanel implements ActionListener {
 
 		if (e.getSource() == btnInstruktioner) {
 			new GameInstructions();
-			frame.setVisible(false);
+		//	frame.setVisible(false);
 	
 
 		}
 		if (e.getSource() == btnAvsluta) {
-			frame.setVisible(false);
+			frame.dispose();
 
 		}
 

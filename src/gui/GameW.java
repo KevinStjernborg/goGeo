@@ -64,8 +64,7 @@ public class GameW extends JFrame implements ActionListener {
 	private JPanel buttonPanel = new JPanel();
 	private JPanel underColorPanel = new JPanel();
 	private JPanel btnGridPanel = new JPanel();
-	private JButton menuButton = new JButton("Menu");
-	private JButton resignBtn = new JButton("Instructions");
+	private JButton infoBtn = new JButton("Instructions");
 	private JButton exitButton = new JButton("Resign & Exit");
 	private JPanel mapPanel = new JPanel();
 	private JPanel zoomInnerPanel = new JPanel();
@@ -154,23 +153,18 @@ public class GameW extends JFrame implements ActionListener {
 
 		btnGridPanel.setBackground(Color.DARK_GRAY);
 		buttonPanel.add(btnGridPanel, BorderLayout.NORTH);
-		btnGridPanel.setLayout(new GridLayout(0, 3, 0, 0));
-		menuButton.setBackground(new Color(220, 220, 220));
-		menuButton.setFont(new Font("Snap ITC", Font.ITALIC, 19));
-		menuButton.setForeground(new Color(0, 128, 128));
-		btnGridPanel.add(menuButton);
-		resignBtn.setBackground(new Color(220, 220, 220));
-		resignBtn.setFont(new Font("Snap ITC", Font.ITALIC, 17));
-		resignBtn.setForeground(new Color(0, 128, 128));
-		btnGridPanel.add(resignBtn);
+		btnGridPanel.setLayout(new GridLayout(0, 2, 0, 0));
+		infoBtn.setBackground(new Color(220, 220, 220));
+		infoBtn.setFont(new Font("Snap ITC", Font.ITALIC, 17));
+		infoBtn.setForeground(new Color(0, 128, 128));
+		btnGridPanel.add(infoBtn);
 		exitButton.setBackground(new Color(255, 0, 0));
 		exitButton.setFont(new Font("Snap ITC", Font.ITALIC, 16));
 		exitButton.setForeground(new Color(0, 0, 0));
 		btnGridPanel.add(exitButton);
 		mapPanel.setBorder(new MatteBorder(4, 4, 4, 4, (Color) new Color(0, 128, 128)));
 		exitButton.addActionListener(this);
-		resignBtn.addActionListener(this);
-		menuButton.addActionListener(this);
+		infoBtn.addActionListener(this);
 
 		mapPanel.setForeground(Color.WHITE);
 		mapPanel.setBackground(Color.GRAY);
@@ -400,6 +394,10 @@ public class GameW extends JFrame implements ActionListener {
 		if(e.getSource() == zoomInBtn) {
 			int z = viewer.getViewer().getZoom();
 			viewer.getViewer().setZoom(z-1);
+		}
+		
+		if(e.getSource() == infoBtn) {
+			new GameInstructions();
 		}
 
 
