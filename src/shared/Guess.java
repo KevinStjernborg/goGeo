@@ -104,7 +104,7 @@ public class Guess implements Serializable {
 	 * A method for calculating the score
 	 */
 	public void calculateScore() {
-		score = (int) (400 - kilometers);
+		score = (int) (800 - kilometers);
 		score = (int) (score * time);
 		if (score <= 0) {
 			score = 0;

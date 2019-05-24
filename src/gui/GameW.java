@@ -299,7 +299,7 @@ public class GameW extends JFrame implements ActionListener {
 		textArea.append("\n" + text);
 		textArea.getCaret().setDot( Integer.MAX_VALUE );
 	}
-
+	
 	public String getConsoleText() {
 		return textArea.getText();
 	}
