@@ -381,6 +381,7 @@ public class GameW extends JFrame implements ActionListener {
 //			scorelbl1.setText("" + playerOneScore);
 			setPlayerScore(guess.getScore(), 1);
 			controller.sendMessage(guess);
+			submitButton.setEnabled(false);
 		}
 
 //		if (e.getSource() == resignButton) {
@@ -451,6 +452,7 @@ public class GameW extends JFrame implements ActionListener {
 	 */
 
 	public void startGameTimer() {
+		submitButton.setEnabled(true);
 		viewer.enableMarkers();
 		viewer.setGameLocation();
 		viewer.removePaint();
