@@ -127,7 +127,7 @@ public class Controller {
 			gameWindowMP.setConsoleText("C'mon you can do it!");
 		}
 
-		if (message.containsRequest() == true && message.getGuess() == null) {
+		if (message.containsRequest() == true && message.containsGuess() == false) {
 			gameWindowMP.setConsoleText("You are in luck, other player timed out as well!");
 		}
 	}

@@ -465,13 +465,18 @@ public class GameW extends JFrame implements ActionListener {
 		    public void run() {
 		        setTimerText("" + timerCount);
 		        timerCount--;
-		        if(timerCount == -1 || viewer.isRoundFinished()) {  //TODO skicka meddelande till servern att skicka den andras gissning om tiden tar slut!
+		        if(timerCount == -1 ) {  //TODO skicka meddelande till servern att skicka den andras gissning om tiden tar slut!
 		        	controller.requestOtherPlayersGuess();
 		        	setConsoleText("You ran out of time, remember only 30 seconds per round!");
 		        	timer.cancel();
 		        	viewer.disableMarkers();
 		        	startConsoleTimer();
 		        }  
+		        if(viewer.isRoundFinished() == true) {
+		        	timer.cancel();
+		        	viewer.disableMarkers();
+		        	startConsoleTimer();
+		        }
 		    }
 		};
 		timer.schedule(myTask, 0, 1000);

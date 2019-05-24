@@ -14,8 +14,8 @@ public class Game {
 	private Client clientTwo;
 	private Message messageOne;
 	private Message messageTwo;
-	private boolean messageFromClientOneReceived;
-	private boolean messageFromClientTwoReceived;
+	private boolean messageFromClientOneReceived = false;
+	private boolean messageFromClientTwoReceived = false;
 
 	/**
 	 * Constructor
@@ -49,7 +49,7 @@ public class Game {
 	 */
 	public void getOtherPlayersGuess(int identifier) {
 		if(identifier == 1) {
-			if(messageFromClientTwoReceived) {
+			if(messageFromClientTwoReceived == true) {
 				messageTwo.setRequestBooleanAsTrue();
 				clientOne.sendMessage(messageTwo);
 			}else {
@@ -60,7 +60,7 @@ public class Game {
 
 		}
 		else if(identifier == 2 ) {
-			if(messageFromClientOneReceived) {
+			if(messageFromClientOneReceived == true) {
 				messageOne.setRequestBooleanAsTrue();
 				clientTwo.sendMessage(messageOne);
 			}else {
