@@ -27,8 +27,7 @@ public class Controller {
 	private Menu2new guiTwo;
 //	private GameWindowMP gameWindowMP;
 	private GameW gameWindowMP;
-//	private User user;
-//	private Buffer<Locations> buffer = new Buffer<Locations>();
+
 
 	public Controller() {
 //		gameWindow = new GameWindowSP(this, hashMapChoice);
@@ -94,7 +93,7 @@ public class Controller {
 	public void startMultiplayerGame() {
 		gameWindowMP = new GameW(this, 1);
 //		gameWindowMP = new GameWindowMP(this, 1);
-		connection = new Connection("10.0.0.7", 8050, this);
+		connection = new Connection("localhost", 8050, this);
 		gameWindowMP.setConsoleText("Searching for a game...");
 		//guiTwo.dispose();
 	}
@@ -112,6 +111,7 @@ public class Controller {
 	public void receiveMessage(Message message) {
 		if (message.containsGuess() && message.containsRequest() == false) {
 			Guess guess = message.getGuess();
+			guess.calculateScore();
 			gameWindowMP.getViewer().addOtherPlayersGuess(guess.getGeo());
 			gameWindowMP.getViewer().setRoundAsFinished();
 			gameWindowMP.setPlayerScore(guess.getScore(), 2);

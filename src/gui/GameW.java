@@ -334,12 +334,12 @@ public class GameW extends JFrame implements ActionListener {
 
 	public void setPlayerScore(int score, int player) {
 		if(player == 1 ) {
-			playerOneScore =+ score;
+			playerOneScore = playerOneScore + score;
 			scorelbl1.setText("" + playerOneScore);
 			scorelbl1.updateUI();
 		}
 		if( player == 2) {
-			playerTwoScore =+ score;
+			playerTwoScore = playerTwoScore + score;
 			scorelbl2.setText("" + playerTwoScore);
 			scorelbl2.updateUI();
 		}		
@@ -377,8 +377,9 @@ public class GameW extends JFrame implements ActionListener {
 			guess.setTime(timerCount);
 			guess.calculateScore();
 			setConsoleText("You were " + guess.getKilometers() + " Kilometers away from ");
-			playerOneScore = playerOneScore +  guess.getScore();
-			scorelbl1.setText("" + playerOneScore);
+//			playerOneScore = playerOneScore +  guess.getScore();
+//			scorelbl1.setText("" + playerOneScore);
+			setPlayerScore(guess.getScore(), 1);
 			controller.sendMessage(guess);
 		}
 
