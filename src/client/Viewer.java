@@ -94,6 +94,7 @@ public class Viewer {
 		int[] choices = message.getChoices();
 		for(int i = 0; i < choices.length; i++) {
 			locations.setHashMap(choices[i]);
+			System.out.println(choices[i]);
 		}
 		locationHashMap =  locations.getHashMap();
 	}

@@ -410,7 +410,7 @@ public class GameW extends JFrame implements ActionListener {
 	 */
 	
 	public void startConsoleTimer() {
-		timerCount = 10;
+		timerCount = 5;
         setConsoleText( "Round " + rounds + " will start in "  + timerCount + " seconds.");
         setConsoleText( "You will have 50 seconds each round, the timer is to the right!");
 		viewer.setRoundAsUnfinished();

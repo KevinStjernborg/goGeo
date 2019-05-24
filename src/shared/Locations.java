@@ -145,6 +145,21 @@ public class Locations {
 			locations.put("Muscat, Oman", new GeoPosition(23.614328, 58.545284));
 			locations.put("Kuala Lumpur, Malaysia", new GeoPosition(3.1412, 101.68653));
 			break;
+		case 12:
+			locations.put("La Paz, Bolivia", new GeoPosition(-16.5, -68.15));
+			locations.put("Bogotá, Colombia", new GeoPosition(4.624335, -74.063644));
+			locations.put("Lima, Peru", new GeoPosition(-12.04318, -77.02824));
+			break;
+		case 13:
+			locations.put("Santiago, Chile", new GeoPosition(-33.45694, -70.64827));
+			locations.put("Caracas, Venezuela", new GeoPosition(10.500000, -66.916664));
+			locations.put("Buenos Aires, Argentina", new GeoPosition(-34.61315, -58.37723));
+			break;
+		case 14:
+			locations.put("Asunción, Paraguay", new GeoPosition(-25.30066, -57.63591));
+			locations.put("San José, Costa Rica", new GeoPosition(9.934739, -84.087502));
+			locations.put("Ottowa, Canada", new GeoPosition(45.41117, -75.69812));
+			break;
 		}
 
 		}

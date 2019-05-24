@@ -98,7 +98,7 @@ public class Message implements Serializable {
 	
 	public void generateChoices() {
 		for (int i = 0; i < caseChoices.length; i++) {
-			caseChoices[i] = rand.nextInt(10) + 1;
+			caseChoices[i] = rand.nextInt(14) + 1;
 		}
 	}
 	
