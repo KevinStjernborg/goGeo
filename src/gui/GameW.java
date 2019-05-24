@@ -412,7 +412,7 @@ public class GameW extends JFrame implements ActionListener {
 	public void startConsoleTimer() {
 		timerCount = 10;
         setConsoleText( "Round " + rounds + " will start in "  + timerCount + " seconds.");
-        setConsoleText( "You will have 30 seconds each round, the timer is to the right!");
+        setConsoleText( "You will have 50 seconds each round, the timer is to the right!");
 		viewer.setRoundAsUnfinished();
 		Timer timer = new Timer();
 		TimerTask myTask = new TimerTask() {
@@ -459,7 +459,7 @@ public class GameW extends JFrame implements ActionListener {
 		promptLabel.setText(" Find: " + viewer.getCurrentStringLocation());
 		setConsoleText("Find: " + viewer.getCurrentStringLocation());
 		rounds++;
-		timerCount = 30;
+		timerCount = 50;
 		Timer timer = new Timer();
 		TimerTask myTask = new TimerTask() {
 			
