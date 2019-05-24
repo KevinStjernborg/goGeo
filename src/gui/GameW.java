@@ -73,10 +73,10 @@ public class GameW extends JFrame implements ActionListener {
 	private JPanel BoardPanel = new JPanel();
 	private JPanel outerScorePanel = new JPanel();
 	private JPanel panel = new JPanel();
-	private JLabel player1lbl = new JLabel("PLAYER 1           ");
+	private JLabel player1lbl = new JLabel("YOU                    ");
 	private JLabel scorelbl1 = new JLabel("0 ");
 	private JPanel innerScorePanel = new JPanel();
-	private JLabel player2lbl = new JLabel("PLAYER 2           ");
+	private JLabel player2lbl = new JLabel("OPPONENT            ");
 	private JLabel scorelbl2 = new JLabel("0  ");
 	private JPanel outerTmerPanel = new JPanel();
 	private JPanel innerTimerPanel = new JPanel();
