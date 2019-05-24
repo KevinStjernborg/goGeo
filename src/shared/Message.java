@@ -1,6 +1,7 @@
 package shared;
 
 import java.io.Serializable;
+import java.util.Random;
 
 /**
  * A class containing either a startmessage and a playername or a {@link Guess}
@@ -16,7 +17,9 @@ public class Message implements Serializable {
 	private String startMessage;
 	private boolean containsGuess;
 	private boolean containsStartMessage;
+	private int[] caseChoices = new int[3];
 	private boolean requestOtherPlayersGuess;
+	private Random rand = new Random();
 
 	/**
 	 * Constructor
@@ -79,7 +82,7 @@ public class Message implements Serializable {
 	 * containsStartMessage as true
 	 */
 	public void setStartMessage() {
-		startMessage = "Game found";
+		generateChoices();
 		containsStartMessage = true;
 	}
 
@@ -91,6 +94,16 @@ public class Message implements Serializable {
 
 	public String getStartMessage() {
 		return startMessage;
+	}
+	
+	public void generateChoices() {
+		for (int i = 0; i < caseChoices.length; i++) {
+			caseChoices[i] = rand.nextInt(10) + 1;
+		}
+	}
+	
+	public int[] getChoices() {
+		return caseChoices;
 	}
 
 }

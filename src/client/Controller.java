@@ -118,6 +118,7 @@ public class Controller {
 		}
 		if (message.containsStartMessage()) { // Lägg till att skicka användarnamn till den andra
 			System.out.println("Start message received");
+			gameWindowMP.getViewer().getLocationHashMap(message);
 			gameWindowMP.setConsoleText(message.getStartMessage());
 			gameWindowMP.startConsoleTimer();
 		}

@@ -36,6 +36,7 @@ import borrowed.SwingWaypoint;
 import gui.ZoomListener;
 import shared.Guess;
 import shared.Locations;
+import shared.Message;
 
 /**
  * A class containing {@link JXMapViewer} with added functionality suited for
@@ -75,7 +76,6 @@ public class Viewer {
 		mouseDoubleClicked();
 		enableMarkers();
 		locations = new Locations();
-		getLocationHashMap(choice);
 	}
 
 	/**
@@ -90,8 +90,12 @@ public class Viewer {
 	 * @param choice Choice for case switch statement.
 	 */
 
-	public void getLocationHashMap(int choice) {
-		locationHashMap = locations.getHashMap(choice);
+	public void getLocationHashMap(Message message) {
+		int[] choices = message.getChoices();
+		for(int i = 0; i < choices.length; i++) {
+			locations.setHashMap(choices[i]);
+		}
+		locationHashMap =  locations.getHashMap();
 	}
 
 	/**

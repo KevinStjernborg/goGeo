@@ -418,7 +418,7 @@ public class GameW extends JFrame implements ActionListener {
 			
 		    @Override
 		    public void run() {
-		    	if(rounds != 5) {
+		    	if(rounds != 9) {
 		    		if(timerCount <= -1 ) {
 			        	timer.cancel();
 			        	startGameTimer();
