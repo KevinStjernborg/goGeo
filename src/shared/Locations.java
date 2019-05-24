@@ -94,6 +94,7 @@ public class Locations {
 			locations.put("Sofia, Bulgaria", new GeoPosition(42.69751, 23.32415));
 			locations.put("Prague, Czech Republic ", new GeoPosition(50.08804, 14.42076));
 			break;
+			
 		case 3:
 			locations.put("Dublin, Irland", new GeoPosition( 53.350140, -6.266155));
 			locations.put("Kiev, Ukraine ", new GeoPosition(50.45466, 30.5238));
