@@ -106,7 +106,7 @@ public class Client {
 	 * is receive the boolean hasMessage is changed and the message is set as the
 	 * current message.
 	 * 
-	 * @author Kevin Stjernborg
+	 * @author Kevin Stjernborg & Agnes Hägnestrand
 	 *
 	 */
 

@@ -41,7 +41,7 @@ public class Connection {
 	 * Inner class handling connecting clients by creating {@link Client} objects
 	 * and once an object is created it is put onto the buffer.
 	 * 
-	 * @author Kevin Stjernborg
+	 * @author Kevin Stjernborg & Malin Hällström
 	 *
 	 */
 	private class Handler extends Thread {
@@ -72,7 +72,7 @@ public class Connection {
 	 * from the buffer. The available client object will be used to create a
 	 * {@link Game} object.
 	 * 
-	 * @author Kevin Stjernborg
+	 * @author Kevin Stjernborg & Malin Hällström
 	 *
 	 */
 	private class MatchMaker extends Thread {
