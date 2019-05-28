@@ -13,10 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-
-
 import javax.swing.event.MouseInputListener;
-
 
 import org.jxmapviewer.JXMapViewer;
 import org.jxmapviewer.OSMTileFactoryInfo;
@@ -48,7 +45,6 @@ import shared.Message;
 public class Viewer {
 
 	private JXMapViewer viewer;
-
 	private GeoPosition currentGeoLocation;
 	private String currentStringLocation;
 	private Guess guess = null;
@@ -92,11 +88,11 @@ public class Viewer {
 
 	public void getLocationHashMap(Message message) {
 		int[] choices = message.getChoices();
-		for(int i = 0; i < choices.length; i++) {
+		for (int i = 0; i < choices.length; i++) {
 			locations.setHashMap(choices[i]);
 			System.out.println(choices[i]);
 		}
-		locationHashMap =  locations.getHashMap();
+		locationHashMap = locations.getHashMap();
 	}
 
 	/**
@@ -115,12 +111,10 @@ public class Viewer {
 	 */
 	public void setGameLocation() {
 		Iterator iterator = locationHashMap.entrySet().iterator();
-
 		HashMap.Entry pair = (HashMap.Entry) iterator.next();
 		currentGeoLocation = (GeoPosition) pair.getValue();
 		currentStringLocation = (String) pair.getKey();
 		iterator.remove();
-
 	}
 
 	/**
@@ -129,6 +123,7 @@ public class Viewer {
 	 * 
 	 * @param p1 The geoposition containing x and y coordinates
 	 */
+
 	public void addOneLocation(GeoPosition p1) {
 		Set<SwingWaypoint> waypoints = new HashSet<SwingWaypoint>(Arrays.asList(new SwingWaypoint("p1", p1)));
 		WaypointPainter<Waypoint> waypointPainter = new WaypointPainter<Waypoint>();
@@ -150,8 +145,8 @@ public class Viewer {
 	 *           two
 	 */
 	public void addThreeLocations(GeoPosition p1, GeoPosition p2, GeoPosition p3) {
-		Set<MyWaypoint> waypoints = new HashSet<MyWaypoint>(
-				Arrays.asList(new MyWaypoint("p1", Color.BLUE, p1), new MyWaypoint("p2", Color.RED, p2), new MyWaypoint("", Color.WHITE, p3)));
+		Set<MyWaypoint> waypoints = new HashSet<MyWaypoint>(Arrays.asList(new MyWaypoint("p1", Color.BLUE, p1),
+				new MyWaypoint("p2", Color.RED, p2), new MyWaypoint("", Color.WHITE, p3)));
 		WaypointPainter<MyWaypoint> waypointPainter = new WaypointPainter<MyWaypoint>();
 		waypointPainter.setWaypoints(waypoints);
 		waypointPainter.setRenderer(new FancyWaypointRenderer());
@@ -168,6 +163,7 @@ public class Viewer {
 	 * 
 	 * @param geo Player two's geoposition
 	 */
+
 	public void addOtherPlayersGuess(GeoPosition geo) {
 		System.out.println("Guess receiver in viewer");
 		removePaint();
@@ -224,16 +220,14 @@ public class Viewer {
 					int distance = (int) distanceBetweenCoordinates(geo.getLatitude(), geo.getLongitude(),
 							currentGeoLocation.getLatitude(), currentGeoLocation.getLongitude());
 					guess.setDistance(distance);
-					System.out.println("Distance in kilometers: " + distanceBetweenCoordinates(geo.getLatitude(), geo.getLongitude(),
-							currentGeoLocation.getLatitude(), currentGeoLocation.getLongitude()));
+					System.out.println("Distance in kilometers: " + distanceBetweenCoordinates(geo.getLatitude(),
+							geo.getLongitude(), currentGeoLocation.getLatitude(), currentGeoLocation.getLongitude()));
 					addOneLocation(geo);
 
 					System.out.println("Guess sent");
 				}
-
 			}
 		});
-
 	}
 
 	/**
@@ -281,7 +275,8 @@ public class Viewer {
 	}
 
 	/**
-	 * Calculates the distance between two coordinates and returns the distance in kilometers.
+	 * Calculates the distance between two coordinates and returns the distance in
+	 * kilometers.
 	 * 
 	 * @param lat1 Latitude of coordinate one
 	 * @param lng1 Longitude of coordinate one
