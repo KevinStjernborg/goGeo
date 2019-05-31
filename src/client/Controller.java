@@ -1,13 +1,9 @@
 package client;
 
 import java.util.Timer;
-
-import gui.GameW;
-import gui.GameWindowMP;
-import gui.GameWindowSP;
-import gui.Menu1new;
-import gui.Menu2new;
-import server.Game;
+import gui.GameWindow;
+import gui.Menu1;
+import gui.Menu2;
 import shared.Guess;
 import shared.Locations;
 import shared.Message;
@@ -23,30 +19,29 @@ public class Controller {
 	private Connection connection;
 	private Locations locations;
 	private int hashMapChoice = 1;
-	private Menu1new guiOne;
-	private Menu2new guiTwo;
-	private GameW gameWindowMP;
+	private Menu1 guiOne;
+	private Menu2 guiTwo;
+	private GameWindow gameWindowMP;
 
 
 	/**
 	 * Starts the main menu when the {@link Controller} object is created. 
 	 */
 	public Controller() {
-		guiOne = new Menu1new(this);
+		guiOne = new Menu1(this);
 	}
 
 	/**
-	 * Sets the targeted city on the prompt Label on {@link GameW}. 
+	 * Sets the targeted city on the prompt Label on {@link GameWindow}. 
 	 * 
 	 * @param name of the city that the user should find. 
 	 */
 	public void setPromptInstruction(String name) {
-		locations.getLocation(name);
 		gameWindowMP.setInstruction(name);
 	}
 
 	/**
-	 * Sets the timer value on the timer label on {@link GameW}. 
+	 * Sets the timer value on the timer label on {@link GameWindow}. 
 	 * 
 	 * @param the value that the timer will show. 
 	 */
@@ -55,7 +50,7 @@ public class Controller {
 	}
 
 	/**
-	 * Sets the current score for each player on {@link GameW}. 
+	 * Sets the current score for each player on {@link GameWindow}. 
 	 * 
 	 * @param score, the calculated score based on the players participation in the game. 
 	 * @param player, the player receiving the score. 
@@ -68,7 +63,7 @@ public class Controller {
 	}
 
 	/**
-	 * Sets the players name on the correct label on {@link GameW}. 
+	 * Sets the players name on the correct label on {@link GameWindow}. 
 	 * 
 	 * @param name, the identifier for the player
 	 * @param player, which player that gets the identifier. 
@@ -81,7 +76,7 @@ public class Controller {
 	}
 
 	/**
-	 * Writes a new line on the console on the {@link GameW}.
+	 * Writes a new line on the console on the {@link GameWindow}.
 	 * 
 	 * @param message, the message that is shown. 
 	 */
@@ -103,21 +98,21 @@ public class Controller {
 
 	
 	/**
-	 * Starts the second menu, {@link Menu2new}
+	 * Starts the second menu, {@link Menu2}
 	 */
 
 	public void startGameModeMenu() {
-		guiTwo = new Menu2new(this);
+		guiTwo = new Menu2(this);
 		
 	}
 	
 	/**
-	 * Initiates a multiplayer game by starting a {@link GameW} and setting up a connection 
+	 * Initiates a multiplayer game by starting a {@link GameWindow} and setting up a connection 
 	 * through {@link Connection}
 	 */
 
 	public void startMultiplayerGame() {
-		gameWindowMP = new GameW(this, 1);
+		gameWindowMP = new GameWindow(this, 1);
 		connection = new Connection("localhost", 8050, this);
 		gameWindowMP.setConsoleText("Searching for a game...");
 	}
@@ -165,5 +160,4 @@ public class Controller {
 			gameWindowMP.setConsoleText("You are in luck, other player timed out as well!");
 		}
 	}
-
 }

@@ -8,7 +8,7 @@ import client.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Menu1new extends JPanel implements ActionListener {
+public class Menu1 extends JPanel implements ActionListener {
 
 	private JLabel jLabel;
 	private JButton btnNyttSpel;
@@ -18,10 +18,10 @@ public class Menu1new extends JPanel implements ActionListener {
 	
 	private Controller controller;
 
-	public Menu1new(Controller controller) {
+	public Menu1(Controller controller) {
 		this.controller = controller;
 		
-		frame = new JFrame();
+		frame = new JFrame("goGeo");
 
 		btnNyttSpel = new JButton("New Game");
 		btnNyttSpel.setBackground(new Color(245, 245, 245));
@@ -69,7 +69,7 @@ public class Menu1new extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnNyttSpel) {
-			new Menu2new(controller);
+			new Menu2(controller);
 			frame.setVisible(false);
 		}
 

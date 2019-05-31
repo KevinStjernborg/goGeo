@@ -69,11 +69,7 @@ public class Game {
 				clientTwo.sendMessage(message);
 			}
 
-		}
-
-			
-		
-		
+		}		
 	}
 	
 	public void setMessageFromClientOne(Message message) {

@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class Menu2new extends JPanel implements ActionListener {
+public class Menu2 extends JPanel implements ActionListener {
 
 	private JLabel jLabel;
 	private JButton btnSingle;
@@ -18,10 +18,10 @@ public class Menu2new extends JPanel implements ActionListener {
 	private JFrame frame;
 	private Controller controller;
 
-	public Menu2new(Controller controller) {
+	public Menu2(Controller controller) {
 		this.controller = controller;
 
-		frame = new JFrame();
+		frame = new JFrame("New Game");
 
 		btnSingle = new JButton("Singleplayer");
 		btnSingle.setBackground(new Color(245, 245, 245));
@@ -30,7 +30,7 @@ public class Menu2new extends JPanel implements ActionListener {
 		btnSingle.setBounds(405, 170, 150, 60);
 		btnSingle.addActionListener(this);
 		btnSingle.setBorder(new LineBorder(new Color(0,128,128),3));
-		btnSingle.setToolTipText("Not avalable at this moment");
+		btnSingle.setToolTipText("Not available at this moment");
 		btnSingle.setEnabled(false);
 
 		btnMulti = new JButton("Multiplayer");
@@ -83,7 +83,7 @@ public class Menu2new extends JPanel implements ActionListener {
 			dispose();
 	}
 		if (e.getSource() == btnBack) {
-			new Menu1new(controller);
+			new Menu1(controller);
 			frame.setVisible(false);
 
 	}

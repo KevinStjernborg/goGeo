@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author Kevin Stjernborg & Malin Hällström
  *
  */
-public class Connection {
+public class ServerController {
 	private int port;
 	private Handler handler;
 	private MatchMaker matchMaker;
@@ -27,7 +27,7 @@ public class Connection {
 	 * 
 	 * @param port Port to be opened
 	 */
-	public Connection(int port) {
+	public ServerController(int port) {
 		this.port = port;
 		handler = new Handler();
 		handler.start();

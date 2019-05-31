@@ -1,13 +1,13 @@
 package server;
 
 public class Controller {
-	private Connection connection;
+	private ServerController connection;
 	
 	public Controller() {
 	}
 	
 	
 	public void start() {
-		connection = new Connection(8050);
+		connection = new ServerController(8050);
 	}
 }

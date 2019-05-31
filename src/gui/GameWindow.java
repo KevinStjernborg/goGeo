@@ -60,7 +60,7 @@ import javax.swing.border.CompoundBorder;
  *
  */
 
-public class GameW extends JFrame implements ActionListener {
+public class GameWindow extends JFrame implements ActionListener {
 
 	private JPanel promptPanel = new JPanel();
 	private JLabel promptLabel = new JLabel("Get Ready!!!");
@@ -109,13 +109,14 @@ public class GameW extends JFrame implements ActionListener {
 	private Viewer viewer;
 	private Controller controller;
 
+	private JLabel lblGogeo = new JLabel("goGeo");
+
 	private int playerOneScore;
 	private int playerTwoScore;
 	private int timerCount;
 	private int rounds = 0;
-	private final JLabel lblGogeo = new JLabel("goGeo");
 
-	public GameW(Controller controller, int hashMapChoice) {
+	public GameWindow(Controller controller, int hashMapChoice) {
 		viewer = new Viewer(hashMapChoice);
 		this.controller = controller;
 		initialize();
@@ -124,7 +125,7 @@ public class GameW extends JFrame implements ActionListener {
 	/**
 	 * @wbp.parser.constructor
 	 */
-	public GameW(int hashMapChoice) {
+	public GameWindow(int hashMapChoice) {
 		viewer = new Viewer(hashMapChoice);
 		initialize();
 	}
@@ -491,7 +492,7 @@ public class GameW extends JFrame implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-		new GameW(1);
+		new GameWindow(1);
 	}
 
 }
