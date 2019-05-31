@@ -4,6 +4,12 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
+/**
+ * A class for the instructions in the game.
+ * 
+ * @author Malin Hällström
+ *
+ */
 public class GameInstructions extends JPanel {
 
 	private JButton btnBack;
@@ -17,22 +23,23 @@ public class GameInstructions extends JPanel {
 		btnBack = new JButton("Back");
 		btnBack.setBackground(new Color(245, 245, 245));
 		btnBack.setFont(new Font("Lucida Grande", Font.BOLD, 16));
-		btnBack.setForeground(new Color(0, 128, 128));
+		btnBack.setForeground(Color.BLACK);
 		btnBack.setBounds(30, 30, 100, 50);
-		btnBack.setBorder(new LineBorder(new Color(0, 128, 128),3));
-		btnBack.addActionListener(e -> { 
+		btnBack.setBorder(new LineBorder(Color.BLACK, 3));
+		btnBack.addActionListener(e -> {
 			frame.setVisible(false);
 		});
 		setLayout(new BorderLayout(0, 0));
 
-
 		jLabel = new JLabel();
-		jLabel.setIcon(new ImageIcon("images/i.png"));
-		jLabel.setBounds(0, 0, getWidth(), getHeight());
+		Image img = new ImageIcon("images/i.png").getImage();
+		Image scale = img.getScaledInstance(900, 650, 0);
+		ImageIcon im = new ImageIcon(scale);
+		jLabel.setIcon(im);
 		jLabel.add(btnBack);
 		this.add(jLabel);
 
-		frame.getContentPane().add(this, BorderLayout.CENTER); 
+		frame.getContentPane().add(this, BorderLayout.CENTER);
 		frame.setSize(900, 650);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

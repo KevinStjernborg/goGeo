@@ -1,4 +1,5 @@
 package gui;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -8,7 +9,14 @@ import client.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+/**
+ * This class creates a menu window where you can choose between Singleplayer or
+ * Multiplayer. Singleplayer is not yet implemented. Multiplayer is a button
+ * that when pressed, the user connect to the server.
+ * 
+ * @author Agnes Hägnestrand and Malin Hällström
+ *
+ */
 public class Menu2 extends JPanel implements ActionListener {
 
 	private JLabel jLabel;
@@ -29,7 +37,7 @@ public class Menu2 extends JPanel implements ActionListener {
 		btnSingle.setForeground(new Color(0, 128, 128));
 		btnSingle.setBounds(405, 170, 150, 60);
 		btnSingle.addActionListener(this);
-		btnSingle.setBorder(new LineBorder(new Color(0,128,128),3));
+		btnSingle.setBorder(new LineBorder(new Color(0, 128, 128), 3));
 		btnSingle.setToolTipText("Not available at this moment");
 		btnSingle.setEnabled(false);
 
@@ -39,8 +47,8 @@ public class Menu2 extends JPanel implements ActionListener {
 		btnMulti.setForeground(new Color(0, 128, 128));
 		btnMulti.setBounds(405, 270, 150, 60);
 		btnMulti.addActionListener(this);
-		btnMulti.setBorder(new LineBorder(new Color(0,128,128),3));
-		
+		btnMulti.setBorder(new LineBorder(new Color(0, 128, 128), 3));
+
 		btnBack = new JButton("Back");
 		btnBack.setBackground(new Color(245, 245, 245));
 		btnBack.setFont(new Font("Lucida Grande", Font.BOLD, 16));
@@ -48,7 +56,7 @@ public class Menu2 extends JPanel implements ActionListener {
 		btnBack.setBounds(30, 30, 100, 50);
 		btnBack.addActionListener(this);
 		setLayout(new BorderLayout(0, 0));
-		btnBack.setBorder(new LineBorder(new Color(0, 128, 128),3));
+		btnBack.setBorder(new LineBorder(new Color(0, 128, 128), 3));
 
 		jLabel = new JLabel();
 		jLabel.setForeground(new Color(0, 128, 128));
@@ -58,9 +66,8 @@ public class Menu2 extends JPanel implements ActionListener {
 		jLabel.add(btnMulti);
 		jLabel.add(btnBack);
 		this.add(jLabel);
-		
 
-		frame.getContentPane().add(this, BorderLayout.CENTER); 
+		frame.getContentPane().add(this, BorderLayout.CENTER);
 		frame.setSize(900, 650);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,25 +75,25 @@ public class Menu2 extends JPanel implements ActionListener {
 		frame.setVisible(true);
 
 	}
-	
+
 	public void dispose() {
 		frame.dispose();
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnSingle) {
-//			frame.setVisible(false);
+
 		}
 
 		if (e.getSource() == btnMulti) {
 			controller.startMultiplayerGame();
 			dispose();
-	}
+		}
 		if (e.getSource() == btnBack) {
 			new Menu1(controller);
 			frame.setVisible(false);
 
-	}
+		}
 
-}
+	}
 }
