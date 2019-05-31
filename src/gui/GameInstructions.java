@@ -23,9 +23,9 @@ public class GameInstructions extends JPanel {
 		btnBack = new JButton("Back");
 		btnBack.setBackground(new Color(245, 245, 245));
 		btnBack.setFont(new Font("Lucida Grande", Font.BOLD, 16));
-		btnBack.setForeground(Color.BLACK);
+		btnBack.setForeground(new Color(0, 128, 128));
 		btnBack.setBounds(30, 30, 100, 50);
-		btnBack.setBorder(new LineBorder(Color.BLACK, 3));
+		btnBack.setBorder(new LineBorder(new Color(0, 128, 128), 3));
 		btnBack.addActionListener(e -> {
 			frame.setVisible(false);
 		});
