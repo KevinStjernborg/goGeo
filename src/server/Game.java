@@ -6,7 +6,7 @@ import shared.Message;
 /**
  * A class containing two {@link Client} object representing a game.
  * 
- * @author Kevin Stjernborg
+ * @author Kevin Stjernborg & Said Mohammed
  *
  */
 public class Game {

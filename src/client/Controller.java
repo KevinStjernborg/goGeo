@@ -10,7 +10,7 @@ import shared.Message;
 
 /**
  * 
- * @author 
+ * @author Said Mohammed & Kevin Stjernborg
  *
  */
 

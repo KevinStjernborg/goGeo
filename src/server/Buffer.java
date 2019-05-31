@@ -2,6 +2,12 @@ package server;
 
 import java.util.LinkedList;
 
+/**
+ * 
+ * @author Kevin Stjernborg & Malin Hällström
+ *
+ * @param <T>
+ */
 public class Buffer<T> {
 	private LinkedList<T> buffer = new LinkedList<T>();
 
