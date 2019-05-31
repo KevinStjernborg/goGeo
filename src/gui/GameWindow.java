@@ -54,7 +54,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.CompoundBorder;
 
-/**
+/** A Class that acts as a GUI-Class for the main Game-window. 
  * 
  * @author Said Mohammed
  *
@@ -62,54 +62,51 @@ import javax.swing.border.CompoundBorder;
 
 public class GameWindow extends JFrame implements ActionListener {
 
-	private JPanel promptPanel = new JPanel();
+	private JPanel promptPanel = new JPanel();				// Instructions goes here
 	private JLabel promptLabel = new JLabel("Get Ready!!!");
 
-	private JPanel buttonPanel = new JPanel();
-	private JPanel underColorPanel = new JPanel();
-	private JPanel btnGridPanel = new JPanel();
-	private JButton infoBtn = new JButton("Instructions");
+	private JPanel buttonPanel = new JPanel();				//Button panel on the 
+	private JPanel underColorPanel = new JPanel();			//top-right side.
+	private JPanel buttonGridPanel = new JPanel();
+	private JButton infoButton = new JButton("Instructions");
 	private JButton exitButton = new JButton("Resign & Exit");
 
-	private JPanel mapPanel = new JPanel();
+	private JPanel mapPanel = new JPanel();					//Panel that accepts the mapViewer
 
-	private JPanel zoomOuterPanel = new JPanel();
+	private JPanel zoomOuterPanel = new JPanel();			//Panel that shows the zoom-buttons
 	private JPanel zoomInnerPanel = new JPanel();
 	private JButton zoomInBtn = new JButton("");
 	private JButton zoomOutBtn = new JButton("");
 
-	private JPanel BoardPanel = new JPanel();
-	private JPanel outerScorePanel = new JPanel();
-
-	private JPanel scorePanel1 = new JPanel();
-	private JLabel player1lbl = new JLabel("YOU                    ");
-	private JLabel scorelbl1 = new JLabel("0 ");
-
+	private JPanel boardPanel = new JPanel();				// a panel that consist of several paneles
+															// that shows the current score,
+	private JPanel outerScorePanel = new JPanel();			// timer and the textPanel 
+	private JPanel scorePanel1 = new JPanel();				//timer and the textpanel
+	private JLabel player1Label = new JLabel("YOU                    ");
+	private JLabel scoreLabelPlayer1 = new JLabel("0 ");
 	private JPanel scorePanel2 = new JPanel();
-	private JLabel player2lbl = new JLabel("OPPONENT            ");
-	private JLabel scorelbl2 = new JLabel("0  ");
-
-	private JPanel outerTmerPanel = new JPanel();
+	private JLabel player2Label = new JLabel("OPPONENT            ");
+	private JLabel scoreLabelPlayer2 = new JLabel("0  ");
+	private JPanel outerTimerPanel = new JPanel();
 	private JPanel innerTimerPanel = new JPanel();
-	private JLabel lblTimer = new JLabel("TIMER :     ");
+	private JLabel timerLabel = new JLabel("TIMER :     ");
 	private JLabel timerValueLabel = new JLabel("10");
-
 	private JPanel textPanel = new JPanel();
 	private JScrollPane scrollPane = new JScrollPane();
 	private JTextArea textArea = new JTextArea();
-	private JLabel lblBl = new JLabel("Welcome to goGeo! ");
+	private JLabel textAreaHeader = new JLabel("Welcome to goGeo! ");
 
-	private JPanel outerSubmitPanel = new JPanel();
+	private JPanel outerSubmitPanel = new JPanel();			//Panel for the submitbutton
 	private JPanel innerSubmitPanel = new JPanel();
 	private JButton submitButton = new JButton("SUBMIT");
 
-	private ImageIcon arrowDown = new ImageIcon("images\\MINUS.png");
+	private ImageIcon arrowDown = new ImageIcon("images\\MINUS.png");	//
 	private ImageIcon arrowUp = new ImageIcon("images\\PLUS.png");
 
 	private Viewer viewer;
 	private Controller controller;
 
-	private JLabel lblGogeo = new JLabel("goGeo");
+	private JLabel goGeoLabel = new JLabel("goGeo");
 
 	private int playerOneScore;
 	private int playerTwoScore;
@@ -160,25 +157,25 @@ public class GameWindow extends JFrame implements ActionListener {
 
 		underColorPanel.setBackground(new Color(245, 245, 245));
 		buttonPanel.add(underColorPanel, BorderLayout.SOUTH);
-		lblGogeo.setForeground(new Color(0, 128, 128));
-		lblGogeo.setFont(new Font("Snap ITC", Font.ITALIC, 50));
+		goGeoLabel.setForeground(new Color(0, 128, 128));
+		goGeoLabel.setFont(new Font("Snap ITC", Font.ITALIC, 50));
 
-		underColorPanel.add(lblGogeo);
+		underColorPanel.add(goGeoLabel);
 
-		btnGridPanel.setBackground(Color.DARK_GRAY);
-		buttonPanel.add(btnGridPanel, BorderLayout.NORTH);
-		btnGridPanel.setLayout(new GridLayout(0, 2, 0, 0));
-		infoBtn.setBackground(new Color(220, 220, 220));
-		infoBtn.setFont(new Font("Snap ITC", Font.ITALIC, 17));
-		infoBtn.setForeground(new Color(0, 128, 128));
-		btnGridPanel.add(infoBtn);
+		buttonGridPanel.setBackground(Color.DARK_GRAY);
+		buttonPanel.add(buttonGridPanel, BorderLayout.NORTH);
+		buttonGridPanel.setLayout(new GridLayout(0, 2, 0, 0));
+		infoButton.setBackground(new Color(220, 220, 220));
+		infoButton.setFont(new Font("Snap ITC", Font.ITALIC, 17));
+		infoButton.setForeground(new Color(0, 128, 128));
+		buttonGridPanel.add(infoButton);
 		exitButton.setBackground(new Color(255, 0, 0));
 		exitButton.setFont(new Font("Snap ITC", Font.ITALIC, 16));
 		exitButton.setForeground(new Color(0, 0, 0));
-		btnGridPanel.add(exitButton);
+		buttonGridPanel.add(exitButton);
 		mapPanel.setBorder(new MatteBorder(4, 4, 4, 4, (Color) new Color(0, 128, 128)));
 		exitButton.addActionListener(this);
-		infoBtn.addActionListener(this);
+		infoButton.addActionListener(this);
 
 		mapPanel.setForeground(Color.WHITE);
 		mapPanel.setBackground(Color.GRAY);
@@ -226,15 +223,15 @@ public class GameWindow extends JFrame implements ActionListener {
 		zoomInnerPanel.add(zoomOutBtn, gbc_zoomOutBtn);
 		zoomOutBtn.addActionListener(this);
 
-		BoardPanel.setBorder(new CompoundBorder(
+		boardPanel.setBorder(new CompoundBorder(
 				new BevelBorder(BevelBorder.RAISED, new Color(0, 139, 139), new Color(0, 139, 139),
 						new Color(0, 128, 128), new Color(0, 128, 128)),
 				new BevelBorder(BevelBorder.LOWERED, new Color(0, 139, 139), new Color(0, 139, 139),
 						new Color(0, 128, 128), new Color(0, 128, 128))));
-		getContentPane().add(BoardPanel, "cell 2 1,grow");
-		BoardPanel.setLayout(new GridLayout(0, 1, 0, 0));
+		getContentPane().add(boardPanel, "cell 2 1,grow");
+		boardPanel.setLayout(new GridLayout(0, 1, 0, 0));
 
-		BoardPanel.add(outerScorePanel);
+		boardPanel.add(outerScorePanel);
 		outerScorePanel.setLayout(new GridLayout(0, 1, 0, 0));
 		scorePanel1.setBorder(
 				new BevelBorder(BevelBorder.RAISED, new Color(248, 248, 255), new Color(0, 0, 0), null, null));
@@ -243,13 +240,13 @@ public class GameWindow extends JFrame implements ActionListener {
 		outerScorePanel.add(scorePanel1);
 		scorePanel1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		scorePanel1.add(player1lbl);
-		player1lbl.setForeground(new Color(245, 255, 250));
-		player1lbl.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 22));
+		scorePanel1.add(player1Label);
+		player1Label.setForeground(new Color(245, 255, 250));
+		player1Label.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 22));
 
-		scorePanel1.add(scorelbl1);
-		scorelbl1.setForeground(new Color(245, 255, 250));
-		scorelbl1.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 25));
+		scorePanel1.add(scoreLabelPlayer1);
+		scoreLabelPlayer1.setForeground(new Color(245, 255, 250));
+		scoreLabelPlayer1.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 25));
 		scorePanel2
 		.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(0, 128, 128), new Color(0, 0, 0), null, null));
 
@@ -257,35 +254,35 @@ public class GameWindow extends JFrame implements ActionListener {
 		outerScorePanel.add(scorePanel2);
 		scorePanel2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		player2lbl.setForeground(new Color(0, 128, 128));
-		player2lbl.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 22));
-		scorePanel2.add(player2lbl);
+		player2Label.setForeground(new Color(0, 128, 128));
+		player2Label.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 22));
+		scorePanel2.add(player2Label);
 
-		scorelbl2.setForeground(new Color(0, 128, 128));
-		scorelbl2.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 25));
-		scorePanel2.add(scorelbl2);
+		scoreLabelPlayer2.setForeground(new Color(0, 128, 128));
+		scoreLabelPlayer2.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 25));
+		scorePanel2.add(scoreLabelPlayer2);
 
-		BoardPanel.add(outerTmerPanel);
-		outerTmerPanel.setLayout(new BorderLayout(0, 0));
+		boardPanel.add(outerTimerPanel);
+		outerTimerPanel.setLayout(new BorderLayout(0, 0));
 		innerTimerPanel.setForeground(Color.WHITE);
 		innerTimerPanel.setBackground(new Color(0, 0, 0));
-		outerTmerPanel.add(innerTimerPanel, BorderLayout.CENTER);
+		outerTimerPanel.add(innerTimerPanel, BorderLayout.CENTER);
 		innerTimerPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		lblTimer.setForeground(Color.WHITE);
-		lblTimer.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 32));
-		innerTimerPanel.add(lblTimer);
+		timerLabel.setForeground(Color.WHITE);
+		timerLabel.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 32));
+		innerTimerPanel.add(timerLabel);
 
 		timerValueLabel.setForeground(Color.WHITE);
 		timerValueLabel.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 61));
 		innerTimerPanel.add(timerValueLabel);
 
-		BoardPanel.add(textPanel);
+		boardPanel.add(textPanel);
 		textPanel.setLayout(new BorderLayout(0, 0));
 		textPanel.add(scrollPane, BorderLayout.CENTER);
 		textArea.setEditable(false);
 		scrollPane.setViewportView(textArea);
-		scrollPane.setColumnHeaderView(lblBl);
+		scrollPane.setColumnHeaderView(textAreaHeader);
 
 		outerSubmitPanel.setBackground(new Color(245, 255, 250));
 
@@ -344,25 +341,25 @@ public class GameWindow extends JFrame implements ActionListener {
 
 	public void setPlayerName(String name, int player) {
 		if (player == 1) {
-			player1lbl.setText(name);
-			player1lbl.updateUI();
+			player1Label.setText(name);
+			player1Label.updateUI();
 		}
 		if (player == 2) {
-			player2lbl.setText(name);
-			player2lbl.updateUI();
+			player2Label.setText(name);
+			player2Label.updateUI();
 		}
 	}
 
 	public void setPlayerScore(int score, int player) {
 		if (player == 1) {
 			playerOneScore = playerOneScore + score;
-			scorelbl1.setText("" + playerOneScore);
-			scorelbl1.updateUI();
+			scoreLabelPlayer1.setText("" + playerOneScore);
+			scoreLabelPlayer1.updateUI();
 		}
 		if (player == 2) {
 			playerTwoScore = playerTwoScore + score;
-			scorelbl2.setText("" + playerTwoScore);
-			scorelbl2.updateUI();
+			scoreLabelPlayer2.setText("" + playerTwoScore);
+			scoreLabelPlayer2.updateUI();
 		}
 	}
 
@@ -403,7 +400,7 @@ public class GameWindow extends JFrame implements ActionListener {
 			viewer.getViewer().setZoom(z - 1);
 		}
 
-		if (e.getSource() == infoBtn) {
+		if (e.getSource() == infoButton) {
 			new GameInstructions();
 		}
 

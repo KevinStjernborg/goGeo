@@ -5,7 +5,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 /**
- * A class for the instructions in the game.
+ * A class that shows the instructions in the game in a new window.
  * 
  * @author Malin Hällström
  *

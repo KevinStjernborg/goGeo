@@ -9,6 +9,8 @@ import shared.Locations;
 import shared.Message;
 
 /**
+ * A class that acts as a controller for the Client side of the game. 
+ * It handles {@link Menu1}, {@link Menu2}, {@link GameWindow} & {@link Connection}
  * 
  * @author Said Mohammed & Kevin Stjernborg
  *
@@ -27,6 +29,7 @@ public class Controller {
 	/**
 	 * Starts the main menu when the {@link Controller} object is created. 
 	 */
+	
 	public Controller() {
 		guiOne = new Menu1(this);
 	}
@@ -36,6 +39,7 @@ public class Controller {
 	 * 
 	 * @param name of the city that the user should find. 
 	 */
+	
 	public void setPromptInstruction(String name) {
 		gameWindowMP.setInstruction(name);
 	}
@@ -45,6 +49,7 @@ public class Controller {
 	 * 
 	 * @param the value that the timer will show. 
 	 */
+	
 	public void setTimer(String nr) {
 		gameWindowMP.setTimerText(nr);
 	}

@@ -11,7 +11,7 @@ import shared.Message;
  * A class for connecting to the server with functionality for send and
  * receiving {@link Message} objects.
  * 
- * @author Kevin Stjernborg
+ * @author Kevin Stjernborg & Said Mohammed
  *
  */
 
@@ -36,7 +36,7 @@ public class Connection {
 		this.port = port;
 		this.controller = controller;
 		connect();
-		
+
 
 	}
 
@@ -62,7 +62,7 @@ public class Connection {
 	public void connect() {
 		try {
 			socket = new Socket(address, port);
-//			System.out.print("Connected to server // klient");
+			//			System.out.print("Connected to server // klient");
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
 			receiver = new serverReceiver();
@@ -92,9 +92,7 @@ public class Connection {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-
 			}
-
 		}
 	}
 }

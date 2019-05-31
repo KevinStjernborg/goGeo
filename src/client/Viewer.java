@@ -280,8 +280,8 @@ public class Viewer {
 	 * 
 	 * @param lat1 Latitude of coordinate one
 	 * @param lng1 Longitude of coordinate one
-	 * @param lat2 Latitude of coordinate one
-	 * @param lng2 Longitude of coordinate one
+	 * @param lat2 Latitude of coordinate two
+	 * @param lng2 Longitude of coordinate two
 	 * @return distance in kilometers
 	 */
 
@@ -297,5 +297,4 @@ public class Viewer {
 		int distance = Math.round(dist);
 		return distance;
 	}
-
 }
