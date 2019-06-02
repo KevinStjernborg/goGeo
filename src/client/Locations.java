@@ -1,23 +1,37 @@
-package shared;
+package client;
 
 import java.util.HashMap;
 
 import org.jxmapviewer.viewer.GeoPosition;
 
+/**
+ * 
+ * @author Malin Hällström & Agnes Hägnestrand
+ *
+ */
+
 public class Locations {
-	
+
 	private HashMap<String, GeoPosition> locations = new HashMap<String, GeoPosition>();
 
-	
-	
+	/**
+	 * A getter for the hashmap
+	 * 
+	 * @return
+	 */
 	public HashMap getHashMap() {
 		return locations;
 	}
-	
-	
-	public void setHashMap(int caseNumber)	{
+
+	/**
+	 * A setter generating the cases that will be in the hashmap once the game
+	 * starts, is called three times by standard from {@link Viewer}
+	 * 
+	 * @param caseNumber
+	 */
+	public void setHashMap(int caseNumber) {
 		HashMap<String, GeoPosition> hashMap = new HashMap<String, GeoPosition>();
-		switch(caseNumber) {
+		switch (caseNumber) {
 		case 1:
 			locations.put("Vienna, Austria", new GeoPosition(48.208174, 16.373819));
 			locations.put("Bucharest, Romania", new GeoPosition(44.439663, 26.096306));
@@ -29,9 +43,9 @@ public class Locations {
 			locations.put("Sofia, Bulgaria", new GeoPosition(42.69751, 23.32415));
 			locations.put("Prague, Czech Republic ", new GeoPosition(50.08804, 14.42076));
 			break;
-			
+
 		case 3:
-			locations.put("Dublin, Irland", new GeoPosition( 53.350140, -6.266155));
+			locations.put("Dublin, Irland", new GeoPosition(53.350140, -6.266155));
 			locations.put("Kiev, Ukraine ", new GeoPosition(50.45466, 30.5238));
 			locations.put("Berlin, Germany", new GeoPosition(52.52437, 13.41053));
 			break;
@@ -67,7 +81,7 @@ public class Locations {
 			break;
 		case 9:
 			locations.put("Kabul, Afghanistan", new GeoPosition(34.52813, 69.17233));
-			locations.put("Tehran, Iran", new GeoPosition( 35.715298, 51.404343));
+			locations.put("Tehran, Iran", new GeoPosition(35.715298, 51.404343));
 			locations.put("Doha, Qatar", new GeoPosition(25.27932, 51.52245));
 			break;
 		case 10:
@@ -97,6 +111,5 @@ public class Locations {
 			break;
 		}
 
-		}
 	}
-
+}

@@ -5,7 +5,6 @@ import gui.GameWindow;
 import gui.Menu1;
 import gui.Menu2;
 import shared.Guess;
-import shared.Locations;
 import shared.Message;
 
 /**

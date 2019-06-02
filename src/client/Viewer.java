@@ -32,7 +32,6 @@ import borrowed.MyWaypoint;
 import borrowed.SwingWaypoint;
 import gui.ZoomListener;
 import shared.Guess;
-import shared.Locations;
 import shared.Message;
 
 /**

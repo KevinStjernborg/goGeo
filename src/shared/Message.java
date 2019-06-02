@@ -1,6 +1,7 @@
 package shared;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -95,13 +96,31 @@ public class Message implements Serializable {
 	public String getStartMessage() {
 		return startMessage;
 	}
-	
+
+	/**
+	 * A method that generates 3 random ints and places them into an array.
+	 * Uses an arraylist to avoid duplicates in the array.
+	 */
 	public void generateChoices() {
-		for (int i = 0; i < caseChoices.length; i++) {
-			caseChoices[i] = rand.nextInt(14) + 1;
+		int size = 14;
+
+		ArrayList<Integer> list = new ArrayList<Integer>(size);
+		for (int i = 1; i <= size; i++) {
+			list.add(i);
+		}
+
+		Random rand = new Random();
+		for (int i = 0; i < 3; i++) {
+			caseChoices[i] = rand.nextInt(list.size());
+			list.remove(caseChoices[i]);
 		}
 	}
+
 	
+	/**
+	 * A getter for the array with case choices.
+	 * @return caseChoices
+	 */
 	public int[] getChoices() {
 		return caseChoices;
 	}
