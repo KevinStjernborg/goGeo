@@ -21,7 +21,10 @@ public class Client {
 	private int identifier;
 
 	private Boolean hasMessage;
-
+/**
+ * Constructor
+ * @param socket
+ */
 	public Client(Socket socket) {
 		this.socket = socket;
 		hasMessage = false;

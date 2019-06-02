@@ -44,9 +44,10 @@ public class Game {
 
 	}
 
-	/*
-	 *TODO Ändra så att request är sann så att rätt if-sats körs i controllern 
-	 */
+/**
+ * A method that allows for a client to request the other playes guess
+ * @param identifier an int representing the number of the client
+ */
 	public void getOtherPlayersGuess(int identifier) {
 		if(identifier == 1) {
 			if(messageFromClientTwoReceived == true) {
@@ -69,34 +70,43 @@ public class Game {
 				clientTwo.sendMessage(message);
 			}
 
-		}		
+		}
 	}
-	
+
+	/**
+	 * A setter for the {@link Message} containing guess of client one
+	 * 
+	 * @param message
+	 */
 	public void setMessageFromClientOne(Message message) {
-		if(messageFromClientTwoReceived == true) {
+		if (messageFromClientTwoReceived == true) {
 			messageOne = message;
 			clientOne.sendMessage(messageTwo);
 			clientTwo.sendMessage(messageOne);
 			messageFromClientOneReceived = false;
 			messageFromClientTwoReceived = false;
-		}else {
+		} else {
 			messageOne = message;
 			messageFromClientOneReceived = true;
 		}
 	}
-	
+
+	/**
+	 * A setter for the {@link Message} containing guess of client two
+	 * 
+	 * @param message message
+	 */
 	public void setMessageFromClientTwo(Message message) {
-		if(messageFromClientOneReceived == true) {
+		if (messageFromClientOneReceived == true) {
 			messageTwo = message;
 			clientOne.sendMessage(messageTwo);
 			clientTwo.sendMessage(messageOne);
 			messageFromClientOneReceived = false;
 			messageFromClientTwoReceived = false;
-		}else {
+		} else {
 			messageTwo = message;
 			messageFromClientTwoReceived = true;
 		}
 	}
-
 
 }
